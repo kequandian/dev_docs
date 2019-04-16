@@ -1,0 +1,4 @@
+## Layout 必须使用 通用库, 仅提供布局功能
+## Container 必须使用 通用库, 对 Layout 进行修饰
+## 维护 布局通用组件 Components, Layout 对 Components 进行布局 
+## 维护 页面通过插件 Widgets, 页面由 Widgets 构成，widget 可动态/配置 从页面中增加或移除
