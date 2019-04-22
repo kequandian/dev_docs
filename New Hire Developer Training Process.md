@@ -5,7 +5,7 @@
 1. 安装Git Windows后，Git Bash 可用于作为Windows平台下的Linux bash 命令行执行窗口，并提供git 工具。
 2. 在 Innovation Oriented 群文件搜索“git常用命令”文档，学习git 使用。
 
-### Java1.8 jdk 配置
+### Java11 jdk 配置
 
 1. 配置环境变量 JAVA_HOME
 2. 在bash下可成功输出如下版本信息
