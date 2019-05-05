@@ -64,6 +64,34 @@ $ mvn dependency:tree | grep “org.json”
 
 3)         掌握 ssh-keygen 的 以及 id_rsa.pub  key 的使用
 
+### ssh无密码登陆
+
+通过ssh协议登陆服务器的前提是服务器已开通ssh服务，大部分linux平台默认配备ssh服务
+
+SSH协议允许终端通过密匙对免输密码直接登录服务器 
+
+密匙对基于终端，分别为 public key 和 private key，终端public key 置入服务器授权终端列表后，可携带private key合法登录服务器
+
+1. **创建SSH KEY**
+
+   查看~/.ssh目录下是否有id_rsa、id_rsa.pub文件，没有需要手动生成，执行如下命令：
+
+~~~
+ssh-keygen -t rsa -C "youremail@example.com"
+~~~
+
+​	-t 指定密钥类型。如果没有指定则默认生成用于SSH-2的RSA密钥。这里使用的是rsa。
+
+​	-C来指定所指定的注释，可以方便用户标识这个密钥，指出密钥的用途或其他有用的信息。所以在这里输入自己的邮箱或者其他都行。
+
+​	输入完毕后程序同时要求输入一个密语字符串(passphrase)，空表示没有密语。接着会让输入2次口令(password)，空表示没有口令。3次回车即可完成当前步骤。
+
+​	此时密钥对就生成好了。
+
+2. **将终端公钥置入服务器授权终端列表**
+
+   将终端id_rsa.pub公钥内容拷贝到服务器~/.ssh/authorized_keys文件中，即可免密登陆。
+
 ### 掌握基本的 Linux 常用命令，并在git bash上运用
 
 ```java
