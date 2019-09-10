@@ -1,0 +1,190 @@
+version: "1.0"
+
+## 数据连接定义，用于代码生成器连接
+connection:
+   driver: mysql
+   host: 172.17.0.1:3306/cr
+   username: root
+   password: root
+   
+## 服务模块定义
+modules:
+  login: 
+     sso: github
+     ## path: /api/oauth/login  SSO github 已可以标准化，可省缺定义
+     ## method: POST  基本可以确定是 POST, 简化定义
+
+  ## 这里参考了 docker-compose.yaml 的编排方式， 以下 issue 指 module 
+  issue:
+    description: 'API for Issues'
+    ## 定义CRUD 关系，单表 或 一对多 关系
+    cg:    ## 由crud 改为 cg, 更能清楚指示为代码生成配置
+      mask: master
+      master: cr_issue
+      master_id: issue_id
+      slaves:
+        - slave: cr_issue_note
+    #   - slave: cr_another_table
+
+    service:
+    ##
+    ## 保留定义服务定义域
+    ##
+
+    ## 关于 issue 的 API, 这里定义所有 CRUD 需要生成的api 
+    api:
+
+      crud:  ## 可标准化的 crud
+        path: /api/issue/issues
+        cruds:
+            - CREATE
+            - UPDATE
+            - RETRIEVE
+            - DELETE
+
+      ## 首页 我 负责的 CR 列表
+      data:   ## --- owner 改为 data, 指数据隔离/过滤 API ——这里为登录用户数据
+
+         active: ## 当前数据查询
+            owned: 
+              path: /api/mine/issues   ## vs /api/issue/issues, 便于记忆
+              scope: mine  ## 数据查询隔离为个人信息
+              method: GET
+              param: 
+                  - createTime
+                  - status
+                  - module
+                  - project
+                  - title
+
+        history:  ## 历史数据查询
+            ## 我创建的Issue, 属于查询
+            originator: 
+                path: /api/mine/issues/originator
+                scope: mine  ## 数据查询隔离为个人信息
+                method: GET
+                param: 
+                  - createTime
+                  - status
+                  - module
+                  - project
+                  - owner
+                  - title
+
+            ## 我参与过的， 属于查询
+            participate:
+                path: /api/mine/issues/participate
+                scope: mine  ## 数据查询隔离为个人信息
+                method: GET
+                param: 
+                  - createTime
+                  - status
+                  - module
+                  - project
+                  - owner
+                  - title
+
+      ## 关于 status 状态跳转相关的 api
+      status:
+        ## 状态是否是使用工作流去配置有多少个状态呢 ？
+        enum:
+            - UNDEFINED
+            - OPEN
+            - FIXED
+            - NFP
+            - NTF
+            - DEPLICATE
+            - NR
+            - CLOSED
+            - VERIFIED
+            - DONE
+
+        path: /api/issue/issues/{id}
+
+        ## 没有取消状态，undefine 状态可以删除，因为建错了
+        #        method: POST
+        #        action: /action/cancel
+        #        from: open
+        #        to: cancel
+
+        ## route out ---1.route out 明确对象，修改 ownerId，2. route out to  null , 该CR回到CR 池
+        route:
+            method: POST
+            action: /action/route
+            from: OPEN
+            to: OPEN 
+
+        ## 只有 originator 才能 close, 特定的状态才能 closed 
+        close: 
+            method: POST
+            action: /action/closed
+            from: FIXED/NFP/NTF/DEPLICATE/NR
+            to: CLOSED
+        fixed: 
+            method: POST
+            action: /action/fixed
+            from: OPEN
+            to: VERIFIED
+        ## 未复现
+        nfp:
+            method: POST
+            action: /action/nfp
+            from: OPEN
+            to: NFP
+        ## no trouble found
+        ntf:
+            method: POST
+            action: /action/ntf
+            from: OPEN
+            to: NTF
+        ## 重复ISSUE
+        deplicate:
+            method: POST
+            action: /action/deplicate
+            from: OPEN
+            to: DEPLICATE
+        ## None Reproducable
+        nr:
+            method: POST
+            action: /action/nr
+            from: OPEN
+            to: NR  
+        done: 
+          method: POST
+          action: /action/done
+          from: OPEN
+          to: DONE
+
+      action: 
+        ## 关于 issue 指派问题，1. 自己指派给自己 2.指派给对应的同时
+        assign:
+            path: /api/issue/issues/{id}
+            method: POST
+            action: /action/assign
+        ## 需考虑关闭之后 originator 是否能够重新打开  
+        ## 需要考虑 能否可以 copy closed 的历史issue -- 直接前端填充然后调用  api 。此处没太多的想法
+
+
+        ## 需考虑 其他 API， API 远不止这些， 继续思考讨论
+        ####  ###
+
+
+        ## 以下定义需要进一步讨论，似乎没有应用场景 -- 应用场景: 以 CR 为例: 我的CR，项目 CR ，某个租户的CR，某个 项目的CR
+        ## field 对应为 数据库改表的字段
+        ownerList:
+          - /api/mine/issues/center
+                owner: user
+                field: user_id
+                table: cr_issue
+          - /api/module/modules/{id}/issues
+                owner: module
+                field: module_id
+                table: cr_issue
+          - /api/project/projects/{id}/issues
+                owner: project
+                field: project_id
+                table: cr_issue
+          - /api/org/orgs/issues
+                owner: organization
+                field: org_id
+                table: cr_issue
