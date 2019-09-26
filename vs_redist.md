@@ -13,3 +13,15 @@ https://download.microsoft.com/download/1/6/B/16B06F60-3B20-4FF2-B699-5E9B7962F9
 ## Microsoft Visual C++ 2012 Redistributable Package (x64)
 https://www.microsoft.com/en-us/download/confirmation.aspx?id=30679
 https://download.microsoft.com/download/1/6/B/16B06F60-3B20-4FF2-B699-5E9B7962F9AE/VSU_4/vcredist_x64.exe
+## Microsoft Visual C++ 2013 Redistributable Package (x86)
+https://www.microsoft.com/en-us/download/confirmation.aspx?id=40784
+https://download.microsoft.com/download/2/E/6/2E61CFA4-993B-4DD4-91DA-3737CD5CD6E3/vcredist_x86.exe
+## Microsoft Visual C++ 2013 Redistributable Package (x64)
+https://www.microsoft.com/en-us/download/confirmation.aspx?id=40784
+https://download.microsoft.com/download/2/E/6/2E61CFA4-993B-4DD4-91DA-3737CD5CD6E3/vcredist_x64.exe
+## Microsoft Visual C++ 2015 Redistributable Package (x86)
+https://www.microsoft.com/en-us/download/confirmation.aspx?id=48145
+https://download.microsoft.com/download/9/3/F/93FCF1E7-E6A4-478B-96E7-D4B285925B00/vc_redist.x86.exe
+## Microsoft Visual C++ 2015 Redistributable Package (x64)
+https://www.microsoft.com/en-us/download/confirmation.aspx?id=48145
+https://download.microsoft.com/download/9/3/F/93FCF1E7-E6A4-478B-96E7-D4B285925B00/vc_redist.x64.exe
