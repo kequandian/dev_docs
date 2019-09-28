@@ -50,7 +50,7 @@ $ mvn dependency:tree | grep “org.json”
 
 | **序号** | **连接字段**                                                 |
 | -------- | ------------------------------------------------------------ |
-| Power    | jdbc:mysql://<br/>120.79.77.207/test?user=root&password=root&characterEncoding=utf8 |
+| Power    | jdbc:mysql://120.79.49.72/test?user=root&password=root&characterEncoding=utf8 |
 
 ## 服务器操作
 
@@ -126,13 +126,13 @@ Q: 如何替换当前目录下(包括所有子目录)所有 .js 文件中的指�
 
 ### 在bash命令提示符下git clone 如下代码
 
-$ git clone devops@120.79.49.72:/home/devops/repo/env/env-test-dao.git
+$ git clone devops@zele.pro:/home/devops/repo/env/env-test-saas.git
 
 打开 intellij idea用maven 导入工程
 
 ### 运行API Endpoint
 
-最新出现Test Dao is success! 表示运行成功
+最新出现Test SaaS is success! 表示运行成功
 
 ### 用Postman API测试工具对API进行测试
 
@@ -207,15 +207,10 @@ spring:
 
 ## 代码自动生成工具的使用
 
-### sb-code-generator 插件的使用
-
-在 Innovation Oriented 群文件搜索关键字“代码生成插件” 文档，学习sb-code-generator的使用
-
 ### cg-cli自动生成代码脚本的使用
 
-cg-cli 是以脚本的开式生成代码，基于sb-code-generator 插件进行二次开发，比sb-code-generator 插件更加简单快捷。cg-cli 将依据项目开发过程不断完善，满足越来越多的业务需求。
-
 > git clone git@github.com:kequandian/cg-cli.git
+> npm i -g  ## 全局安装
 
 **使用说明：**
 
