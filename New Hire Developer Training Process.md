@@ -255,7 +255,7 @@ spring:
 
 1. 本地maven repository存在sb-code-generator包，找到它并删除，从新执行生成代码指令
 
-## 开发流程
+## 代码提交要求
 
 1. 至少每天下班前提交一次代码
 
