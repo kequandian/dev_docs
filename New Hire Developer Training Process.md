@@ -28,10 +28,9 @@ Java HotSpot(TM) 64-Bit Server VM (build 25.161-b12, mixed mode)
 
 ```java
 $ mvn clean package install deploy
-$ clean、package、install、deploy 分别代表什么意义
 $ mvn dependency:tree  ## 要看当前package的所有依赖，可以通过 | grep “keyword” 过滤
 e.g.
-$ mvn dependency:tree | grep “org.json”
+$ mvn dependency:tree | cat -n | grep “org.json”
 ```
 
 ### 安装最新版本 Intellij Idea Community
@@ -112,13 +111,13 @@ Q: 如何替换当前目录下(包括所有子目录)所有 .js 文件中的指�
 
 > $find . –name “*.json” | sed -i “s/oldstring/newstring/g”
 
-### 操作符用法说明
+### 操作符用法说明 理解管道的使用方法
 
 | 操作符 | 说明                                                         |
 | ------ | ------------------------------------------------------------ |
+| \|     | pipe/管道,命令行的输出作为另一个命令行的输入<br />$ cat out.md |
 | >      | 内容完全覆盖已存在文件或新建文件<br />$ echo “ok” >/path/to/new.md |
 | >>     | 内容追加到已存在文件内容末端<br />$ echo “ok” >>/path/to/out.md |
-| \|     | pipe/管道,命令行的输出作为另一个命令行的输入<br />$ cat out.md |
 | &      | 加在命令行之后，让命令在后台运行<br />$ java –jar app.jar &  |
 | $      | $ export PW=OK123; echo $PW<br />OK123                       |
 
@@ -134,9 +133,8 @@ $ git clone devops@zele.pro:/home/devops/repo/env/env-test-saas.git
 
 最新出现Test SaaS is success! 表示运行成功
 
-### 用Postman API测试工具对API进行测试
-
-在 Innovation Oriented 群文件搜索关键字“postman” 文档，学习postman的使用，并对Test Dao API进行测试。
+### 掌握 resetful 测试工具 
+推荐使用开源工具 [Insomnia](https://www.insomnia.rest/)
 
 ### 理解配置文件的基础配置
 
@@ -157,10 +155,9 @@ $ java -jar target/app-standalone.jar --server.port=8081
 
 ```java
 spring:
-	profiles:
-		active: dev
+   profiles:
+      active: dev
 ```
-
 也可以在执行时指定：
 
  $java -jar target/app-standalone.jar –spring.profiles.active=produce
@@ -169,42 +166,8 @@ spring:
 
 设置 Initailize: true, 运行APP所有依赖的模块的所有数据库表都重新建立（原有表数据重置）。
 
-### 通过 Navcat 连接本地或远程数据库
-
-#### 连接数据库
-
-1. 选择数据库类型
-
-2. 填写必要的链接信息
-
-   连接名:即你希望在Navicat界面显示的名称
-
-   主机或IP地址:需要连接的数据的IP，例如:本地数据库可使用 localhost或127.0.0.1
-
-   用户名及密码:用户名及密码，相当于bash 命令下 -u  -p
-
-3. 填写完成后点击连接测试
-
-出现如图所示”连接成功”的信息证明配置成功。
-
-#### 使用Navicat执行SQL语句
-
-双击配置好的数据库，右键新建数据库，并点击查询按钮:
-
-依次点击  新建查询
-
-生成执行sql语句的窗口，将需要执行的sql拷贝到该窗口，Ctrl + R 执行sql 语句。
-
-#### 导出数据库或单表
-
-导出整个数据库结构及数据:
-
-选定需要导出的数据库，右键
-
-注意:选择结构和数据相当于将整个数据库dump下来。仅结构只会打印出该数据库的建表语句
-
-导出单表，操作类似，选中需要导出的单表，然后按照导出整个数据库的方法依次执行即可。
-
+### 通过 navcat 连接本地或远程数据库
+掌握 navcat 的使用
 
 ### 如何在本地启动调试一个简单网页
 - 安装 
@@ -221,59 +184,14 @@ $ http-server
 - 测试
 打开浏览器， 在浏览地址输入 127.0.0.1:8080
 
-
-## 代码自动生成工具的使用
-
-### cg-cli自动生成代码脚本的使用
+## CRUD代码生成工具的使用
 
 > git clone git@github.com:kequandian/cg-cli.git
 > npm i -g  ## 全局安装
 
-**使用说明：**
-
-- 查看脚本命令，在根目录下输入：./cg-cli
-
-- 配置数据源，在根目录下输入：./cg-cli db set config \<database> [localhost]
-
-- 测试连接，在根目录下输入：./cg-cli db sanity
-
-- 查看数据库表，输入：./cg-cli db show tables
-
-- 指定模块名，输入：./cg-cli module set \<module-name>
-
-- 生成单表crud，输入：./cg-cli crud one \<table-name> --gen
-
-- 生成一对多crud，输入：./cg-cli crud onemany \<master> <slave:mid> --gen
-
-  ​     master：主表名称
-
-  ​     slave：从表名称
-
-  ​     mid：主表id在从表中对应的字段
-
-- 生成多对多crud，输入：./cg-cli crud manymany \<master> \<peer> \<relation> --gen
-
-  ​     master：主表名称
-
-  ​     peer：另一个表名称
-
-  ​     relation：多对多关系表名称
-
-- 其他使用方法直接查看脚本用法说明。
-
-**自动生成工具失败原因：**
-
-执行指令时提示失败：
-
-1. 数据库未连接，数据源配置有误，请使用 ./cg-cli db get config检查配置
-2. 指定生成的table不存在
-
-执行成功，但未生成代码：
-
-1. 本地maven repository存在sb-code-generator包，找到它并删除，从新执行生成代码指令
+**另外需掌握前端配置工具** [快速开发框架](http://console.smallsaas.cn)
 
 ## 代码提交要求
-
 1. 至少每天下班前提交一次代码
 
 2. 原则上实现了一个小功能，或完成了一个小任务需要提交代码一次
@@ -283,13 +201,11 @@ $ http-server
    git commit –m “write down current task comment”
 
 ### 理解开发质量
-
 1. 深入理解 Exception, RuntimeException 的用法，局部(internal)功能实现需要多抛出(throw) 异常，可有效保证外部(external)输入参数正确
 2. 多写非空判断，尽量避免空针错误。禁止连接使用点(.)操作
 3. 多写log，标记重要代码段信息输出
 
 ### 阅读并遵循开发规范
-
 《Efficiency Development Checklist》
 
 《数据库设计规范》
@@ -297,7 +213,6 @@ $ http-server
 学习《CRUD Introduction》,了解一对多/多对多/分组等数据库表关系
 
 ### 关于处理问题的方法流程
-
 ==原则==
 
 **原则一** 尽量少花时间在技术问题上面，因为技术问题大家都遇到过，无必要再花大量时间研究技术问题
@@ -305,7 +220,6 @@ $ http-server
 **原则二** 遇到业务问题需掌握基本的测试方法，理解单元测试的意义，通过单元测试逐步排除或缩小问题范围。不断重复无建设性的综合测试，无分析思路，是作为 New Hire 常见的现象，应当努力避免！
 
 **技术问题定义**
-
 - 编辑器问题
 - java 配置问题
 - maven 配置问题
@@ -316,7 +230,6 @@ $ http-server
 - 程序运行问题
 
 ### 关于遇到的技术问题处理流程
-
 遇到技术问题首先查看 《Efficiency Development Checklist》文档，看是否已有解决方法
 
 遇到技术问题如果没有解决思路，不应该花没有建设性的时间，不断重复尝试而没有任何进展
@@ -332,13 +245,15 @@ $ http-server
 - 最终解决了及时回复是否已解决
 
 ### Idea使用
-
 - 如何在 idea intellij 全局代码变更类名或变量的方法: 选中变量或类名，shift+f6,修改变量名即可
 
 ### 代码规范
-
 - 多字符串连接禁止使用+，使用String.format或者StringBuilder进行连接
 - 路径分隔符禁止使用\和/，统一使用File.separator
 - 谨防多点操作，容易报空指针错误,注意Long Integer与  int  long 引起的空指针问题
 - 提交JSON空子实体不能用 ””
 
+### CRUD 编辑规范
+- CRUD实体新建请求 在 api 目录新建请求类 ${Entity}Request (e.g. DeviceRequest), 通过swagger 向前端提供紧凑的参数请求（过滤 id, 时间等)
+- CRUD实体列表查询请求 使用扁平类 ${Entity}Record (e.g.  DeviceRecord)
+- CRUD一对多实体，使用 ${Entity}Model （e.g. DeviceModel)
