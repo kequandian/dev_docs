@@ -285,7 +285,8 @@ $ git commit –m “write down current task comment”
 - 多字符串连接禁止使用+，使用String.format或者StringBuilder进行连接
 - 路径分隔符禁止使用\和/，统一使用File.separator
 - 谨防多点操作，容易报空指针错误,注意Long Integer与  int  long 引起的空指针问题
-- 提交JSON空子实体不能用 ””
+- JSON空实体不能用 ””, 因为 "" 代表空字符串, 提交空字符串到实体将导致JSON格式解释错误。应该用: {}
+  e.g.  {"id":0, "name":"entity", "meta": {} }
  
 ### CRUD 编辑规范
 - CRUD实体新建请求 在 api 目录新建请求类 ${Entity}Request (e.g. DeviceRequest), 通过swagger 向前端提供紧凑的参数请求（过滤 id, 时间等)
