@@ -2,18 +2,25 @@
 
 ### Git Windows 下载安装
 
-1. 安装Git Windows后，Git Bash 可用于作为Windows平台下的Linux bash 命令行执行窗口，并提供git 工具。
-2. 在 Innovation Oriented 群文件搜索“git常用命令”文档，学习git 使用。
+- 安装[Git Windows](https://gitforwindows.org/)后，Git Bash 可用于作为Windows平台下的Linux bash 命令行执行窗口，并提供git 工具。
+- 在 Innovation Oriented 群文件搜索 **“git常用命令”** 文档，学习git的使用。
 
-### Java11 jdk 配置
+### Note++ 文本编辑器 下载安装
+
+[note++](https://notepad-plus-plus.org)
+
+### WinSCP 下载安装
+[WinSCP](https://winscp.net/eng/download.php)
+
+### Java 11 JKD (LTS) 配置
 
 1. 配置环境变量 JAVA_HOME
 2. 在bash下可成功输出如下版本信息
 
 ```java
 $ java –version
-java version "1.8.0_161"
-Java(TM) SE Runtime Environment (build 1.8.0_161-b12)
+java version "11"
+Java(TM) SE Runtime Environment (build 11.0_161-b12)
 Java HotSpot(TM) 64-Bit Server VM (build 25.161-b12, mixed mode)
 ```
 
@@ -22,14 +29,24 @@ Java HotSpot(TM) 64-Bit Server VM (build 25.161-b12, mixed mode)
 1. 下载并配置最新版本 maven, 并设置环境变量M2_HOME, 增加路径置设 PATH=%M2_HOME%\bin
 2. 通过以下地址下载 maven 配置文件（用于配置 apache archive 私服授权）,并保存于~/.m2目录下。
 
-> http://zele.pro:8000/devops/settings.xml
+[settings.xml](http://zele.pro:8000/devops/settings.xml)
 
 3. 掌握  mvn 命令行的使用
 
 ```java
+$ echo $M2_HOME
+/Users/vincenthuang/Library/apache-maven-3.5.0
+$ mvn --version
+Apache Maven 3.5.0 (ff8f5e7444045639af65f6095c62210b5713f426; 2017-04-04T03:39:06+08:00)
+Maven home: /Users/vincenthuang/Library/apache-maven-3.5.0
+Java version: 1.8.0_131, vendor: Oracle Corporation
+Java home: /Library/Java/JavaVirtualMachines/jdk1.8.0_131.jdk/Contents/Home/jre
+```
+
+** 要看当前package的所有依赖，可以通过 | grep “keyword” 过滤 **
+```java 
 $ mvn clean package install deploy
-$ mvn dependency:tree  ## 要看当前package的所有依赖，可以通过 | grep “keyword” 过滤
-e.g.
+$ mvn dependency:tree
 $ mvn dependency:tree | cat -n | grep “org.json”
 ```
 
@@ -101,15 +118,22 @@ Useful:  grep,find, xargs,vi, sed
 
 Q: 如何查找当前目录下的哪个文件包括字符串？
 
-> $ls *.json | xargs grep “string you want to search”
+```
+$ ls *.json | xargs grep “string you want to search”
+```
 
 Q: 如何查找当前目录下(包括所有子目录) 的哪个文件包括字符串？
 
-> $find . –name “*.json” | grep “string you want to search”
+```
+$ find . –name “*.json” | grep “string you want to search”
+```
 
 Q: 如何替换当前目录下(包括所有子目录)所有 .js 文件中的指定内容？
 
-> $find . –name “*.json” | sed -i “s/oldstring/newstring/g”
+```
+
+$ find . –name “*.json” | sed -i “s/oldstring/newstring/g”
+```
 
 ### 操作符用法说明 理解管道的使用方法
 
@@ -125,7 +149,9 @@ Q: 如何替换当前目录下(包括所有子目录)所有 .js 文件中的指�
 
 ### 在bash命令提示符下git clone 如下代码
 
+```
 $ git clone devops@zele.pro:/home/devops/repo/env/env-test-saas.git
+```
 
 打开 intellij idea用maven 导入工程
 
@@ -149,7 +175,9 @@ server:
 
 也可以在执行时指定：
 
+```
 $ java -jar target/app-standalone.jar --server.port=8081
+```
 
 **如何指定运行配置选项**
 
@@ -160,7 +188,9 @@ spring:
 ```
 也可以在执行时指定：
 
- $java -jar target/app-standalone.jar –spring.profiles.active=produce
+```
+ $ java -jar target/app-standalone.jar –spring.profiles.active=produce
+```
 
 **如何初始化数据库表**
 
@@ -186,8 +216,10 @@ $ http-server
 
 ## CRUD代码生成工具的使用
 
-> git clone git@github.com:kequandian/cg-cli.git
-> npm i -g  ## 全局安装
+```
+$ git clone git@github.com:kequandian/cg-cli.git
+$ npm i -g
+```
 
 **另外需掌握前端配置工具** [快速开发框架](http://console.smallsaas.cn)
 
@@ -198,7 +230,9 @@ $ http-server
 
 3. 提交的代码要写 comment 
 
-   git commit –m “write down current task comment”
+```
+$ git commit –m “write down current task comment”
+```
 
 ### 理解开发质量
 1. 深入理解 Exception, RuntimeException 的用法，局部(internal)功能实现需要多抛出(throw) 异常，可有效保证外部(external)输入参数正确
@@ -252,7 +286,7 @@ $ http-server
 - 路径分隔符禁止使用\和/，统一使用File.separator
 - 谨防多点操作，容易报空指针错误,注意Long Integer与  int  long 引起的空指针问题
 - 提交JSON空子实体不能用 ””
-
+ 
 ### CRUD 编辑规范
 - CRUD实体新建请求 在 api 目录新建请求类 ${Entity}Request (e.g. DeviceRequest), 通过swagger 向前端提供紧凑的参数请求（过滤 id, 时间等)
 - CRUD实体列表查询请求 使用扁平类 ${Entity}Record (e.g.  DeviceRecord)
