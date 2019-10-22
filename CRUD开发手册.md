@@ -1,6 +1,6 @@
 ## CRUD类代码参考
 
-### 单实体 
+### 标准单实体 
 - 通过工具生成
 ```shell
 $ cg-cli crud one <table-name>
@@ -28,8 +28,12 @@ public class TestSaasEntityServiceImpl extends CRUDTestSaasEntityServiceImpl imp
 }
 ```
 
+### 单实体一对一字段转换
+通过 crud-gateway 解决方案 配置转换 entityName->{associated_id,  associated_table_name, associated_field_array}
+- [待讨论]
 
-### 一对多实体
+### 标准一对多实体
+
 
 ### 分组实体
 
