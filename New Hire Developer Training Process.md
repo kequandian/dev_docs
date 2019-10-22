@@ -74,11 +74,9 @@ $ mvn dependency:tree | cat -n | grep “org.json”
 
 在Innovation Oriented 群文件搜索 “PuTTY自动登录SSH服务器” 文档，了解ssh概念
 
-1)         学习使用 putty, 或其他 ssh 登录工具
-
-2)         学习 scp 或 WinScp (Windows平台可视化scp,可下载安装) 的使用
-
-3)         掌握 ssh-keygen 的 以及 id_rsa.pub  key 的使用
+1)   学习使用 putty, 或其他 ssh 登录工具
+2)   学习 scp 或 WinScp (Windows平台可视化scp,可下载安装) 的使用
+3)   掌握 ssh-keygen 的 以及 id_rsa.pub  key 的使用
 
 ### ssh无密码登陆
 
@@ -108,11 +106,11 @@ ssh-keygen -t rsa -C "youremail@example.com"
 
    将终端id_rsa.pub公钥内容拷贝到服务器~/.ssh/authorized_keys文件中，即可免密登陆。
 
-### 掌握Linux操作系统
+### 掌握Linux操作系统常用命令
 ```shell
 Basic:  ls, cd, rm, mkdir, echo, cat
 Advance: vi, ps, grep, find, xargs, chmod, sed
-Network: curl, netstat, wget
+Network: curl, netstat, wget, scp
 ```
 理解 /dev/null, .bashrc, export, sh, bash, $@, @#, $1 等概念
 重点掌握 vi 编辑工具的使用, 以及网络工具 curl 的使用
