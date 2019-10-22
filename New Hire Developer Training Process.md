@@ -29,7 +29,7 @@ Java HotSpot(TM) 64-Bit Server VM (build 25.161-b12, mixed mode)
 1. 下载并配置最新版本 maven, 并设置环境变量M2_HOME, 增加路径置设 PATH=%M2_HOME%\bin
 2. 通过以下地址下载 maven 配置文件（用于配置 apache archive 私服授权）,并保存于~/.m2目录下。
 
-[settings.xml](http://zele.pro:8000/devops/settings.xml)
+    [settings.xml](http://zele.pro:8000/devops/settings.xml)
 
 3. 掌握  mvn 命令行的使用
 
