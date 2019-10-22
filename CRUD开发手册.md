@@ -1,6 +1,33 @@
 ## CRUD类代码参考
 
 ### 单实体 
+- 通过工具生成
+```shell
+$ cg-cli crud one <table-name>
+```
+
+- 代码片断
+```java
+public interface CRUDTestSaasEntityService  extends CRUDServiceOnly<TestSaasEntity> {
+}
+public interface TestSaasEntityService extends CRUDTestSaasEntityService {
+}
+```
+```java
+@Service
+public class CRUDTestSaasEntityServiceImpl extends CRUDServiceOnlyImpl<TestSaasEntity> implements CRUDTestSaasEntityService {
+    @Resource
+    protected TestSaasEntityMapper testSaasEntityMapper;
+    @Override
+    protected BaseMapper<TestSaasEntity> getMasterMapper() {
+        return testSaasEntityMapper;
+    }
+}
+@Service("TestSaasEntityService")
+public class TestSaasEntityServiceImpl extends CRUDTestSaasEntityServiceImpl implements TestSaasEntityService {
+}
+```
+
 
 ### 一对多实体
 
