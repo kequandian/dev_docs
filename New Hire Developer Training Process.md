@@ -17,11 +17,13 @@
 1. 配置环境变量 JAVA_HOME
 2. 在bash下可成功输出如下版本信息
 
-```java
+```shell
 $ java –version
-java version "11"
-Java(TM) SE Runtime Environment (build 11.0_161-b12)
-Java HotSpot(TM) 64-Bit Server VM (build 25.161-b12, mixed mode)
+java version "11.0.2" 2019-01-15 LTS
+Java(TM) SE Runtime Environment 18.9 (build 11.0.2+9-LTS)
+Java HotSpot(TM) 64-Bit Server VM 18.9 (build 11.0.2+9-LTS, mixed mode)
+$ echo $JAVA_HOME
+C:\Program Files\Java\jdk-11.0.2
 ```
 
 ### Apache Maven 配置
@@ -104,7 +106,7 @@ ssh-keygen -t rsa -C "youremail@example.com"
 
 2. **将终端公钥置入服务器授权终端列表**
 
-   将终端id_rsa.pub公钥内容拷贝到服务器~/.ssh/authorized_keys文件中，即可免密登陆。
+   将终端 id_rsa.pub 公钥内容拷贝到服务器 ~/.ssh/authorized_keys 文件中，即可免密登陆。
 
 ### 掌握Linux操作系统常用命令
 ```shell
@@ -116,17 +118,17 @@ Network: curl, netstat, wget, scp
 重点掌握 vi 编辑工具的使用, 以及网络工具 curl 的使用
 
 Q: 如何查找当前目录下的哪个文件包括字符串？
-```
+```shell
 $ ls *.json | xargs grep “string you want to search”
 ```
 
 Q: 如何查找当前目录下(包括所有子目录) 的哪个文件包括字符串？
-```
+```shell
 $ find . –name “*.json” | grep “string you want to search”
 ```
 
 Q: 如何替换当前目录下(包括所有子目录)所有 .js 文件中的指定内容？
-```
+```shell
 $ find . –name “*.json” | sed -i “s/oldstring/newstring/g”
 ```
 
@@ -146,7 +148,7 @@ $ find . –name “*.json” | sed -i “s/oldstring/newstring/g”
 
 ## 调试API
 **在bash命令提示符下git clone 如下代码**
-```
+```shell
 $ git clone devops@zele.pro:/home/devops/repo/env/env-test-saas.git
 ```
 打开 intellij idea 用 **maven** 导入工程
@@ -167,23 +169,23 @@ http://127.0.0.1:8080/swagger-ui.html
 src/main/resources/application.yml
 
 **如何指定运行端口**
-```java
+```xml
 server:
-	port: 8080
+   port: 8080
 ```
 **也可以在执行时指定：**
-```
+```shell
 $ java -jar target/app-standalone.jar --server.port=8081
 ```
 
 **如何指定运行配置选项**
-```java
+```xml
 spring:
    profiles:
       active: dev
 ```
 **也可以在执行时指定：**
-```
+```shell
  $ java -jar target/app-standalone.jar –spring.profiles.active=produce
 ```
 
@@ -195,12 +197,12 @@ spring:
 
 ### 如何在本地启动调试一个简单网页
 - 安装 
-  ```
+  ```shell
   $ npm -i http-server
   ```
 - 启动
   进入网页目录，在命令行下执行 
-  ```
+  ```shell
   $ http-server
   ```
 - 测试
@@ -208,7 +210,7 @@ spring:
 
 ## CRUD代码生成工具的使用
 学习使用以下开源cli工具
-  ```
+  ```shell
   $ git clone git@github.com:kequandian/cg-cli.git
   $ npm i -g
   ```
@@ -218,7 +220,7 @@ spring:
 1. 至少每天下班前提交一次代码
 2. 原则上实现了一个小功能，或完成了一个小任务需要提交代码一次
 3. 提交的代码要写 comment 
-```
+```shell
 $ git commit –m “write down current task comment”
 ```
 
