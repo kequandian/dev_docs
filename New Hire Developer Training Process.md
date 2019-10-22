@@ -108,7 +108,7 @@ ssh-keygen -t rsa -C "youremail@example.com"
 
    将终端id_rsa.pub公钥内容拷贝到服务器~/.ssh/authorized_keys文件中，即可免密登陆。
 
-### 掌握基本的 Linux 常用命令，并在git bash上运用
+### 掌握Linux操作系统
 ```shell
 Basic:  ls, cd, rm, mkdir, echo, cat
 Advance: vi, ps, grep, find, xargs, chmod, sed
@@ -132,8 +132,11 @@ Q: 如何替换当前目录下(包括所有子目录)所有 .js 文件中的指�
 $ find . –name “*.json” | sed -i “s/oldstring/newstring/g”
 ```
 
-### 操作符用法说明 理解管道的使用方法
+### 掌握通过虚拟机启动Linux操作系统
+- 选用 VMware 或 VirtualBox 工具安装Linux操作系统
+- 掌握虚拟机的 **端口转发** 原理及其配置
 
+### 操作符用法说明 理解管道的使用方法
 | 操作符 | 说明                                                         |
 | ------ | ------------------------------------------------------------ |
 | \|     | pipe/管道,命令行的输出作为另一个命令行的输入<br />$ cat out.md |
@@ -142,21 +145,18 @@ $ find . –name “*.json” | sed -i “s/oldstring/newstring/g”
 | &      | 加在命令行之后，让命令在后台运行<br />$ java –jar app.jar &  |
 | $      | $ export PW=OK123; echo $PW<br />OK123                       |
 
+
 ## 调试API
-
-### 在bash命令提示符下git clone 如下代码
-
+**在bash命令提示符下git clone 如下代码**
 ```
 $ git clone devops@zele.pro:/home/devops/repo/env/env-test-saas.git
 ```
+打开 intellij idea 用 **maven** 导入工程
 
-打开 intellij idea用maven 导入工程
-
-### 运行API Endpoint
-
+**运行API Endpoint**
 最新出现Test SaaS is success! 表示运行成功
 
-### 在线查看 swagger 文档
+**在线查看 swagger 文档**
 ```shell
 http://127.0.0.1:8080/swagger-ui.html
 ```
@@ -265,7 +265,7 @@ $ git commit –m “write down current task comment”
   ```
 - 尽量多写log，标记重要代码段信息输出
 
-### 掌握容易部署方法
+### 掌握容器部署方法
 - 掌握 docker 原理
 - 掌握 docker 基本 cli 操作命令
 - 掌握 docker-compose 部署编排 参考 [docker.io/zelejs/app-openjre11](https://hub.docker.com/r/zelejs/app-openjre11)
