@@ -282,8 +282,8 @@ $ git commit –m “write down current task comment”
 - 如何在 idea intellij 全局代码变更类名或变量的方法: 选中变量或类名，shift+f6,修改变量名即可
 
 ### 代码规范
-- 多字符串连接禁止使用+，使用String.format或者StringBuilder进行连接
-- 路径分隔符禁止使用\和/，统一使用File.separator
+- 多字符串连接禁止使用+，使用 **String.format** 或者 **StringBuilder** 进行连接
+- 路径分隔符禁止使用 \ 和 / ，统一使用 **File.separator**
 - 谨防多点操作，容易报空指针错误,注意Long Integer与  int  long 引起的空指针问题
 - JSON空实体不能用 ””, 因为 "" 代表空字符串, 提交空字符串到实体将导致JSON格式解释错误。应该用: {}
   ```shell
