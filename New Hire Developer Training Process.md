@@ -227,7 +227,7 @@ $ git commit –m “write down current task comment”
 ### 遵循定义的准则及开发规范
 - [工作行为准则](https://github.com/kequandian/dev_docs/blob/master/%E5%B7%A5%E4%BD%9C%E8%A1%8C%E4%B8%BA%E5%87%86%E5%88%99.md)
 - [数据库设计规范](https://github.com/kequandian/dev_docs/blob/master/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%BE%E8%AE%A1%E8%A7%84%E8%8C%83.md)
-- [接口开发规范](https://github.com/kequandian/dev_docs/blob/master/%E6%8E%A5%E5%8F%A3%E5%BC%80%E5%8F%91%E8%A7%84%E8%8C%83.md)
+- [开发规范](https://github.com/kequandian/dev_docs/blob/master/%E5%BC%80%E5%8F%91%E8%A7%84%E8%8C%83.md)
 - [开发流程](https://github.com/kequandian/dev_docs/blob/master/%E5%BC%80%E5%8F%91%E6%B5%81%E7%A8%8B.md)
 
 ### 熟悉代码编辑器 Idea Intellij 的使用
