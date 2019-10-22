@@ -224,46 +224,19 @@ spring:
 $ git commit –m “write down current task comment”
 ```
 
-### 关于处理问题的方法流程
-**原则一** 尽量少花时间在技术问题上面，因为技术问题大家都遇到过，无必要再花大量时间研究技术问题
-**原则二** 遇到业务问题需掌握基本的测试方法，理解单元测试的意义，通过单元测试逐步排除或缩小问题范围。不断重复无建设性的综合测试，无分析思路，是作为 New Hire 常见的现象，应当努力避免！
+### 遵循定义的准则及开发规范
+- [工作行为准则](https://github.com/kequandian/dev_docs/blob/master/%E5%B7%A5%E4%BD%9C%E8%A1%8C%E4%B8%BA%E5%87%86%E5%88%99.md)
+- [数据库设计规范](https://github.com/kequandian/dev_docs/blob/master/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%BE%E8%AE%A1%E8%A7%84%E8%8C%83.md)
+- [接口开发规范](https://github.com/kequandian/dev_docs/blob/master/%E6%8E%A5%E5%8F%A3%E5%BC%80%E5%8F%91%E8%A7%84%E8%8C%83.md)
+- [开发流程](https://github.com/kequandian/dev_docs/blob/master/%E5%BC%80%E5%8F%91%E6%B5%81%E7%A8%8B.md)
 
-**技术问题定义**
-- 编辑器问题
-- java 配置问题
-- maven 配置问题
-- 项目导入问题或配置问题（application.yml配置）
-- 数据库连接问题
-- SQL语法问题
-- 编码(utf-8)问题（如乱码）
-- 程序运行问题
+### 熟悉代码编辑器 Idea Intellij 的使用
+- 掌握调试方法 熟练使用 调试快捷键 F7, F8, F9
+- 掌握变更全局类名或变量的方法: 选中变量或类名, 键盘操作 **Shift+F6**, 在弹出框中修改变量名即可
 
-### 关于遇到的技术问题处理流程
-- 遇到技术问题首先查看 **《Efficiency Development Checklist》**文档，看是否已有解决方法
-- 遇到技术问题如果没有解决思路，不应该花没有建设性的时间，没有任何进展地不断**机械重复**尝试
-- 遇到技术问题没有解决思路，应该主动提出**讨论**，直接与有经验的同事沟通或在技术群里讨论
-
-**讨论的方法参考如下：**
-- 出现问题的具体描述，最直接的方法是提交截图
-- 报错日志/截图建议着重提示关键字，划出重点注意的地方（不建议没有通过思考直接截图）
-- 问问题的时候，给别人的条件越多，你的问题解决越快
-- 可以提供一下解决过程（**非必要**）（尝试过什么方法来解决；尝试过的方法，最终结果是怎么样）？
-- 最终解决了及时回复是否已解决
-
-### Idea使用
-- 如何在 idea intellij 全局代码变更类名或变量的方法: 选中变量或类名, 键盘操作 **Shift+F6**, 在弹出框中修改变量名即可
-
-### 代码规范
-- 深入理解 **Exception**及**RuntimeException**, 主动抛出(throw)异常效保证外部(external)输入参数正确
-- 禁止连续使用点(.)操作以避免空针错误，多点操作改为分多段代码并加非空判断
-- 多字符串连接禁止使用+，使用 **String.format** 或者 **StringBuilder** 进行连接
-- 路径分隔符禁止使用 \ 和 / ，统一使用 **File.separator**
-- 谨防多点操作，容易报空指针错误,注意Long Integer与  int  long 引起的空指针问题
-- JSON空实体不能用 ””, 因为 "" 代表空字符串, 提交空字符串到实体将导致JSON格式解释错误。应该用: {}
-  ```shell
-  e.g.  {"id":0, "name":"entity", "meta": {} }
-  ```
-- 尽量多写log，标记重要代码段信息输出
+### 掌握开源测试报告工具的使用
+ [zero-test](https://github.com/kequandian/zero-test)
+ 对非CRUD重要业务逻辑 需提供测试报告
 
 ### 掌握容器部署方法
 - 掌握 docker 原理
