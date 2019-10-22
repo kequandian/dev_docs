@@ -109,29 +109,26 @@ ssh-keygen -t rsa -C "youremail@example.com"
    将终端id_rsa.pub公钥内容拷贝到服务器~/.ssh/authorized_keys文件中，即可免密登陆。
 
 ### 掌握基本的 Linux 常用命令，并在git bash上运用
-
-```java
-Basic:  ls, cd, rm, mkdir,echo,cat,grep, find, xargs,vi
-Advance:  chmod,curl,wget, sed, /dev/null, sh, bash
-Useful:  grep,find, xargs,vi, sed
+```shell
+Basic:  ls, cd, rm, mkdir, echo, cat
+Advance: vi, ps, grep, find, xargs, chmod, sed
+Network: curl, netstat, wget
 ```
+理解 /dev/null, .bashrc, export, sh, bash, $@, @#, $1 等概念
+重点掌握 vi 编辑工具的使用, 以及网络工具 curl 的使用
 
 Q: 如何查找当前目录下的哪个文件包括字符串？
-
 ```
 $ ls *.json | xargs grep “string you want to search”
 ```
 
 Q: 如何查找当前目录下(包括所有子目录) 的哪个文件包括字符串？
-
 ```
 $ find . –name “*.json” | grep “string you want to search”
 ```
 
 Q: 如何替换当前目录下(包括所有子目录)所有 .js 文件中的指定内容？
-
 ```
-
 $ find . –name “*.json” | sed -i “s/oldstring/newstring/g”
 ```
 
@@ -159,41 +156,40 @@ $ git clone devops@zele.pro:/home/devops/repo/env/env-test-saas.git
 
 最新出现Test SaaS is success! 表示运行成功
 
+### 在线查看 swagger 文档
+```shell
+http://127.0.0.1:8080/swagger-ui.html
+```
+127.0.0.1 需替换为本机局域网IP（若局域网IP内其他主机访问）
+
 ### 掌握 resetful 测试工具 
 推荐使用开源工具 [Insomnia](https://www.insomnia.rest/)
 
 ### 理解配置文件的基础配置
-
 src/main/resources/application.yml
 
 **如何指定运行端口**
-
 ```java
 server:
 	port: 8080
 ```
-
-也可以在执行时指定：
-
+**也可以在执行时指定：**
 ```
 $ java -jar target/app-standalone.jar --server.port=8081
 ```
 
 **如何指定运行配置选项**
-
 ```java
 spring:
    profiles:
       active: dev
 ```
-也可以在执行时指定：
-
+**也可以在执行时指定：**
 ```
  $ java -jar target/app-standalone.jar –spring.profiles.active=produce
 ```
 
 **如何初始化数据库表**
-
 设置 Initailize: true, 运行APP所有依赖的模块的所有数据库表都重新建立（原有表数据重置）。
 
 ### 通过 navcat 连接本地或远程数据库
@@ -201,56 +197,35 @@ spring:
 
 ### 如何在本地启动调试一个简单网页
 - 安装 
-```
-$ npm -i http-server
-```
-
+  ```
+  $ npm -i http-server
+  ```
 - 启动
-进入网页目录，在命令行下执行 
-```
-$ http-server
-```
-
+  进入网页目录，在命令行下执行 
+  ```
+  $ http-server
+  ```
 - 测试
-打开浏览器， 在浏览地址输入 127.0.0.1:8080
+  打开浏览器， 在浏览地址输入 127.0.0.1:8080
 
 ## CRUD代码生成工具的使用
-
-```
-$ git clone git@github.com:kequandian/cg-cli.git
-$ npm i -g
-```
-
-**另外需掌握前端配置工具** [快速开发框架](http://console.smallsaas.cn)
+学习使用以下开源cli工具
+  ```
+  $ git clone git@github.com:kequandian/cg-cli.git
+  $ npm i -g
+  ```
+  **另外需掌握前端配置工具** [快速开发框架](http://console.smallsaas.cn)
 
 ## 代码提交要求
 1. 至少每天下班前提交一次代码
-
 2. 原则上实现了一个小功能，或完成了一个小任务需要提交代码一次
-
 3. 提交的代码要写 comment 
-
 ```
 $ git commit –m “write down current task comment”
 ```
 
-### 理解开发质量
-1. 深入理解 Exception, RuntimeException 的用法，局部(internal)功能实现需要多抛出(throw) 异常，可有效保证外部(external)输入参数正确
-2. 多写非空判断，尽量避免空针错误。禁止连接使用点(.)操作
-3. 多写log，标记重要代码段信息输出
-
-### 阅读并遵循开发规范
-《Efficiency Development Checklist》
-
-《数据库设计规范》
-
-学习《CRUD Introduction》,了解一对多/多对多/分组等数据库表关系
-
 ### 关于处理问题的方法流程
-==原则==
-
 **原则一** 尽量少花时间在技术问题上面，因为技术问题大家都遇到过，无必要再花大量时间研究技术问题
-
 **原则二** 遇到业务问题需掌握基本的测试方法，理解单元测试的意义，通过单元测试逐步排除或缩小问题范围。不断重复无建设性的综合测试，无分析思路，是作为 New Hire 常见的现象，应当努力避免！
 
 **技术问题定义**
@@ -264,14 +239,11 @@ $ git commit –m “write down current task comment”
 - 程序运行问题
 
 ### 关于遇到的技术问题处理流程
-遇到技术问题首先查看 《Efficiency Development Checklist》文档，看是否已有解决方法
+- 遇到技术问题首先查看 **《Efficiency Development Checklist》**文档，看是否已有解决方法
+- 遇到技术问题如果没有解决思路，不应该花没有建设性的时间，没有任何进展地不断**机械重复**尝试
+- 遇到技术问题没有解决思路，应该主动提出**讨论**，直接与有经验的同事沟通或在技术群里讨论
 
-遇到技术问题如果没有解决思路，不应该花没有建设性的时间，不断重复尝试而没有任何进展
-
-遇到技术问题没有解决思路，应该主动提出讨论，直接与有经验的同事沟通或在技术群里讨论
-
-讨论的方法参考如下：
-
+**讨论的方法参考如下：**
 - 出现问题的具体描述，最直接的方法是提交截图
 - 报错日志/截图建议着重提示关键字，划出重点注意的地方（不建议没有通过思考直接截图）
 - 问问题的时候，给别人的条件越多，你的问题解决越快
@@ -279,9 +251,11 @@ $ git commit –m “write down current task comment”
 - 最终解决了及时回复是否已解决
 
 ### Idea使用
-- 如何在 idea intellij 全局代码变更类名或变量的方法: 选中变量或类名，shift+f6,修改变量名即可
+- 如何在 idea intellij 全局代码变更类名或变量的方法: 选中变量或类名, 键盘操作 **Shift+F6**, 在弹出框中修改变量名即可
 
 ### 代码规范
+- 深入理解 **Exception**及**RuntimeException**, 主动抛出(throw)异常效保证外部(external)输入参数正确
+- 禁止连续使用点(.)操作以避免空针错误，多点操作改为分多段代码并加非空判断
 - 多字符串连接禁止使用+，使用 **String.format** 或者 **StringBuilder** 进行连接
 - 路径分隔符禁止使用 \ 和 / ，统一使用 **File.separator**
 - 谨防多点操作，容易报空指针错误,注意Long Integer与  int  long 引起的空指针问题
@@ -289,3 +263,10 @@ $ git commit –m “write down current task comment”
   ```shell
   e.g.  {"id":0, "name":"entity", "meta": {} }
   ```
+- 尽量多写log，标记重要代码段信息输出
+
+### 掌握容易部署方法
+- 掌握 docker 原理
+- 掌握 docker 基本 cli 操作命令
+- 掌握 docker-compose 部署编排 参考 [docker.io/zelejs/app-openjre11](https://hub.docker.com/r/zelejs/app-openjre11)
+
