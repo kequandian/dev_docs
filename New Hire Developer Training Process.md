@@ -12,6 +12,17 @@
 ### WinSCP 下载安装
 [WinSCP](https://winscp.net/eng/download.php)
 
+### nodejs LTS 下载安装
+至 [nodejs官网](https://nodejs.org/en/) 下载最新LTS版本
+使node, npm 可执行
+
+```shell
+$ node -v
+v10.15.3
+$ npm -v
+6.4.1
+```
+
 ### Java 11 JKD (LTS) 配置
 
 1. 配置环境变量 JAVA_HOME
