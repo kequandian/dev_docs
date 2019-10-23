@@ -90,6 +90,14 @@ $ mvn dependency:tree | cat -n | grep “org.json”
 - 选用 VMware 或 VirtualBox 工具安装Linux操作系统
 - 掌握虚拟机的 **端口转发** 原理及其配置
 
+### 理解 linux平台命令的参数意义
+```shell
+$ curl --help
+Usage: curl [options...] <url>
+```
+<> 内参数代表必填参数
+[] 内参数代表选填参数
+
 ### 常用操作符
 | 操作符 | 说明                                                         |
 | ------ | ------------------------------------------------------------ |
