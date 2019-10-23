@@ -194,7 +194,24 @@ $ java -jar target/app-standalone.jar --server.port=8081
 spring:
    profiles:
       active: dev
+---
+spring:
+  profiles: dev
+  datasource:
+      url: jdbc:mysql://120.79.49.72/test?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull
+      username: root
+      password: root
+      filters: log4j,wall,mergeStat
+      sql-script-encoding: UTF-8
+      schema: classpath*:sql/**/*-schema.sql
+      data: classpath*:sql/**/*-data.sql
+      initialize: false
+
+logging:
+  level: debug
+  file: logs/trace.log
 ```
+
 **也可以在执行时指定：**
 ```shell
  $ java -jar target/app-standalone.jar –spring.profiles.active=produce
