@@ -95,8 +95,12 @@ $ mvn dependency:tree | cat -n | grep “org.json”
 $ curl --help
 Usage: curl [options...] <url>
 ```
-<> 内参数代表必填参数
-[] 内参数代表选填参数
+```xml
+<>  内参数代表**必填**参数
+```
+```xml
+[]  内参数代表**选填**参数
+```
 
 ### 常用操作符
 | 操作符 | 说明                                                         |
