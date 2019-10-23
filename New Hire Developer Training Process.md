@@ -72,50 +72,112 @@ $ mvn dependency:tree | cat -n | grep “org.json”
 - 掌握查看方法实现 —— 快捷键 (Ctrl+Atl+LeftButton or Ctrl + Alt + B)
 - 掌握调试方法     —— 快捷键 F7, F8, F9
 
-### MySQL 5.7安装 (可选)
+### 数据库 MySQL 5.7 安装 (可选)
 可在本地安装 MySQL5.7, 也可以直接利用远程MySQL Server
 
-**可用连接字段如下列**
+- 可用连接字段如下列
 | **序号** | **连接字段**                                                 |
 | -------- | ------------------------------------------------------------ |
 | Power    | jdbc:mysql://120.79.49.72/test?user=root&password=root&characterEncoding=utf8 |
 
-**通过 navcat 连接本地或远程数据库**
-掌握 navcat 的使用
+- 通过 navcat 连接本地或远程数据库
+ 掌握 navcat 的使用
+ 
+ 
+## Linux 基础
 
+### 虚拟机安装与使用
+- 选用 VMware 或 VirtualBox 工具安装Linux操作系统
+- 掌握虚拟机的 **端口转发** 原理及其配置
+
+### 常用操作符
+| 操作符 | 说明                                                         |
+| ------ | ------------------------------------------------------------ |
+| \|     | pipe/管道,命令行的输出作为另一个命令行的输入<br />$ cat out.md |
+| >      | 内容完全覆盖已存在文件或新建文件<br />$ echo “ok” >/path/to/new.md |
+| >>     | 内容追加到已存在文件内容末端<br />$ echo “ok” >>/path/to/out.md |
+| &      | 加在命令行之后，让命令在后台运行<br />$ java –jar app.jar &  |
+| $      | $ export PW=OK123; echo $PW<br />OK123
+
+### 掌握Linux操作系统常用命令
+```shell
+Basic:  ls, cd, rm, mkdir, echo, cat
+Advance: vi, ps, grep, find, xargs, chmod, sed
+Network: curl, netstat, wget, scp
+```
+* 了解Linux OS基础:  .bashrc, export, sh, bash, $@, @#, $1, /dev/null 等
+* 重点掌握 vi 编辑工具的使用, 以及网络工具 curl 的使用
+
+Q: 如何查找当前目录下的哪个文件包括字符串？
+```shell
+$ ls *.json | xargs grep “string you want to search”
+```
+Q: 如何查找当前目录下(包括所有子目录) 的哪个文件包括字符串？
+```shell
+$ find . –name “*.json” | grep “string you want to search”
+```
+Q: 如何替换当前目录下(包括所有子目录)所有 .js 文件中的指定内容？
+```shell
+$ find . –name “*.json” | sed -i “s/oldstring/newstring/g”
+```
+
+### 如何登录远程服务器
+在 **Innovation Oriented** 群文件搜索 **“PuTTY自动登录SSH服务器”** 文档，了解**ssh**概念
+
+1)   学习使用 putty, 或其他 ssh 登录工具
+2)   学习 scp 或 WinScp (Windows平台可视化scp,可下载安装) 的使用
+3)   掌握 ssh-keygen 的 以及 id_rsa.pub  key 的使用
+
+### ssh无密码登陆
+- 通过ssh协议登陆服务器的前提是服务器已开通ssh服务，大部分linux平台默认配备ssh服务
+- SSH协议允许终端通过密匙对免输密码直接登录服务器 
+- 密匙对基于终端，分别为 public key 和 private key，终端public key 置入服务器授权终端列表后，可携带private key合法登录服务器
+
+- 创建SSH KEY
+查看~/.ssh目录下是否有id_rsa、id_rsa.pub文件，没有需要手动生成，执行如下命令：
+~~~
+ssh-keygen -t rsa -C "youremail@example.com"
+~~~
+​	-t 指定密钥类型。如果没有指定则默认生成用于SSH-2的RSA密钥。这里使用的是rsa。
+​	-C来指定所指定的注释，可以方便用户标识这个密钥，指出密钥的用途或其他有用的信息。所以在这里输入自己的邮箱或者其他都行。
+​	输入完毕后程序同时要求输入一个密语字符串(passphrase)，空表示没有密语。接着会让输入2次口令(password)，空表示没有口令。3次回车即可完成当前步骤。
+​	此时密钥对就生成好了。
+
+- 将终端公钥置入服务器授权终端列表
+将终端 id_rsa.pub 公钥内容拷贝到服务器 ~/.ssh/authorized_keys 文件中，即可免密登陆。
+
+
+## 开发与调试
 
 ### 理解CRUD数据库设计与开发
 在 **Innovation Oriented** 群文件搜索 **CRUD Introduction.ppt** 文档，理解 CRUD 设计与开发编程概念。
 
-
 ### API开发与调试
 
-### 试运行、调试、测试应用
-
-**在bash命令提示符下git clone 如下代码**
+- 在bash命令提示符下git clone 如下代码
 ```shell
 $ git clone devops@zele.pro:/home/devops/repo/env/env-test-saas.git
 ```
 打开 intellij idea 用 **maven** 导入工程
 
-**运行API Endpoint**
+- 运行API Endpoint
 最新出现Test SaaS is success! 表示运行成功
 
-**在线查看 swagger 文档**
+- 在线查看 swagger 文档
 ```shell
 http://127.0.0.1:8080/swagger-ui.html
 ```
 127.0.0.1 需替换为本机局域网IP（若局域网IP内其他主机访问）
 
-**掌握 resetful 测试工具**
+- 掌握 resetful 测试工具
 推荐使用开源工具 [Insomnia](https://www.insomnia.rest/)
 
-**理解配置文件的基础配置**
+- 理解配置文件的基础配置
 ```java
 src/main/resources/application.yml
 ```
 
-- 如何指定运行端口**
+- 如何指定运行端口
 ```xml
 server:
    port: 8080
@@ -156,74 +218,9 @@ initialize: true
 ```
 
 
-### Linux 基础
+## 开发规范要求
 
-**虚拟机安装使用 Linux OS x64**
-- 选用 VMware 或 VirtualBox 工具安装Linux操作系统
-- 掌握虚拟机的 **端口转发** 原理及其配置
-
-**掌握Linux 常用操作符**
-| 操作符 | 说明                                                         |
-| ------ | ------------------------------------------------------------ |
-| \|     | pipe/管道,命令行的输出作为另一个命令行的输入<br />$ cat out.md |
-| >      | 内容完全覆盖已存在文件或新建文件<br />$ echo “ok” >/path/to/new.md |
-| >>     | 内容追加到已存在文件内容末端<br />$ echo “ok” >>/path/to/out.md |
-| &      | 加在命令行之后，让命令在后台运行<br />$ java –jar app.jar &  |
-| $      | $ export PW=OK123; echo $PW<br />OK123
-
-**掌握Linux操作系统常用命令**
-```shell
-Basic:  ls, cd, rm, mkdir, echo, cat
-Advance: vi, ps, grep, find, xargs, chmod, sed
-Network: curl, netstat, wget, scp
-```
-* 了解Linux OS基础:  .bashrc, export, sh, bash, $@, @#, $1, /dev/null 等
-* 重点掌握 vi 编辑工具的使用, 以及网络工具 curl 的使用
-
-Q: 如何查找当前目录下的哪个文件包括字符串？
-```shell
-$ ls *.json | xargs grep “string you want to search”
-```
-Q: 如何查找当前目录下(包括所有子目录) 的哪个文件包括字符串？
-```shell
-$ find . –name “*.json” | grep “string you want to search”
-```
-Q: 如何替换当前目录下(包括所有子目录)所有 .js 文件中的指定内容？
-```shell
-$ find . –name “*.json” | sed -i “s/oldstring/newstring/g”
-```
-
-### 掌握 ssh 协议
-
-#### 如何登录远程服务器
-在 **Innovation Oriented** 群文件搜索 **“PuTTY自动登录SSH服务器”** 文档，了解**ssh**概念
-
-1)   学习使用 putty, 或其他 ssh 登录工具
-2)   学习 scp 或 WinScp (Windows平台可视化scp,可下载安装) 的使用
-3)   掌握 ssh-keygen 的 以及 id_rsa.pub  key 的使用
-
-#### ssh无密码登陆
-- 通过ssh协议登陆服务器的前提是服务器已开通ssh服务，大部分linux平台默认配备ssh服务
-- SSH协议允许终端通过密匙对免输密码直接登录服务器 
-- 密匙对基于终端，分别为 public key 和 private key，终端public key 置入服务器授权终端列表后，可携带private key合法登录服务器
-
-#### 创建SSH KEY
-查看~/.ssh目录下是否有id_rsa、id_rsa.pub文件，没有需要手动生成，执行如下命令：
-~~~
-ssh-keygen -t rsa -C "youremail@example.com"
-~~~
-​	-t 指定密钥类型。如果没有指定则默认生成用于SSH-2的RSA密钥。这里使用的是rsa。
-​	-C来指定所指定的注释，可以方便用户标识这个密钥，指出密钥的用途或其他有用的信息。所以在这里输入自己的邮箱或者其他都行。
-​	输入完毕后程序同时要求输入一个密语字符串(passphrase)，空表示没有密语。接着会让输入2次口令(password)，空表示没有口令。3次回车即可完成当前步骤。
-​	此时密钥对就生成好了。
-
-#### 将终端公钥置入服务器授权终端列表
-将终端 id_rsa.pub 公钥内容拷贝到服务器 ~/.ssh/authorized_keys 文件中，即可免密登陆。
-
-
-### 开发规范要求
-
-#### 代码提交要求
+### 代码提交要求
 1. 至少每天下班前提交一次代码
 2. 原则上实现了一个小功能，或完成了一个小任务需要提交代码一次
 3. 提交的代码要写 comment 
@@ -231,16 +228,15 @@ ssh-keygen -t rsa -C "youremail@example.com"
 $ git commit –m “write down current task comment”
 ```
 
-#### 遵循定义的准则及开发规范
+### 遵循定义的准则及开发规范
 - [工作行为准则](https://github.com/kequandian/dev_docs/blob/master/%E5%B7%A5%E4%BD%9C%E8%A1%8C%E4%B8%BA%E5%87%86%E5%88%99.md)
 - [数据库设计规范](https://github.com/kequandian/dev_docs/blob/master/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%BE%E8%AE%A1%E8%A7%84%E8%8C%83.md)
 - [开发规范](https://github.com/kequandian/dev_docs/blob/master/%E5%BC%80%E5%8F%91%E8%A7%84%E8%8C%83.md)
 - [开发流程](https://github.com/kequandian/dev_docs/blob/master/%E5%BC%80%E5%8F%91%E6%B5%81%E7%A8%8B.md)
 
-#### 掌握开源测试报告工具的使用
+### 掌握开源测试报告工具的使用
  [zero-test](https://github.com/kequandian/zero-test)
  对非CRUD重要业务逻辑 需提供测试报告
-
 
 ### 掌握部署方法
 - 掌握 docker 原理
