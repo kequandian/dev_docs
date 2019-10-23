@@ -73,17 +73,15 @@ $ mvn dependency:tree | cat -n | grep “org.json”
 - 掌握调试方法     —— 快捷键 F7, F8, F9
 
 ### 数据库 MySQL 5.7 安装 (可选)
-可在本地安装 MySQL5.7, 也可以直接利用远程MySQL Server
+可在本地PC安装 **MySQL 5.7** 以上版本, 也可以直接连接专属测试 **MySQL Server** 远程连接：
 
-- 可用连接字段如下列
 | **序号** | **连接字段**                                                 |
 | -------- | ------------------------------------------------------------ |
 | Power    | jdbc:mysql://120.79.49.72/test?user=root&password=root&characterEncoding=utf8 |
 
-- 通过 navcat 连接本地或远程数据库
- 掌握 navcat 的使用
- 
- 
+进一步安装 **navicat** 数据库远程连接工具, 常用远程连接数据库，数据库备份操作等
+
+
 ## Linux 基础
 
 ### 虚拟机安装与使用
