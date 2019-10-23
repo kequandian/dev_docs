@@ -236,14 +236,6 @@ logging:
 - 测试
   打开浏览器， 在浏览地址输入 127.0.0.1:8080
 
-## CRUD代码生成工具的使用
-学习使用以下开源cli工具
-  ```shell
-  $ git clone git@github.com:kequandian/cg-cli.git
-  $ npm i -g
-  ```
-  **另外需掌握前端配置工具** [快速开发框架](http://console.smallsaas.cn)
-
 ## 代码提交要求
 1. 至少每天下班前提交一次代码
 2. 原则上实现了一个小功能，或完成了一个小任务需要提交代码一次
