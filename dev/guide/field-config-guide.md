@@ -1,9 +1,9 @@
 ## 配置举例
-**t_config_group** 配置类型
+**t_config_field_group** 数据库表中的 type 字段有两种选项
 - **CONFIG**  域值配置
 - **OPTION**  数据字典
 
-**t_config_field** 数据类型
+**t_config_field**  数据库表的中 data_type 字段有以下三种选项
 - **STRING**   字符类型
 - **INTEGER**  整型
 - **FLOAT**    浮点
@@ -12,7 +12,7 @@
 
 #### 分类配置
 ```shell
-DELETE FROM t_config_group WHERE id IN (1,2,100,200);
+DELETE FROM t_config_field_group WHERE id IN (1,2,100,200);
 INSERT INTO `t_config_group` (`id`,`pid`,`lang`,`name`,`comment`,`sort`,`type`)
             VALUES (1, null, 'zh','自定义配置',null,1,'CONFIG'),
                    (2, null, 'zh','数据字典',null,1,'OPTION'),
@@ -41,4 +41,3 @@ INSERT INTO `t_config_field_item` (`id`, `field`, `lang`, `name`, `value`)
 INSERT INTO `t_config_field_item` (`id`, `field`, `lang`, `name`, `value`) 
              VALUES ('3', 'phoneType', 'zh', 'homePhone', '住宅电话');
 ```
-
