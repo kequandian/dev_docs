@@ -27,17 +27,9 @@ INSERT INTO `t_config_field` (`id`,`field`,`group_id`,`name`,`value`,`lang`,`dat
              VALUES (101, 'contactLimitation', 100, '联系人可查询最大值', 10, 'zh', 'INTEGER');
 ```
 
-#### 数据字典配置
+#### 数据字典配置 （选项由用户录入）
 ```shell
 DELETE FROM t_config_field WHERE id IN (201);
 INSERT INTO `t_config_field` (`id`, `field`, `group_id`, `lang`, `name`, `value`, `data_type`, `description`)
              VALUES ('201', 'phoneType', '200', 'zh', '电话类型', NULL, 'STRING', NULL);
-
-DELETE FROM t_config_field_item WHERE id IN (1,2,3);
-INSERT INTO `t_config_field_item` (`id`, `field`, `lang`, `name`, `value`) 
-             VALUES ('1', 'phoneType', 'zh', 'telPhone', '手机电话');
-INSERT INTO `t_config_field_item` (`id`, `field`, `lang`, `name`, `value`) 
-             VALUES ('2', 'phoneType', 'zh', 'companyPhone', '公司电话');
-INSERT INTO `t_config_field_item` (`id`, `field`, `lang`, `name`, `value`) 
-             VALUES ('3', 'phoneType', 'zh', 'homePhone', '住宅电话');
 ```
