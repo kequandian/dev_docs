@@ -10,7 +10,6 @@
 
 ### 单项配置
 
-
 #### 分类配置
 ```shell
 DELETE FROM t_config_group WHERE id IN (1,2,100,200);
@@ -21,7 +20,6 @@ INSERT INTO `t_config_group` (`id`,`pid`,`lang`,`name`,`comment`,`sort`,`type`)
                    (200, 2,  'zh','联系人配置',null,1,'OPTION');
 ```
 
-
 #### 系统配置
 ```shell
 DELETE FROM t_config_field WHERE id IN (101);
@@ -30,13 +28,17 @@ INSERT INTO `t_config_field` (`id`,`field`,`group_id`,`name`,`value`,`lang`,`dat
 ```
 
 #### 数据字典配置
-```
+```shell
 DELETE FROM t_config_field WHERE id IN (201);
-INSERT INTO `power`.`t_config_field` (`id`, `field`, `group_id`, `lang`, `name`, `value`, `data_type`, `description`) VALUES ('201', 'phoneType', '200', 'zh', '电话类型', NULL, 'STRING', NULL);
+INSERT INTO `t_config_field` (`id`, `field`, `group_id`, `lang`, `name`, `value`, `data_type`, `description`)
+             VALUES ('201', 'phoneType', '200', 'zh', '电话类型', NULL, 'STRING', NULL);
 
 DELETE FROM t_config_field_item WHERE id IN (1,2,3);
-INSERT INTO `power`.`t_config_field_item` (`id`, `field`, `lang`, `name`, `value`) VALUES ('1', 'phoneType', 'zh', 'telPhone', '手机电话');
-INSERT INTO `power`.`t_config_field_item` (`id`, `field`, `lang`, `name`, `value`) VALUES ('2', 'phoneType', 'zh', 'companyPhone', '公司电话');
-INSERT INTO `power`.`t_config_field_item` (`id`, `field`, `lang`, `name`, `value`) VALUES ('3', 'phoneType', 'zh', 'homePhone', '住宅电话');
+INSERT INTO `t_config_field_item` (`id`, `field`, `lang`, `name`, `value`) 
+             VALUES ('1', 'phoneType', 'zh', 'telPhone', '手机电话');
+INSERT INTO `t_config_field_item` (`id`, `field`, `lang`, `name`, `value`) 
+             VALUES ('2', 'phoneType', 'zh', 'companyPhone', '公司电话');
+INSERT INTO `t_config_field_item` (`id`, `field`, `lang`, `name`, `value`) 
+             VALUES ('3', 'phoneType', 'zh', 'homePhone', '住宅电话');
 ```
 
