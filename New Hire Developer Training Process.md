@@ -230,14 +230,6 @@ initialize: true
 
 ## 开发规范要求
 
-### 代码提交要求
-1. 至少每天下班前提交一次代码
-2. 原则上实现了一个小功能，或完成了一个小任务需要提交代码一次
-3. 提交的代码要写 comment 
-```shell
-$ git commit –m “write down current task comment”
-```
-
 ### 遵循定义的准则及开发规范
 - [工作行为准则](https://github.com/kequandian/dev_docs/blob/master/%E5%B7%A5%E4%BD%9C%E8%A1%8C%E4%B8%BA%E5%87%86%E5%88%99.md)
 - [数据库设计规范](https://github.com/kequandian/dev_docs/blob/master/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%BE%E8%AE%A1%E8%A7%84%E8%8C%83.md)
