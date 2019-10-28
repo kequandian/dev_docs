@@ -261,3 +261,7 @@ initialize: true
 - 测试
   打开浏览器， 在浏览地址输入 127.0.0.1:8080
    
+   
+### 学习 vert.x 开发
+[My first Vert.x 3 Application](https://vertx.io/blog/my-first-vert-x-3-application/)
+
