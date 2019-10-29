@@ -10,7 +10,7 @@
 [note++](https://notepad-plus-plus.org)
 
 ### 文本对比工具 安装
-[Beyond_Compare_2.5.2.252])http://120.79.49.72:8000/devops/Beyond_Compare_2.5.2.252_SC_EV.exe.zip)
+[Beyond_Compare_2.5.2.252]](http://120.79.49.72:8000/devops/Beyond_Compare_2.5.2.252_SC_EV.exe.zip) 常用此工具用作文本对比(如 正常 pom.xml 与 问题 pom.xml 进行对比), 是发现与解决问题的好帮手。
 
 
 ### WinSCP 下载安装
