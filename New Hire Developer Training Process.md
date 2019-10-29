@@ -9,16 +9,20 @@
 
 [note++](https://notepad-plus-plus.org)
 
+### 文本对比工具 安装
+[Beyond_Compare_2.5.2.252])http://120.79.49.72:8000/devops/Beyond_Compare_2.5.2.252_SC_EV.exe.zip)
+
+
 ### WinSCP 下载安装
 [WinSCP](https://winscp.net/eng/download.php)
 
 ### nodejs LTS 下载安装
-至 [nodejs官网](https://nodejs.org/en/) 下载最新LTS版本
+至 [nodejs官网](https://nodejs.org/en/) 下载最新 **LTS** 版本
 使node, npm 可执行
 
 ```shell
 $ node -v
-v10.15.3
+v12.15.3
 $ npm -v
 6.4.1
 ```
