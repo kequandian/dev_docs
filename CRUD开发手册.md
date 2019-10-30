@@ -1,6 +1,8 @@
-## CRUD类代码参考
+# CRUD类代码参考
 
-### 标准单实体 
+## 单体实开发
+
+### 单实体CRUD 
 - 通过工具生成
 ```shell
 $ cg-cli crud one <table-name>
@@ -8,12 +10,18 @@ $ cg-cli crud one <table-name>
 
 - 代码片断
 ```java
+
+/// 实体服务接口 继承自CRUD框架服务接口
 public interface CRUDTestSaasEntityService  extends CRUDServiceOnly<TestSaasEntity> {
 }
+
+/// 实体继承自 CRUD服务接口
 public interface TestSaasEntityService extends CRUDTestSaasEntityService {
 }
 ```
 ```java
+
+/// 实体实现类 继续自 标准CRUD服务实现类
 @Service
 public class CRUDTestSaasEntityServiceImpl extends CRUDServiceOnlyImpl<TestSaasEntity> implements CRUDTestSaasEntityService {
     @Resource
@@ -23,12 +31,14 @@ public class CRUDTestSaasEntityServiceImpl extends CRUDServiceOnlyImpl<TestSaasE
         return testSaasEntityMapper;
     }
 }
+
+/// 实体实现类
 @Service("TestSaasEntityService")
 public class TestSaasEntityServiceImpl extends CRUDTestSaasEntityServiceImpl implements TestSaasEntityService {
 }
 ```
 
-### 关联实体ID
+### 单实体关联实体ID
 
 ####  列表API增加关联表字段
 如实体中有关联表字段, 如部门ID, 列表中需要显示部门名称
@@ -48,31 +58,21 @@ public class TestSaasEntityServiceImpl extends CRUDTestSaasEntityServiceImpl imp
   - 前端 对实体**新建**与**编辑**表单中对关联实体的录入与更新
    
 
-
-
-### 单实体关联实体ID
-
-**方案一**
-[列出 LEFT JOIN 例子]
-
 **方案二**
 通过 crud-gateway 解决方案 配置转换 entityName->{associated_id,  associated_table_name, associated_field_array}
 - [待讨论]
 
-### 标准一对多实体
+
+### 单体体分组管理
 
 
-### 分组实体
+### 单实体状态变更
+
+通过 MBCS 基础模块处理，具体使用可参考测试报告 [meta API测试报告](https://github.com/zelejs/saas-test-cases/tree/master/meta)
 
 
-## CRUD 可配置化编程
-- 对实体表的 status 变更 说明
-  无需花时间编写代码，通过 meta 配置
-  
 
-## 代码规范
-- CRUD实体新建请求 在 api 目录新建请求类 ${Entity}Request (e.g. DeviceRequest), 通过swagger 向前端提供紧凑的参数请求（过滤 id, 时间等)
-- CRUD实体列表查询请求 使用扁平类 ${Entity}Record (e.g.  DeviceRecord)
-- CRUD一对多实体，使用 ${Entity}Model （e.g. DeviceModel)
-- 程序错误提示编码需依据 业务错误编码规范[Business Code](https://github.com/kequandian/dev_docs/blob/master/Business%20Code.md), 不能自定义。
+
+## 一对多实体开发
+
 
