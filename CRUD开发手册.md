@@ -28,7 +28,12 @@ public class TestSaasEntityServiceImpl extends CRUDTestSaasEntityServiceImpl imp
 }
 ```
 
-### 单实体一对一字段转换
+### 单实体关联实体ID
+
+**方案一**
+[列出 LEFT JOIN 例子]
+
+**方案二**
 通过 crud-gateway 解决方案 配置转换 entityName->{associated_id,  associated_table_name, associated_field_array}
 - [待讨论]
 
