@@ -234,38 +234,43 @@ initialize: true
 
 ## 开发规范要求
 
-### 遵循定义的准则及开发规范
+### 遵循定义的准则
 - [工作行为准则](https://github.com/kequandian/dev_docs/blob/master/%E5%B7%A5%E4%BD%9C%E8%A1%8C%E4%B8%BA%E5%87%86%E5%88%99.md)
+- [项目开发流程](https://github.com/kequandian/dev_docs/blob/master/%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91%E6%B5%81%E7%A8%8B.md)
 - [数据库设计规范](https://github.com/kequandian/dev_docs/blob/master/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%BE%E8%AE%A1%E8%A7%84%E8%8C%83.md)
-- [开发规范](https://github.com/kequandian/dev_docs/blob/master/%E5%BC%80%E5%8F%91%E8%A7%84%E8%8C%83.md)
-- [开发流程](https://github.com/kequandian/dev_docs/blob/master/%E5%BC%80%E5%8F%91%E6%B5%81%E7%A8%8B.md)
 - [测试计划](https://github.com/kequandian/dev_docs/blob/master/%E6%B5%8B%E8%AF%95%E8%AE%A1%E5%88%92.md)
+
 
 ### 掌握开源测试报告工具的使用
  [zero-test](https://github.com/kequandian/zero-test)
  对非CRUD重要业务逻辑 需提供测试报告
 
+### 防范空指针
+* 禁止连续使用点(.)操作以避免空针错误，多点操作改为分多段代码并加非空判断
+*	尽量多判断输入参数或返回对象是否为null, 如果输入参数或返回对象不能为空，则抛出异常(throw new RuntimeException())；
+  如果返回对象可以为空，则通过if跳过空指针
+*	禁止使用多点操作，因为多点操作很容易出现空针指；对多点操作应分开多行获取对象，并对获取的对象进行非空判断
+*	查询数据库业务数据时，如果非查询单个实体记录详情，不使用select \*，按照业务需求提供必要的字段信息返回给前端
+* 不使用selectList.get(0)函数去获取需要操作的实体类
+* 使用selectOne函数需要确定获取结果的唯一性，selectOne函数一般是对存在组合键的实体类进行查询
+* 需要连表查询请直接在xml文件中编码对应的sql语句，摈弃在实现类中通过关联的实体类的Mapper对关联的实体进行查询后再进行值的插入，此方法在数据库无记录的情况下会频繁出现空指针异常
+* 代码级别多抛出防止参数错误或逻辑性错误
+
+### 代码编写规范
+- 深入理解 **Exception**及**RuntimeException**, 主动抛出(throw)异常效保证外部(external)输入参数正确
+- 多字符串连接禁止使用+，使用 **String.format** 或者 **StringBuilder** 进行连接
+- 路径分隔符禁止使用 \ 和 / ，统一使用 **File.separator**
+- 谨防多点操作，容易报空指针错误,注意Long Integer与  int  long 引起的空指针问题
+- JSON空实体不能用 ””, 因为 "" 代表空字符串, 提交空字符串到实体将导致JSON格式解释错误。应该用: {}
+  ```shell
+  e.g.  {"id":0, "name":"entity", "meta": {} }
+  ```
+- 尽量多写log，标记重要代码段信息输出, 以免 **消息日志不够完整，遇到问题难定位**
+
 ### 掌握部署方法
 - 掌握 docker 原理
 - 掌握 docker 基本 cli 操作命令
 - 掌握 docker-compose 部署编排 参考 [docker.io/zelejs/app-openjre11](https://hub.docker.com/r/zelejs/app-openjre11)
-
-
-### 前端测试
-
-#### 如何在本地启动调试一个简单网页
-- 安装 
-  ```shell
-  $ npm -i http-server
-  ```
-- 启动
-  进入网页目录，在命令行下执行 
-  ```shell
-  $ http-server
-  ```
-- 测试
-  打开浏览器， 在浏览地址输入 127.0.0.1:8080
-   
    
 ### 学习 vert.x 开发
 [My first Vert.x 3 Application](https://vertx.io/blog/my-first-vert-x-3-application/)
