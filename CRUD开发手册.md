@@ -28,6 +28,28 @@ public class TestSaasEntityServiceImpl extends CRUDTestSaasEntityServiceImpl imp
 }
 ```
 
+### 关联实体ID
+
+####  列表API增加关联表字段
+如实体中有关联表字段, 如部门ID, 列表中需要显示部门名称
+
+**步聚**
+  - 在 ${entity}Record 增加列表字段
+  ```java 
+  public class DeviceRecord extend Device {
+      private String departmentName;
+  }
+  ```
+  - 在DAO层 通过 LEFT JOIN 进行多表查询
+ ```java 
+    SELECT a.id,a.name,a.department_id as departmentId, b.department_name as departmentName from t_device as e LEFT JOIN t_department as b ON a.department_id=b.id WHERE 1=1 
+ ``` 
+  
+  - 前端 对实体**新建**与**编辑**表单中对关联实体的录入与更新
+   
+
+
+
 ### 单实体关联实体ID
 
 **方案一**
@@ -53,17 +75,4 @@ public class TestSaasEntityServiceImpl extends CRUDTestSaasEntityServiceImpl imp
 - CRUD实体列表查询请求 使用扁平类 ${Entity}Record (e.g.  DeviceRecord)
 - CRUD一对多实体，使用 ${Entity}Model （e.g. DeviceModel)
 - 程序错误提示编码需依据 业务错误编码规范[Business Code](https://github.com/kequandian/dev_docs/blob/master/Business%20Code.md), 不能自定义。
-
-## 最佳实践
-
-### 如何通过更改表字段更改 实体字段 ？
-
-### 单实体列表增加一对一多表关联字段
-
-直接通过更变dao层查询语句代, 通常通过 LEFT JOIN 实现
-
-### 单实体详情增加一对一多表关联字段
-CRUD Feature
-
-### 一对多实体列表关联字段 
 
