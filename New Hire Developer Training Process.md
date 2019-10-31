@@ -63,6 +63,8 @@ Java home: /Library/Java/JavaVirtualMachines/jdk1.8.0_131.jdk/Contents/Home/jre
 ```java 
 $ mvn clean package install deploy
 $ mvn dependency:tree
+# -Dverbose参数查看到所有的传递依赖  -Dincludes或者-Dexcludes 过滤指定的依赖，包含或不包含
+$ mvn dependency:tree -Dverbose -Dincludes=com.jfeat:jwt-core
 $ mvn dependency:tree | cat -n | grep “org.json”
 ```
 
