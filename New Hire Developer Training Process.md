@@ -323,5 +323,5 @@ spring:
 - 多字符串连接禁止使用+，使用String.format或者StringBuilder进行连接
 - 路径分隔符禁止使用\和/，统一使用File.separator
 - 谨防多点操作，容易报空指针错误,注意Long Integer与  int  long 引起的空指针问题
-- 提交JSON空子实体不能用 ””
+- 提交JSON空子实体不能用 ""
 
