@@ -1,6 +1,6 @@
 # CRUD类代码参考
 
-## 单体实开发
+## 单实体开发
 
 ### 单实体CRUD 
 - 通过工具生成
@@ -37,6 +37,10 @@ public class CRUDTestSaasEntityServiceImpl extends CRUDServiceOnlyImpl<TestSaasE
 public class TestSaasEntityServiceImpl extends CRUDTestSaasEntityServiceImpl implements TestSaasEntityService {
 }
 ```
+
+### 单实体表单字段处理原则
+- 实体字段 在API 的CRUD 操作中保持原 字段类型不变， 如**sex**字段为**int**类型, 男=0，女=1,  API不能提供为 "sex":"男", 提交时也不能提交字符类型 "男"
+
 
 ### 单实体关联实体ID
 
