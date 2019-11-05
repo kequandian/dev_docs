@@ -269,6 +269,17 @@ initialize: true
   e.g.  {"id":0, "name":"entity", "meta": {} }
   ```
 - 尽量多写log，标记重要代码段信息输出, 以免 **消息日志不够完整，遇到问题难定位**
+- 涉及到多种处理的时候，不能使用魔鬼数字去编码，应该新建枚举类处理对应的值。
+  ```java
+  public static final int INVALID = 0;
+  public static final int VALID = 1;
+  ```
+- 关于函数的处理，使用直观/便于理解的函数名。
+  ```java
+      queryList(String phone); //不规范不直观
+      queryPhone(String phone);// 能顾名思义
+  ```
+
 
 ### 掌握部署方法
 - 掌握 docker 原理
