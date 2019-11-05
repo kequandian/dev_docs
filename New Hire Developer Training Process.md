@@ -77,6 +77,7 @@ $ mvn dependency:tree | cat -n | grep “org.json”
 - 掌握查看方法定义 —— 快捷键 Ctrl+LeftButton or Ctrl + B
 - 掌握查看方法实现 —— 快捷键 (Ctrl+Atl+LeftButton or Ctrl + Alt + B)
 - 掌握调试方法     —— 快捷键 F7, F8, F9
+- Find Usage     -- 查找引用  Alt + F7
 
 ### 数据库 MySQL 5.7 安装 (可选)
 可在本地PC安装 **MySQL 5.7** 以上版本, 也可以直接连接专属测试 **MySQL Server** 远程连接：
