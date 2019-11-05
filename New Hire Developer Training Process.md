@@ -241,6 +241,7 @@ initialize: true
 - [数据库设计规范](https://github.com/kequandian/dev_docs/blob/master/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%BE%E8%AE%A1%E8%A7%84%E8%8C%83.md)
 - [业务开发从表单开始](https://github.com/kequandian/dev_docs/blob/master/业务开发从表单开始.md)
 - [项目开发流程](https://github.com/kequandian/dev_docs/blob/master/%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91%E6%B5%81%E7%A8%8B.md)
+- [编程风格错误范例](https://github.com/kequandian/dev_docs/blob/master/%E7%BC%96%E7%A8%8B%E9%A3%8E%E6%A0%BC%E9%94%99%E8%AF%AF%E8%8C%83%E4%BE%8B.md)
 
 ### 掌握开源测试报告工具的使用
  [zero-test](https://github.com/kequandian/zero-test)
