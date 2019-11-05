@@ -80,3 +80,8 @@ public class TestSaasEntityServiceImpl extends CRUDTestSaasEntityServiceImpl imp
 ## 一对多实体开发
 
 
+## API 业务要求
+- 提交数据或输入参数错误是否有提示？
+- 业务错误代号是否依照了 [Business Code](https://github.com/kequandian/dev_docs/blob/master/Business%20Code.md) 规范
+
+

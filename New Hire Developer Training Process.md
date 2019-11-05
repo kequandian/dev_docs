@@ -238,36 +238,45 @@ initialize: true
 
 ### 遵循定义的准则
 - [工作行为准则](https://github.com/kequandian/dev_docs/blob/master/%E5%B7%A5%E4%BD%9C%E8%A1%8C%E4%B8%BA%E5%87%86%E5%88%99.md)
-- [项目开发流程](https://github.com/kequandian/dev_docs/blob/master/%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91%E6%B5%81%E7%A8%8B.md)
 - [数据库设计规范](https://github.com/kequandian/dev_docs/blob/master/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%BE%E8%AE%A1%E8%A7%84%E8%8C%83.md)
-- [测试计划](https://github.com/kequandian/dev_docs/blob/master/%E6%B5%8B%E8%AF%95%E8%AE%A1%E5%88%92.md)
-
+- [业务开发从表单开始](https://github.com/kequandian/dev_docs/blob/master/业务开发从表单开始.md)
+- [项目开发流程](https://github.com/kequandian/dev_docs/blob/master/%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91%E6%B5%81%E7%A8%8B.md)
 
 ### 掌握开源测试报告工具的使用
  [zero-test](https://github.com/kequandian/zero-test)
  对非CRUD重要业务逻辑 需提供测试报告
 
-### 防范空指针
-* 禁止连续使用点(.)操作以避免空针错误，多点操作改为分多段代码并加非空判断
-*	尽量多判断输入参数或返回对象是否为null, 如果输入参数或返回对象不能为空，则抛出异常(throw new RuntimeException())；
-  如果返回对象可以为空，则通过if跳过空指针
-*	禁止使用多点操作，因为多点操作很容易出现空针指；对多点操作应分开多行获取对象，并对获取的对象进行非空判断
-*	查询数据库业务数据时，如果非查询单个实体记录详情，不使用select \*，按照业务需求提供必要的字段信息返回给前端
-* 不使用selectList.get(0)函数去获取需要操作的实体类
-* 使用selectOne函数需要确定获取结果的唯一性，selectOne函数一般是对存在组合键的实体类进行查询
-* 需要连表查询请直接在xml文件中编码对应的sql语句，摈弃在实现类中通过关联的实体类的Mapper对关联的实体进行查询后再进行值的插入，此方法在数据库无记录的情况下会频繁出现空指针异常
-* 代码级别多抛出防止参数错误或逻辑性错误
-
 ### 代码编写规范
-- 深入理解 **Exception**及**RuntimeException**, 主动抛出(throw)异常效保证外部(external)输入参数正确
 - 多字符串连接禁止使用+，使用 **String.format** 或者 **StringBuilder** 进行连接
+- 字符串常量以及数字常量需定义变量加以说明
+```java
+//不规范示例
+private void doSomeUpdate(){
+   device.setDeviceType(1);
+   device.setDeviceStatus("normal");
+}
+
+//正确规范
+public enum DeviceStatus{
+  NORMAL,
+  OFFLINE,
+  ONLINE
+}
+
+private static final int DEVICE_TYPE_CAMERA =  1;
+private static final int DEVICE_TYPE_PC = 2;
+
+private void doSomeUpdate(){
+   device.setDeviceType(DEVICE_TYPE_PC);
+   device.setDeviceStatus(DeviceStatus.NORMAL.toString());
+}
+```
 - 路径分隔符禁止使用 \ 和 / ，统一使用 **File.separator**
-- 谨防多点操作，容易报空指针错误,注意Long Integer与  int  long 引起的空指针问题
-- 提交JSON空子实体不能用 ""
-- JSON空实体不能用 "", 因为 "" 代表空字符串, 提交空字符串到实体将导致JSON格式解释错误。应该用: {}
+- JSON空实体不能用空字符串 "", 应该用: {}
   ```shell
   e.g.  {"id":0, "name":"entity", "meta": {} }
   ```
+- * 代码级别多抛常**Exception**或**RuntimeException**出防止参数错误或逻辑性错误
 - 尽量多写log，标记重要代码段信息输出, 以免 **消息日志不够完整，遇到问题难定位**
 - 涉及到多种处理的时候，不能使用魔鬼数字去编码，应该新建枚举类处理对应的值。
   ```java
@@ -280,6 +289,11 @@ initialize: true
       queryPhone(String phone);// 能顾名思义
   ```
 
+
+#### 防范空指针
+* 禁止连续使用点(.)操作以避免空针错误，多点操作改为分多段代码并加非空判断
+* 尽量多判断输入参数或返回对象是否为null, 如果输入参数或返回对象不能为空，则抛出异常(throw new RuntimeException())；
+* 禁止使用多点操作，因为多点操作很容易出现空针指；对多点操作应分开多行获取对象，并对获取的对象进行非空判断
 
 ### 掌握部署方法
 - 掌握 docker 原理
