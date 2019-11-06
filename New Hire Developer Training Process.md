@@ -144,7 +144,7 @@ $ find . –name “*.json” | sed -i “s/oldstring/newstring/g”
 ### 如何登录远程服务器
 在 **Innovation Oriented** 群文件搜索 **“PuTTY自动登录SSH服务器”** 文档，了解**ssh**概念
 
-1)   学习使用 putty, 或其他 ssh 登录工具
+1)   学习使用 [putty](http://putty.cs.utah.edu/), 或其他 ssh 登录工具
 2)   学习 scp 或 WinScp (Windows平台可视化scp,可下载安装) 的使用
 3)   掌握 ssh-keygen 的 以及 id_rsa.pub  key 的使用
 
