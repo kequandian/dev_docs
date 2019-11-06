@@ -88,6 +88,9 @@ $ mvn dependency:tree | cat -n | grep “org.json”
 
 进一步安装 **navicat** 数据库远程连接工具, 常用远程连接数据库，数据库备份操作等
 
+### SQL 查询技巧
+- 掌握 LEFT JOIN 多表关联查询技巧
+- 需 **考试** 确认已掌握
 
 ## Linux 基础
 
