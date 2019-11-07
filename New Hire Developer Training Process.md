@@ -77,6 +77,7 @@ $ mvn dependency:tree | cat -n | grep “org.json”
 - 掌握查看方法定义 —— 快捷键 Ctrl+LeftButton or Ctrl + B
 - 掌握查看方法实现 —— 快捷键 (Ctrl+Atl+LeftButton or Ctrl + Alt + B)
 - 掌握调试方法     —— 快捷键 F7, F8, F9
+- Find Usage     -- 查找引用  Alt + F7
 
 ### 数据库 MySQL 5.7 安装 (可选)
 可在本地PC安装 **MySQL 5.7** 以上版本, 也可以直接连接专属测试 **MySQL Server** 远程连接：
@@ -87,6 +88,9 @@ $ mvn dependency:tree | cat -n | grep “org.json”
 
 进一步安装 **navicat** 数据库远程连接工具, 常用远程连接数据库，数据库备份操作等
 
+### SQL 查询技巧
+- 掌握 LEFT JOIN 多表关联查询技巧
+- 需 **考试** 确认已掌握
 
 ## Linux 基础
 
@@ -140,7 +144,7 @@ $ find . –name “*.json” | sed -i “s/oldstring/newstring/g”
 ### 如何登录远程服务器
 在 **Innovation Oriented** 群文件搜索 **“PuTTY自动登录SSH服务器”** 文档，了解**ssh**概念
 
-1)   学习使用 putty, 或其他 ssh 登录工具
+1)   学习使用 [putty](http://putty.cs.utah.edu/), 或其他 ssh 登录工具
 2)   学习 scp 或 WinScp (Windows平台可视化scp,可下载安装) 的使用
 3)   掌握 ssh-keygen 的 以及 id_rsa.pub  key 的使用
 
@@ -241,6 +245,7 @@ initialize: true
 - [数据库设计规范](https://github.com/kequandian/dev_docs/blob/master/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%BE%E8%AE%A1%E8%A7%84%E8%8C%83.md)
 - [业务开发从表单开始](https://github.com/kequandian/dev_docs/blob/master/业务开发从表单开始.md)
 - [项目开发流程](https://github.com/kequandian/dev_docs/blob/master/%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91%E6%B5%81%E7%A8%8B.md)
+- [编程风格错误范例](https://github.com/kequandian/dev_docs/blob/master/%E7%BC%96%E7%A8%8B%E9%A3%8E%E6%A0%BC%E9%94%99%E8%AF%AF%E8%8C%83%E4%BE%8B.md)
 
 ### 掌握开源测试报告工具的使用
  [zero-test](https://github.com/kequandian/zero-test)
