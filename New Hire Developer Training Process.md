@@ -5,6 +5,8 @@
 - 安装[Git Windows](https://gitforwindows.org/)后，Git Bash 可用于作为Windows平台下的Linux bash 命令行执行窗口，并提供git 工具。
 - 在 Innovation Oriented 群文件搜索 **“git常用命令”** 文档，学习git的使用。
 
+- 学习与使用 git [submodule](https://www.jianshu.com/p/9000cd49822c)
+
 ### Note++ 文本编辑器 下载安装
 
 [note++](https://notepad-plus-plus.org)
