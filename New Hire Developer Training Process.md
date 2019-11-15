@@ -7,6 +7,24 @@
 
 - 学习与使用 git [submodule](https://www.jianshu.com/p/9000cd49822c)
 
+- 提交代码时 需过滤临时生成文件如 LOGS* 
+```shell
+$ cat .gitignore 
+target/*
+/gen/
+build/*
+.idea/*
+.gradle/*
+.svn/*
+*.iml
+*.swp
+*.log
+*.db
+logs/*
+LOG**
+.DS_Store
+```
+
 ### Note++ 文本编辑器 下载安装
 
 [note++](https://notepad-plus-plus.org)
