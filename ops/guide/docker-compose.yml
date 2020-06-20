@@ -1,15 +1,17 @@
 version: "3"
 services:
-  am-api:
+  myapp-api:
     image: zelejs/app-openjre11
-    container_name: am-api
+    container_name: myapp-api
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - ./api:/webapps
+    depends_on: # 这个参数说明 mysql57 容器将比 am-api 先启动
+      - mysql57
 
-  am-web:
+  myapp-web:
     image: daocloud.io/library/nginx:latest
-    container_name: am-web
+    container_name: myapp-web
     privileged: true
     volumes:
       - /etc/localtime:/etc/localtime:ro
@@ -30,8 +32,26 @@ services:
       - ./nginx-gateway/html:/usr/share/nginx/html
     ports:
       - '8000:80'
-  am-redis:
-    container_name: am-redis
+
+  mysql:
+    #image: daocloud.io/library/mysql:5.7
+    image: zelejs/mysql:5.7
+    container_name: mysql57
+    restart: always
+    environment:
+      TZ: "Asia/Shanghai"
+      MYSQL_DATABASE: dbname
+      MYSQL_ROOT_PASSWORD: root
+      #MYSQL_USER: smallsaas
+      #MYSQL_PASSWORD: smallsaas
+    volumes:
+      - /var/local/mysql/data:/var/lib/mysql
+      - /var/local/mysql/logs:/var/log/mysql
+    #ports:
+    #  - '172.17.0.1:3306:3306'
+      
+  redis:
+    container_name: redis3
     image: 'daocloud.io/library/redis:3.2.9'
     environment:
       TZ: "Asia/Shanghai"
@@ -41,4 +61,41 @@ services:
       - ./redis/conf:/usr/local/etc/redis
     command:
       redis-server /usr/local/etc/redis/redis.conf
+  
+  ###
+  ## below additional services
+  ###
+  mysqlbackup:
+    image: zelejs/mysqlbackup
+    container_name: mysqlbackup
+    privileged: true
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ./mysqlbackup/data:/var/mysqlbackup/data
+      - ./mysqlbackup/log:/var/mysqlbackup/log
+    environment:
+      MYSQL_DB: mydb
+      TZ: Asia/Shanghai
+      MYSQL_HOST: 172.17.0.1
+      MYSQL_PORT: 3306
+      MYSQL_USER: root
+      MYSQL_USER_PASSWORD: root
+      CRONTAB_DAILY_HOUR: 2
+      CRONTAB_DAILY_MIN: 15
 
+  swagger:
+    image: zelejs/swagger
+    container_name: swagger
+    privileged: true
+    volumes:
+      - ./swagger/app:/swagger/app
+
+  datagear:
+    #image: 'daocloud.io/library/tomcat:7-jre8'
+    image: 'zelejs/datagear'
+    container_name: datagear
+    volumes:
+      #- ./datagear/webapps:/usr/local/tomcat/webapps
+      - ./datagear/logs:/usr/local/tomcat/logs
+    environment:
+      TZ: "Asia/Shanghai"
