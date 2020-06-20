@@ -1,0 +1,44 @@
+version: "3"
+services:
+  am-api:
+    image: zelejs/app-openjre11
+    container_name: am-api
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ./api:/webapps
+
+  am-web:
+    image: daocloud.io/library/nginx:latest
+    container_name: am-web
+    privileged: true
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ./web/dist:/usr/share/nginx/html
+      - ./web/logs:/var/log/nginx
+
+  nginx-gateway:
+    image: daocloud.io/library/nginx:latest
+    container_name: nginx-gateway
+    privileged: true
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ./nginx-gateway/nginx.conf:/etc/nginx/nginx.conf
+      - ./nginx-gateway/conf.d:/etc/nginx/conf.d
+      - ./nginx-gateway/logs:/var/log/nginx
+      - ./nginx-gateway/images:/images
+      - ./nginx-gateway/cert:/cert
+      - ./nginx-gateway/html:/usr/share/nginx/html
+    ports:
+      - '8000:80'
+  am-redis:
+    container_name: am-redis
+    image: 'daocloud.io/library/redis:3.2.9'
+    environment:
+      TZ: "Asia/Shanghai"
+    ports:
+      - 6379:6379
+    volumes:
+      - ./redis/conf:/usr/local/etc/redis
+    command:
+      redis-server /usr/local/etc/redis/redis.conf
+
