@@ -1,0 +1,13 @@
+version: "3"
+services:
+  tsung_prima:
+    image: smart_tsung_prima
+    container_name: tsung_prima
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ./tsung/tsung.xml:/root/.tsung/tsung.xml
+      - ./tsung/tsung.log:/root/tsung.log
+      - ./tsung/tsung-1.0.dtd:/usr/share/tsung/tsung-1.0.dtd
+      - ./tsung/log:/root/.tsung/log
+    ports:
+      - '8091:8091'
