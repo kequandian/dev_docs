@@ -104,7 +104,9 @@ $ mvn dependency:tree | cat -n | grep “org.json”
 
 | **序号** | **连接字段**                                                 |
 | -------- | ------------------------------------------------------------ |
+| Zong     | jdbc:mysql://120.24.235.88/test?user=root&password=root&characterEncoding=utf8 |
 | Power    | jdbc:mysql://120.79.49.72/test?user=root&password=root&characterEncoding=utf8 |
+
 
 进一步安装 **navicat** 数据库远程连接工具, 常用远程连接数据库，数据库备份操作等
 
