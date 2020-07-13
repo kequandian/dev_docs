@@ -102,10 +102,10 @@ $ mvn dependency:tree | cat -n | grep “org.json”
 ### 数据库 MySQL 5.7 安装 (可选)
 可在本地PC安装 **MySQL 5.7** 以上版本, 也可以直接连接专属测试 **MySQL Server** 远程连接：
 
-| **序号** | **连接字段**                                                 |
-| -------- | ------------------------------------------------------------ |
-| Zong     | jdbc:mysql://120.24.235.88/test?user=root&password=root&characterEncoding=utf8&useSSL=false |
-| Power    | jdbc:mysql://120.79.49.72/test?user=root&password=root&characterEncoding=utf8&useSSL=false |
+| **序号** | **连接字段**                                                 |**用户名**|**密码**|
+| -------- | ------------------------------------------------------------ |-----|-----|
+| Zong     | jdbc:mysql://120.24.235.88/test?characterEncoding=utf8&autoReconnect=true&useUnicode=true&useSSL=false|zb|zb2014|
+| Power    | jdbc:mysql://120.79.49.72/test?characterEncoding=utf8&autoReconnect=true&useUnicode=true&useSSL=false|root|root|
 
 
 进一步安装 **navicat** 数据库远程连接工具, 常用远程连接数据库，数据库备份操作等
