@@ -2,7 +2,7 @@ version: "3"
 # docker-compose -f docker-compose.yml up --detach --build  ## for recreating th 
 services:
   myapp-api:
-    image: zelejs/app-openjre11
+    image: zelejs/allin-web:jdk
     container_name: myapp-api
     volumes:
       - /etc/localtime:/etc/localtime:ro
