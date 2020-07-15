@@ -69,14 +69,16 @@ C:\Program Files\Java\jdk-11.0.2
 
 3. 掌握  mvn 命令行的使用
 
+**java 11 与 maven 3.6.x 匹配**
 ```java
 $ echo $M2_HOME
 /Users/vincenthuang/Library/apache-maven-3.5.0
-$ mvn --version
-Apache Maven 3.5.0 (ff8f5e7444045639af65f6095c62210b5713f426; 2017-04-04T03:39:06+08:00)
-Maven home: /Users/vincenthuang/Library/apache-maven-3.5.0
-Java version: 1.8.0_131, vendor: Oracle Corporation
-Java home: /Library/Java/JavaVirtualMachines/jdk1.8.0_131.jdk/Contents/Home/jre
+$ mvn  --version
+Apache Maven 3.6.0 (97c98ec64a1fdfee7767ce5ffb20918da4f719f3; 2018-10-25T02:41:47+08:00)
+Maven home: C:\apache-maven-3.6.0
+Java version: 11.0.3, vendor: Oracle Corporation, runtime: C:\Program Files\Java\jdk-11.0.3
+Default locale: zh_CN, platform encoding: GBK
+OS name: "windows 10", version: "10.0", arch: "amd64", family: "windows"
 ```
 
 ** 要看当前package的所有依赖，可以通过 | grep “keyword” 过滤 **
