@@ -81,6 +81,18 @@ Default locale: zh_CN, platform encoding: GBK
 OS name: "windows 10", version: "10.0", arch: "amd64", family: "windows"
 ```
 
+**如产生编译错误，尝试增加以下插件**
+```xml
+<plugin>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-jar-plugin</artifactId>
+    <version>2.4</version>
+    <configuration>
+        <encoding>UTF-8</encoding>
+    </configuration>
+</plugin>
+```
+
 ** 要看当前package的所有依赖，可以通过 | grep “keyword” 过滤 **
 ```java 
 $ mvn clean package install deploy
