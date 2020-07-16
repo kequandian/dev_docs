@@ -48,6 +48,7 @@ $ npm -v
 ```
 
 ### Java 11 JKD (LTS) 安装配置
+- http://jdk.java.net/java-se-ri/11
 
 1. 配置环境变量 JAVA_HOME
 2. 在bash下可成功输出如下版本信息
