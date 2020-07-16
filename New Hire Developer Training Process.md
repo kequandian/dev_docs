@@ -82,6 +82,11 @@ OS name: "windows 10", version: "10.0", arch: "amd64", family: "windows"
 ```
 
 **如产生编译错误，尝试增加以下插件**
+```sh
+[WARNING] Error injecting: org.codehaus.plexus.archiver.jar.JarArchiver
+java.lang.ExceptionInInitializerError
+```
+
 ```xml
 <plugin>
     <groupId>org.apache.maven.plugins</groupId>
