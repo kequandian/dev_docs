@@ -63,21 +63,18 @@ C:\Program Files\Java\jdk-11.0.2
 ```
 
 ### Apache Maven 安装配置
-1. 下载并配置最新版本 maven, 并设置环境变量M2_HOME, 增加路径置设 PATH=%M2_HOME%\bin
-2. 通过以下地址下载 maven 配置文件（用于配置 apache archive 私服授权）,并保存于~/.m2目录下。
-
+1. 下载 ***maven 3.6.1*** (最新版本3.6.3与java 11 不兼容), 设置环境变量M2_HOME, 增加路径置设 PATH=%M2_HOME%\bin
+2. 下载以下地址 maven setting 文件（用于配置 apache archive 私服授权）,并保存于~/.m2目录下。
     [settings.xml](http://zele.pro:8000/devops/settings.xml)
+3. 掌握mvn命令行的使用 [mvn clean install package deploy]
 
-3. 掌握  mvn 命令行的使用
-
-**java 11 与 maven 3.6.x 匹配**
 ```java
 $ echo $M2_HOME
-/Users/vincenthuang/Library/apache-maven-3.5.0
+/Users/vincenthuang/Library/apache-maven-3.6.1
 $ mvn  --version
 Apache Maven 3.6.0 (97c98ec64a1fdfee7767ce5ffb20918da4f719f3; 2018-10-25T02:41:47+08:00)
 Maven home: C:\apache-maven-3.6.0
-Java version: 11.0.3, vendor: Oracle Corporation, runtime: C:\Program Files\Java\jdk-11.0.3
+Java version: 11.0.8, vendor: Oracle Corporation, runtime: C:\Program Files\Java\jdk-11.0.8
 Default locale: zh_CN, platform encoding: GBK
 OS name: "windows 10", version: "10.0", arch: "amd64", family: "windows"
 ```
