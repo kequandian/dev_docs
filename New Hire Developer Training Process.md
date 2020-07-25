@@ -62,6 +62,45 @@ $ echo $JAVA_HOME
 C:\Program Files\Java\jdk-11.0.2
 ```
 
+### 需掌握 Spring Boot 的开发技巧
+- 理解并掌握配置文件application.yml的配置内容
+```yaml
+## cat src/main/resources/application.yml
+
+# 指定运行端口
+server:
+   port: 8080
+   
+# 指定应用配置方案
+spring:
+   profiles:
+      active: dev
+
+---
+## dev profile sample
+spring:
+  profiles: dev
+  datasource:
+      url: jdbc:mysql://127.0.0.1/db_name?useSSL=false&autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull
+      username: root
+      password: root
+      filters: log4j,wall,mergeStat
+      sql-script-encoding: UTF-8
+      schema: classpath*:sql/**/*-schema.sql
+      data: classpath*:sql/**/*-data.sql
+      initialize: false
+      # initialize=true 代表应用的所有依赖模块的数据表被重置（重新建表，数据丢失）
+logging:
+  level: debug
+  file: logs/trace.log
+```
+
+- 掌握在命令下运行standalone.jar, 并能指定参数运行
+```shell
+$ ## 运行时指定端口，以及配置方案名称 dev
+$ java -jar target/app-standalone.jar --server.port=8081  --spring.profiles.active=dev
+```
+
 ### Apache Maven 安装配置
 1. 下载 ***maven 3.6.1*** (最新版本3.6.3与java 11 不兼容), 设置环境变量M2_HOME, 增加路径置设 PATH=%M2_HOME%\bin
 2. 下载以下地址 maven setting 文件（用于配置 apache archive 私服授权）,并保存于~/.m2目录下。
@@ -219,6 +258,7 @@ ssh-keygen -t rsa -C "youremail@example.com"
 ### 理解CRUD数据库设计与开发
 在 **Innovation Oriented** 群文件搜索 **CRUD Introduction.ppt** 文档，理解 CRUD 设计与开发编程概念。
 
+
 ### API开发与调试
 
 - 在bash命令提示符下git clone 如下代码
@@ -238,51 +278,6 @@ http://127.0.0.1:8080/swagger-ui.html
 
 - 掌握 resetful 测试工具
 推荐使用开源工具 [Insomnia](https://www.insomnia.rest/)
-
-- 理解配置文件的基础配置
-```java
-src/main/resources/application.yml
-```
-
-- 如何指定运行端口
-```xml
-server:
-   port: 8080
-```
-- 也可以在执行时指定:
-```shell
-$ java -jar target/app-standalone.jar --server.port=8081
-```
-
-- 如何指定运行配置选项
-```xml
-spring:
-   profiles:
-      active: dev
----
-spring:
-  profiles: dev
-  datasource:
-      url: jdbc:mysql://120.79.49.72/test?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull
-      username: root
-      password: root
-      filters: log4j,wall,mergeStat
-      sql-script-encoding: UTF-8
-      schema: classpath*:sql/**/*-schema.sql
-      data: classpath*:sql/**/*-data.sql
-      initialize: false
-
-logging:
-  level: debug
-  file: logs/trace.log
-```
-以上配置改为 true 代表应用的 所有依赖模块 所属数据库表被重置
-initialize: true
-
-- 也可以在命令行执行时指定：
-```shell
- $ java -jar target/app-standalone.jar –spring.profiles.active=produce
-```
 
 
 ## 开发规范要求
