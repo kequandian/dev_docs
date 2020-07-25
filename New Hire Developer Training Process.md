@@ -96,6 +96,14 @@ java.lang.ExceptionInInitializerError
 </plugin>
 ```
 
+### maven理解与使用考试内容
+- 理解 mvn install 的作用，与mvn deploy的区别
+- 理解 mvn package 生成的 -standalone.jar 与非standalone.jar 的区别
+- 掌握 pom.xml 里定义变量的使用，掌握在命令行下通过设置变量，不生成-standalone.jar的方法
+- 掌握避免 deploy standalone.jar 的方法
+- 掌握依赖关系的查看方法 mvn dependency:tree
+
+#### 查看依赖关系
 ** 要看当前package的所有依赖，可以通过 | grep “keyword” 过滤 **
 ```java 
 $ mvn clean package install deploy
