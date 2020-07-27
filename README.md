@@ -2,7 +2,7 @@
 
 ```sh
 ## github.com
-$ cat /c/Windows/System32/drivers/etc/hosts
+$ cat /c/Windows/System32/drivers/etc/hosts  ## cat /etc/hosts for MAC
 140.82.114.4 gist.github.com
 185.199.108.153 assets-cdn.github.com
 151.101.64.133 raw.githubusercontent.com
