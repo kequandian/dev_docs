@@ -1,6 +1,10 @@
 ## Linux系统扩容
+`首先依据不同的虑拟机 VMWare, VirtualBox 扩展卷容量`
 
-开启虚拟机并且登录后，使用命令查看磁盘状态，可以看到`/dev/mapper/centos-root` 磁盘容量为`8G`
+### 登录进入虚拟机进行扩容操作
+
+#### 使用命令查看磁盘状态，可以看到 `/dev/mapper/centos-root` 磁盘容量为`8G`
+
 ```shell
 $ df -h
 d文件系统                 容量  已用  可用 已用% 挂载点
@@ -13,9 +17,9 @@ d文件系统                 容量  已用  可用 已用% 挂载点
  tmpfs                     98M     0   98M    0% /run/user/0
 ```
 
-可看到当前并未扩容,首先先通过命令fdisk -l查看到新磁盘的分区
+#### 可看到当前并未扩容,首先先通过命令fdisk -l查看到新磁盘的分区
+##### 可以看到两个分区，分别是 `/dev/sda1` 和 `/dev/sda2`
 
-可以看到两个分区，分别是`/dev/sda1`和`/dev/sda2`
 ```shell
 $ fdisk -l
 磁盘 /dev/sda：16.1 GB, 16106127360 字节，31457280 个扇区
@@ -39,9 +43,10 @@ I/O 大小(最小/最佳)：512 字节 / 512 字节
 Units = 扇区 of 1 * 512 = 512 bytes
 扇区大小(逻辑/物理)：512 字节 / 512 字节
 I/O 大小(最小/最佳)：512 字节 / 512 字节
-
 ```
-然后对新加的磁盘进行分区操作：
+
+#### 然后对新加的磁盘进行分区操作
+
 ```shell
 $ fdisk /dev/sda    //选择新增的硬盘
 欢迎使用 fdisk (util-linux 2.23.2)。
@@ -93,10 +98,11 @@ WARNING: Re-reading the partition table failed with error 16: 设备或资源忙
 The kernel still uses the old table. The new table will be used at
 the next reboot or after you run partprobe(8) or kpartx(8)
 正在同步磁盘。
-
 ```
-期间，如果需要将分区类型的Linux修改为Linux LVM的话需要在新增了分区之后，选择t，然后选择8e，之后可以将新的分区修改为linux LVM
-之后我们可以再次用以下命令查看到磁盘当前情况，可以看到已经多出了一个分区 /dev/sda3
+
+#### 期间，如果需要将分区类型的Linux修改为Linux LVM的话需要在新增了分区之后，选择t，然后选择8e，之后可以将新的分区修改为linux LVM
+##### 之后我们可以再次用以下命令查看到磁盘当前情况，可以看到已经多出了一个分区 `/dev/sda3`
+
 ```shell
 $ fdisk -l
 磁盘 /dev/sda：16.1 GB, 16106127360 字节，31457280 个扇区
@@ -122,12 +128,14 @@ Units = 扇区 of 1 * 512 = 512 bytes
 扇区大小(逻辑/物理)：512 字节 / 512 字节
 I/O 大小(最小/最佳)：512 字节 / 512 字节
 ```
-重启虚拟机格式化新建分区
+
+#### 重启虚拟机格式化新建分区
 ```shel
 $ reboot
 ```
-然后将新添加的分区添加到已有的组实现扩容
-首先查看卷组名,查看到卷名为centos
+
+#### 然后将新添加的分区添加到已有的组实现扩容
+`首先查看卷组名,查看到卷名为centos`
 
 ```shell
 $ vgdisplay
@@ -152,18 +160,24 @@ $ vgdisplay
   Free  PE / Size       0 / 0   
   VG UUID               uGjto2-ncxw-9aVs-v8Fl-SOtw-MqRH-LYO4OD
 ```
-初始化刚刚的分区 /dev/sda3
+
+#### 初始化刚刚的分区 /dev/sda3
+
 ```shell
 $ pvcreate /dev/sda3
 Physical volume "/dev/sda3" successfully created.
 ```
-将初始化过的分区加入到虚拟卷组名
-vgextend 虚拟卷组名 新增的分区
+
+#### 将初始化过的分区加入到虚拟卷组名
+`vgextend 虚拟卷组名 新增的分区`
+
 ```shell
 $ vgextend centos /dev/sda3
 Volume group "centos" successfully extended
 ```
-再次查看卷组情况
+
+#### 再次查看卷组情况
+
 ```shell
 $ vgdisplay
 --- Volume group ---
@@ -187,8 +201,10 @@ $ vgdisplay
   Free  PE / Size       1279 / <5.00 GiB     //这里可以看到有5G空间是空闲的，本教程只扩展5G空间
   VG UUID               uGjto2-ncxw-9aVs-v8Fl-SOtw-MqRH-LYO4OD
 ```
-这里可以看到，有5G的空间是空闲的
-查看当前磁盘情况并记下需要扩展的文件系统名，我这里因为要扩展根目录，本机是 /dev/mapper/centos-root
+
+#### 这里可以看到，有5G的空间是空闲的
+`查看当前磁盘情况并记下需要扩展的文件系统名，我这里因为要扩展根目录，本机是 /dev/mapper/centos-root`
+
 ```shell
 $ df -h
 文件系统                 容量  已用  可用 已用% 挂载点
@@ -200,15 +216,19 @@ tmpfs                    487M     0  487M    0% /sys/fs/cgroup
 /dev/sda1               1014M  197M  818M   20% /boot
 tmpfs                     98M     0   98M    0% /run/user/0
 ```
-扩容已有的卷组容量（这里有个细节，就是不能全扩展满，比如空闲空间是5G，然后这里的话5G不能全扩展上，这里我扩展的是4G。加满会报错）
 
-lvextend -L +需要扩展的容量 需要扩展的文件系统名
+#### 扩容已有的卷组容量
+``这里有个细节，就是不能全扩展满，比如空闲空间是5G，然后这里的话5G不能全扩展上，这里我扩展的是4G。加满会报错``
+`lvextend -L +需要扩展的容量 需要扩展的文件系统名`
+
 ```shell 
 $ lvextend -L +4G /dev/mapper/centos-root
 Size of logical volume centos/root changed from <8.00 GiB (2047 extents) to <12.00 GiB (3071 extents).
 Logical volume centos/root successfully resized.
 ```
-然后我们用命令查看当前卷组
+
+#### 然后我们用命令查看当前卷组
+
 ```shell
 $ pvdisplay
  --- Physical volume ---
@@ -233,16 +253,18 @@ $ pvdisplay
   Allocated PE          1024
   PV UUID               8wxKEU-pVcq-8iD7-gnTY-L3w4-mQtS-R5nQQK
 ```
-这里可以看到，卷组已经扩容了
-以上只是卷的扩容，然后我们需要将文件系统扩容
 
-首先查看文件系统的格式
+#### 这里可以看到，卷组已经扩容了
+`以上只是卷的扩容，然后我们需要将文件系统扩容，首先查看文件系统的格式
+
 ```shell
 $ cat /etc/fstab | grep centos-root
 /dev/mapper/centos-root /                       xfs     defaults        0 0
 ```
-这里可以看到，文件系统是xfs，所以需要xfs的命令来扩展磁盘空间
-执行命令 xfs_growfs 文件系统名
+
+#### 这里可以看到，文件系统是xfs，所以需要xfs的命令来扩展磁盘空间
+`执行命令 xfs_growfs 文件系统名`
+
 ```shell
 $ xfs_growfs /dev/mapper/centos-root
 meta-data=/dev/mapper/centos-root isize=512    agcount=4, agsize=524032 blks
@@ -256,7 +278,8 @@ log      =internal               bsize=4096   blocks=2560, version=2
 realtime =none                   extsz=4096   blocks=0, rtextents=0
 data blocks changed from 2096128 to 3144704
 ```
-之后我们再次用命令查看磁盘状态
+
+#### 之后我们再次用命令查看磁盘状态
 ```shell
 $ df -h
 文件系统                 容量  已用  可用 已用% 挂载点
@@ -268,8 +291,10 @@ tmpfs                    487M     0  487M    0% /sys/fs/cgroup
 /dev/sda1               1014M  197M  818M   20% /boot
 tmpfs                     98M     0   98M    0% /run/user/0
 ```
-/dev/mapper/centos-root 磁盘容量为12G，已经实现了扩容
-可以看到，现在已经扩容成功了！
+
+#### /dev/mapper/centos-root 磁盘容量为12G，已经实现了扩容
+`可以看到，现在已经扩容成功了！`
+
 
 ## 也可以通过parted工具进行扩容
 - [parted操作步聚](parted.md)
