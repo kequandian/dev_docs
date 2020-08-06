@@ -271,5 +271,5 @@ tmpfs                     98M     0   98M    0% /run/user/0
 /dev/mapper/centos-root 磁盘容量为12G，已经实现了扩容
 可以看到，现在已经扩容成功了！
 
-Linux扩容另一种方法请查看
-- [扩容方法二](parted.md)
+## 也可以通过parted工具进行扩容
+- [parted操作步聚](parted.md)
