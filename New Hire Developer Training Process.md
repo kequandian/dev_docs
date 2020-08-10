@@ -168,7 +168,7 @@ $ mvn dependency:tree | cat -n | grep “org.json”
 
 | **序号** | **连接字段**                                                 |**用户名**|**密码**|
 | -------- | ------------------------------------------------------------ |-----|-----|
-| Zong     | jdbc:mysql://120.24.235.88/test?characterEncoding=utf8&autoReconnect=true&useUnicode=true&useSSL=false|zb|zb2014|
+| Zong     | jdbc:mysql://120.78.88.79/test?characterEncoding=utf8&autoReconnect=true&useUnicode=true&useSSL=false|zb|zb2014|
 | Power    | jdbc:mysql://120.79.49.72/test?characterEncoding=utf8&autoReconnect=true&useUnicode=true&useSSL=false|root|root|
 
 
