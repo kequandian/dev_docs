@@ -10,17 +10,17 @@
 - 提交代码时 需过滤临时生成文件如 LOGS* 
 ```shell
 $ cat .gitignore 
-target/*
+target/
 /gen/
-build/*
-.idea/*
-.gradle/*
-.svn/*
+build/
+.idea/
+.gradle/
+.svn/
 *.iml
 *.swp
 *.log
 *.db
-logs/*
+logs/
 LOG**
 .DS_Store
 ```
@@ -227,12 +227,12 @@ Q: 如何替换当前目录下(包括所有子目录)所有 .js 文件中的指�
 $ find . –name “*.json” | sed -i “s/oldstring/newstring/g”
 ```
 
-### 匹配的用法例子
+### 匹配的常见用例
 > sed 匹配与标准正式表达式略有不同
 > * 不支持 \d, 用[0-9]代替
-> * 不支持 +, 用 *代替, 如  [0-9]*
+> * 不支持 +, 用 \* 代替, 如  [0-9]\*
 > * 不支持 \s, 用 [[:space:]] 代替
-> * ( 直接匹配 ( 符号；\( \) 才是转义字符，用于匹配提取
+> * ( 直接匹配 ( 符号；\\( 以及 \\) 才是转义字符，用于匹配提取
 
 - 匹配空格多个空格
 ```shell
