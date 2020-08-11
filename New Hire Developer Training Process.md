@@ -227,6 +227,39 @@ Q: 如何替换当前目录下(包括所有子目录)所有 .js 文件中的指�
 $ find . –name “*.json” | sed -i “s/oldstring/newstring/g”
 ```
 
+### 匹配的用法例子
+> sed 匹配与标准正式表达式略有不同
+> * 不支持 \d, 用[0-9]代替
+> * 不支持 +, 用 *代替, 如  [0-9]*
+> * 不支持 \s, 用 [[:space:]] 代替
+> * ( 直接匹配 ( 符号；\( \) 才是转义字符，用于匹配提取
+
+- 匹配空格多个空格
+```shell
+$ echo "This is new    line" | sed "s/new[[:space:]]*line/newline/"
+This is newline
+```
+- 匹配并同时替换文件内容
+```shell
+$ cat newline.txt
+This is new    line
+$ sed -i "s/new[[:space:]]*line/newline/" newline.txt
+$ cat newline.txt
+This is newline
+```
+
+- 删除回车 (dos2unix)
+```shell
+$ sed -i 's/\r//g' newline.txt
+```
+
+- 匹配提取为替换的变量
+> \1为匹配提取的第一个变量
+```shell
+$ echo "\`wms_storage_out_item\` VALUES (445" | sed "s/\`wms_storage_out_item\`[[:space:]]*VALUES[[:space:]]*(\([0-9]*\)/newline: \1/"
+newline: 445
+```
+
 ### 如何登录远程服务器
 在 **Innovation Oriented** 群文件搜索 **“PuTTY自动登录SSH服务器”** 文档，了解**ssh**概念
 
