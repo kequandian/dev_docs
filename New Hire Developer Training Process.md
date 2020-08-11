@@ -178,6 +178,12 @@ $ mvn dependency:tree | cat -n | grep “org.json”
 - 掌握 LEFT JOIN 多表关联查询技巧
 - 需 **考试** 确认已掌握
 
+### 数据库表插入数据存在外键依赖
+> 在.sql文件中第一行增加以下设置
+```sql
+SET FOREIGN_KEY_CHECKS = 0;
+```
+
 ## Linux 基础
 
 ### 虚拟机安装与使用
