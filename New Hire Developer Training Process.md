@@ -381,11 +381,30 @@ private void doSomeUpdate(){
 * 尽量多判断输入参数或返回对象是否为null, 如果输入参数或返回对象不能为空，则抛出异常(throw new RuntimeException())；
 * 禁止使用多点操作，因为多点操作很容易出现空针指；对多点操作应分开多行获取对象，并对获取的对象进行非空判断
 
-### 掌握部署方法
+### 掌握容器部署
 - 掌握 docker 原理
 - 掌握 docker 基本 cli 操作命令
 - 掌握 docker-compose 部署编排 参考 [docker.io/zelejs/app-openjre11](https://hub.docker.com/r/zelejs/app-openjre11)
+
+
+## 开发常见问题
+
+### 项目无法启动问题
+- pom 配置参考 env-test-saas 项目的pom文件，并重新启动。
+- 如参考env-test-saas pom 项目仍旧无法正常启动，收集该问题的解决方法，并更新此文档，入需要额外的依赖，请同时操作 env-test-saas pom的更新
+
+### 开发过程中某张表需要新添加字段的问题
+- 首先在 *-schema.sql 文件里找到对应的表进行字段更新
+- 其次 修改 gen/persistence/ 目录下找到对应的 类/xml 文件更新对应的实体
+- 最后 更新 domain/dao/ 目录下对应的 xml (如 Base_Column_List内容为 table.* 则无需修改该 Base_Column_List)，主要修改的内容为 resultMap
+
+### api 404 问题
+- 确定 ip:port 正确的情况下，如出现到api404.检查Endpoint层是否使用了事务处理注解
+```java
+    @Transactional
+``` 
+
    
-### 学习 vert.x 开发
+## 学习 vert.x 开发
 [My first Vert.x 3 Application](https://vertx.io/blog/my-first-vert-x-3-application/)
 
