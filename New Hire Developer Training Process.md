@@ -103,6 +103,10 @@ $ java -jar target/app-standalone.jar --server.port=8081  --spring.profiles.acti
 
 ### Apache Maven 安装配置
 1. 下载 ***maven 3.6.1*** (最新版本3.6.3与java 11 不兼容), 设置环境变量M2_HOME, 增加路径置设 PATH=%M2_HOME%\bin
+> 不兼容的情况下，测过junit单元测试可能会出现以下错误
+```java
+Failed to execute goal org.apache.maven.plugins:maven-surefire-plugin:2.18.1:test (default-test) on project
+```
 2. 下载以下地址 maven setting 文件（用于配置 apache archive 私服授权）,并保存于~/.m2目录下。
     [settings.xml](http://zele.pro:8000/devops/settings.xml)
 3. 掌握mvn命令行的使用 [mvn clean install package deploy]
