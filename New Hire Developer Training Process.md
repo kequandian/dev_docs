@@ -318,6 +318,16 @@ http://127.0.0.1:8080/swagger-ui.html
 - 掌握 resetful 测试工具
 推荐使用开源工具 [Insomnia](https://www.insomnia.rest/)
 
+- 时间格式定义
+```java
+@TableName("t_test_saas_entity")
+public class TestSaasEntity extends Model<TestSaasEntity> {
+  
+   @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
+	@TableField("created_time")
+	private Date createdTime;
+}
+```
 
 ## 开发规范要求
 
