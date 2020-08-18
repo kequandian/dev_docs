@@ -413,5 +413,5 @@ private void doSomeUpdate(){
 [My first Vert.x 3 Application](https://vertx.io/blog/my-first-vert-x-3-application/)
 
 ## 实用工具 
-https://u.tools/
-https://typora.io/
+- https://u.tools/
+- https://typora.io/
