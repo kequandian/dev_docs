@@ -44,45 +44,10 @@ $ sudo yum install docker-ce docker-ce-cli containerd.io
 $ sudo systemctl start docker
 ```
 
-#### 查看版本号说明安装成功
+#### 查看版本号说明安装成功 
 ```shell
 $ docker -v
 Docker version 19.03.12, build 48a66213fe
-```
-
-#### 由于国内镜像下载速度较快，配置镜像加速用网易云或者阿里云都可以
-> 网易云 
-```shell
-$ cat /etc/docker/daemon.json
-{“registry-mirrors”: [“http://hub-mirror.c.163.com”] }
-```
-
-> 阿里云 (需要到阿里云镜像服务注册复制镜像服务地址并替换以下xxxxx，可参考以下详细说明)
-- [docker配置阿里云镜像](https://blog.csdn.net/Baichi_00/article/details/102509012)
-```shell
-$ cat /etc/docker/daemon.json
-{ “registry-mirrors”: [“https://xxxxx.mirror.aliyuncs.com”] } 
-```
-
-#### 重启 Docker
-```shell
-$ sudo systemctl daemon-reload
-$ sudo systemctl restart docker
-```
-
-### 把当前用户增加到组 `docker`
-```shell
-$ sudo usermod -aG docker ubuntu  # 假设当前用登录户名为 ubuntu
-```
-
-#### 安装docker-compose
-```shell
-$ sudo curl -L "https://github.com/docker/compose/releases/download/1.23.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-```
-
-#### 设置权限
-```shell
-$ sudo chmod +x /usr/local/bin/docker-compose
 ```
 
 ####  查看版本号说明安装成功
@@ -90,3 +55,60 @@ $ sudo chmod +x /usr/local/bin/docker-compose
 $ sudo docker-compose -v
 docker-compose version 1.25.0-rc4, build 8f3c9c58
 ```
+
+#### 试执行 `docker ps` 说明启动成功
+> 如有误，请参考下文 *错误解决方案*
+```shell
+$ docker ps
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+```
+
+#### 把当前用户增加到组 `docker`
+```shell
+$ sudo usermod -aG docker ubuntu  # 假设当前用登录户名为 ubuntu
+```
+
+#### 安装docker-compose
+```shell
+$ sudo curl -L "https://github.com/docker/compose/releases/download/1.23.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+$ sudo chmod +x /usr/local/bin/docker-compose   # 同时设置执行权限
+```
+
+## 如docker配置有更新，需要重启 Docker
+```shell
+$ sudo systemctl daemon-reload
+$ sudo systemctl restart docker
+```
+
+## 由于国内镜像下载速度较快，需要配置镜像加速器
+> 网易云镜像加速器
+```shell
+$ cat /etc/docker/daemon.json
+{“registry-mirrors”: [“http://hub-mirror.c.163.com”] }
+```
+
+> 阿里云镜像加速器
+> 需要到阿里云镜像服务注册复制镜像服务地址并替换以下xxxxx，可参考以下详细说明
+> [docker配置阿里云镜像](https://blog.csdn.net/Baichi_00/article/details/102509012)
+```shell
+$ cat /etc/docker/daemon.json
+{ “registry-mirrors”: [“https://xxxxx.mirror.aliyuncs.com”] } 
+```
+
+## 错误解决方案
+> 错误信息
+```shell
+$ docker ps
+Cannot connect to the Docker daemon at unix:///var/run/docker.sock. Is the docker daemon running?
+$ systemctl start docker
+Job for docker.service failed because the control process exited with error code. See "systemctl status docker.service" and "journalctl -xe" for details.
+```
+> 解决方案
+```shell
+rm -f /var/lib/docker/
+rm /etc/default/daemon.json
+mkdir /var/lib/docker/
+chmod go-r /var/lib/docker/
+systemctl restart docker
+```
+
