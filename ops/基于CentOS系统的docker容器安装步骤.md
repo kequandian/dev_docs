@@ -39,28 +39,10 @@ $ sudo yum-config-manager \
 $ sudo yum install docker-ce docker-ce-cli containerd.io
 ```
 
-####  安装完成后启动docker
-```shell
-$ sudo systemctl start docker
-```
-
 #### 查看版本号说明安装成功 
 ```shell
 $ docker -v
 Docker version 19.03.12, build 48a66213fe
-```
-
-####  查看版本号说明安装成功
-```shell
-$ sudo docker-compose -v
-docker-compose version 1.25.0-rc4, build 8f3c9c58
-```
-
-#### 试执行 `docker ps` 说明启动成功
-> 如有误，请参考下文 *错误解决方案*
-```shell
-$ docker ps
-CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
 ```
 
 #### 把当前用户增加到组 `docker`
@@ -68,31 +50,34 @@ CONTAINER ID        IMAGE               COMMAND             CREATED             
 $ sudo usermod -aG docker ubuntu  # 假设当前用登录户名为 ubuntu
 ```
 
-#### 安装docker-compose
+####  安装完成后启动 docker
+```shell
+$ sudo systemctl start docker
+```
+
+#### 试执行说明启动成功
+```shell
+$ docker ps
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+```
+
+#### 安装 docker-compose
 ```shell
 $ sudo curl -L "https://github.com/docker/compose/releases/download/1.23.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 $ sudo chmod +x /usr/local/bin/docker-compose   # 同时设置执行权限
 ```
 
+####  查看版本号说明`docker-compose`安装成功
+```shell
+$ sudo docker-compose -v
+docker-compose version 1.25.0-rc4, build 8f3c9c58
+```
+
+
 ## 如docker配置有更新，需要重启 Docker
 ```shell
 $ sudo systemctl daemon-reload
 $ sudo systemctl restart docker
-```
-
-## 由于国内镜像下载速度较快，需要配置镜像加速器
-> 网易云镜像加速器
-```shell
-$ cat /etc/docker/daemon.json
-{“registry-mirrors”: [“http://hub-mirror.c.163.com”] }
-```
-
-> 阿里云镜像加速器
-> 需要到阿里云镜像服务注册复制镜像服务地址并替换以下xxxxx，可参考以下详细说明
-> [docker配置阿里云镜像](https://blog.csdn.net/Baichi_00/article/details/102509012)
-```shell
-$ cat /etc/docker/daemon.json
-{ “registry-mirrors”: [“https://xxxxx.mirror.aliyuncs.com”] } 
 ```
 
 ## 错误解决方案
@@ -112,3 +97,19 @@ chmod go-r /var/lib/docker/
 systemctl restart docker
 ```
 
+
+## 关于国内镜像加速器
+> 网易云镜像加速器
+```shell
+$ cat /etc/docker/daemon.json
+{“registry-mirrors”: [“http://hub-mirror.c.163.com”] }
+```
+
+> 阿里云镜像加速器
+> 需要到阿里云镜像服务注册复制镜像服务地址并替换以下xxxxx，可参考以下详细说明
+```shell
+$ cat /etc/docker/daemon.json
+{ “registry-mirrors”: [“https://xxxxx.mirror.aliyuncs.com”] } 
+```
+
+> [docker配置阿里云镜像](https://blog.csdn.net/Baichi_00/article/details/102509012)
