@@ -97,6 +97,12 @@ chmod go-r /var/lib/docker/
 systemctl restart docker
 ```
 
+## 增加私服命名空间(namespace)
+```shell
+$ cat /etc/docker/daemon.json
+"add-registry": ["192.168.100.100:5001"],
+# "block-registry": ["docker.io"]
+```
 
 ## 关于国内镜像加速器
 > 网易云镜像加速器
