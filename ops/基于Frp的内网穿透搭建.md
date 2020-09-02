@@ -1,12 +1,6 @@
 # 基于Frp的内网穿透搭建
 
->本文所实验环境是**基于Linux**下进行的，因Windows下操作便捷，配置方法大多相似，下文将不再赘述。
-
->**Frp工具各版本下载地址：https://github.com/fatedier/frp/releases**
-
-## 0. 简介
-
-Frp 全名：**Fast Reverse Proxy**。Frp 是一个使用 Go 语言开发的高性能的反向代理应用，可以轻松地实现内网穿透，对外网提供服务。Frp 支持 **TCP、UDP、HTTP、HTTPS**等协议类型，并且支持 Web 服务根据域名进行路由转发。
+> **Frp工具各版本下载地址：https://github.com/fatedier/frp/releases**
 
 ## 1. 下载
 
@@ -16,66 +10,13 @@ Frp 全名：**Fast Reverse Proxy**。Frp 是一个使用 Go 语言开发的高�
 
 由于Linux系统的体系结构众多，下载Frp则**需根据自身系统的系统架构来选择对应的版本**。**（Tips：若版本选择错误，将无法启动Frp）**
 
-通过`uname -a`命令确定系统的体系架构，如下所示。
-
-**X86架构**
-
-```shell
-$ uname -a
-Linux localhost.localdomain 3.10.0-957.el7.x86_64 #1 SMP Thu Nov 8 23:39:32 UTC 2018 x86_64 x86_64 x86_64 GNU/Linux
-```
-
-**ARM架构**
-
-```shell
-$ uname -a
-Linux tegra-ubuntu 4.4.38-tegra #1 SMP PREEMPT Fri Jul 28 09:55:22 PDT 2020 aarch64 aarch64 aarch64 GNU/Linux
-```
-
-**MIPS架构**
-
-```shell
-$ uname -a
-Linux DrogooBox 3.3.8 #33 Tue Mar 22 15:02:01 CST 2020 mips GNU/Linux
-```
-
-根据不同的系统架构及位数在下载地址中下载对应的版本文件。
-
 ## 2. 解压
 
-使用文件传输工具或SCP将下载好的压缩包上传至服务器与客户端，随后使用`tar`命令解压Frp压缩包，具体步骤如下所示。
+使用`tar`命令解压Frp压缩包，具体步骤如下所示。
 
 ```shell
 # 解压frp文件夹
 $ tar -zxvf frp_0.33.0_linux_386.tar.gz 
-frp_0.33.0_linux_386/
-frp_0.33.0_linux_386/frps_full.ini
-frp_0.33.0_linux_386/frps.ini
-frp_0.33.0_linux_386/frpc
-frp_0.33.0_linux_386/frpc_full.ini
-frp_0.33.0_linux_386/frps
-frp_0.33.0_linux_386/LICENSE
-frp_0.33.0_linux_386/frpc.ini
-frp_0.33.0_linux_386/systemd/
-frp_0.33.0_linux_386/systemd/frpc@.service
-frp_0.33.0_linux_386/systemd/frpc.service
-frp_0.33.0_linux_386/systemd/frps.service
-frp_0.33.0_linux_386/systemd/frps@.service
-```
-
-解压完成后，生成文件目录如下所示。
-
-```shell
-[root@localhost frp_0.33.0_linux_386]# ll
-总用量 20316
--rwxrwxr-x 1 zxb zxb  9285632 4月  27 16:58 frpc
--rw-rw-r-- 1 zxb zxb     7575 4月  27 17:05 frpc_full.ini
--rw-rw-r-- 1 zxb zxb      126 4月  27 17:05 frpc.ini
--rwxrwxr-x 1 zxb zxb 11481088 4月  27 16:59 frps
--rw-rw-r-- 1 zxb zxb     4639 4月  27 17:05 frps_full.ini
--rw-rw-r-- 1 zxb zxb       26 4月  27 17:05 frps.ini
--rw-rw-r-- 1 zxb zxb    11358 4月  27 17:05 LICENSE
-drwxrwxr-x 2 zxb zxb       88 4月  27 17:05 system
 ```
 
 进入目录中可以看到 frpc frpc_full.ini frpc.ini frps frps_full.ini frps.ini LICENSE 这七个文件
@@ -88,23 +29,9 @@ drwxrwxr-x 2 zxb zxb       88 4月  27 17:05 system
 - **frps.ini:** 服务端配置项
 - **LICENSE:** 许可证
 
-##  ​3. 配置
+##  3. 配置
 
-由上述已知**frpc.ini**为客户端所需填写的配置文件，而**frps.ini**为服务端所需要填写的配置文件，为了避免误操作，**下述步骤将分别在客户端与服务端删除不需要的文件。**
-
-- **服务端**
-
-```shell
-$ rm -rf frpc frpc_full.ini frpc.in
-```
-
-- **客户端**
-
-```shell
-$ rm -rf frps frps_full.ini frps.ini
-```
-
-随后分别对服务端与客户端的Frp相应配置进行修改。
+由上述已知**frpc.ini**为客户端所需填写的配置文件，而**frps.ini**为服务端所需要填写的配置文件。
 
 - **服务端**
 
@@ -136,12 +63,12 @@ $ vim frpc.ini
 
 ```ini
 [common]
-server_addr = 127.0.0.1
+server_addr = 120.67.78.78
 server_port = 7000
 
 [ssh]
 type = tcp
-local_ip = 127.0.0.1
+local_ip = 192.168.3.3
 local_port = 22
 remote_port = 6000
 ```
@@ -163,23 +90,15 @@ remote_port = 6000
 
 ```shell
 $ ./frps -c ./frps.ini
-
-2020/xx/xx xx:xx:xx [I] [service.go:178] frps tcp listen on 0.0.0.0:xxxxx
-2020/xx/xx xx:xx:xx [I] [service.go:220] http service listen on 0.0.0.0:xxxxx
-2020/xx/xx xx:xx:xx [I] [root.go:209] start frps success
 ```
 
 - **客户端启动**
 
 ```shell
 $ ./frpc -c ./frpc.ini
-
-2020/xx/xx xx:xx:xx [I] [service.go:282] [2c62f31d7553b723] login to server success, get run id [2c62f31d7553b723], server udp port [0]
-2020/xx/xx xx:xx:xx [I] [proxy_manager.go:144] [2c62f31d7553b723] proxy added: [ssh]
-2020/xx/xx xx:xx:xx [I] [control.go:179] [2c62f31d7553b723] [ssh] start proxy success
 ```
 
-当服务端与客户端都启动成功后，将出现上述提示，至此，Frp内网穿透已成功搭建。
+至此，Frp内网穿透已成功搭建。
 
 ## 5. 测试
 
@@ -226,7 +145,7 @@ $ vim frpc.ini
 ```ini
 [common]
 # 服务器外网IP
-server_addr = 192.168.1.1
+server_addr = 120.67.78.78
 # 服务端与客户端通信端口
 server_port = 5001
 
@@ -234,7 +153,7 @@ server_port = 5001
 # 请求方式
 type = http
 # 本地IP 192.168.2.1 / 127.0.0.1 均可
-local_ip = 127.0.0.1
+local_ip = 192.168.2.1
 # 本地Docker Registry对应端口
 local_port = 5000
 # 云服务器转发请求端口
@@ -292,41 +211,6 @@ $ sudo vim  /etc/docker/daemon.json
 **资源请求端：**`curl custom.domain.cn:5000/v2`
 
 当资源请求端返回数据为`<a href="/v2/">Moved Permanently</a>.`，则说明请求成功，后续可以正常拉取镜像资源。
-
-## 7. Shell脚本
-
-> **Tips：Shell脚本中的frpc和frps可根据实际需要更改。**
-
-### 7.1 启动脚本（start.sh）
-
-```shell
-#!/bin/bash
-nohup ./frpc -c ./frpc.ini &
-```
-
-### 7.2 停止脚本（stop.sh）
-
-```shell
-#!/bin/bash
-PID=$(ps -ef | grep frpc | grep -v grep | awk '{ print $2 }')
-if [ -z "$PID" ]
-then
-echo frpc is already stopped
-else
-echo kill $PID
-kill $PID
-fi
-```
-
-### 7.3 快速运行（run.sh）
-
-```shell
-#!/bin/bash`
-echo stop frpc
-source stop.sh
-echo start frpc
-source start.sh
-```
 
 
 
