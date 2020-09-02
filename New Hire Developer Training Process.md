@@ -415,3 +415,10 @@ private void doSomeUpdate(){
 ## 实用工具 
 - https://u.tools/
 - https://typora.io/
+
+> * Typora编辑器：https://typora.io/
+> * Typora主题库：http://theme.typora.io/
+> * Typora文档：http://theme.typora.io/doc/
+> * Typora使用：https://sspai.com/post/54912
+> * emoji图标：https://www.cnblogs.com/wangjs-jacky/p/12011208.html
+
