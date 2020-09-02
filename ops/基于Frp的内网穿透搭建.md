@@ -10,6 +10,31 @@
 
 由于Linux系统的体系结构众多，下载Frp则**需根据自身系统的系统架构来选择对应的版本**。**（Tips：若版本选择错误，将无法启动Frp）**
 
+通过`uname -a`命令确定系统的体系架构，如下所示。
+
+**X86架构**
+
+```shell
+$ uname -a
+Linux localhost.localdomain 3.10.0-957.el7.x86_64 #1 SMP Thu Nov 8 23:39:32 UTC 2018 x86_64 x86_64 x86_64 GNU/Linux
+```
+
+**ARM架构**
+
+```shell
+$ uname -a
+Linux tegra-ubuntu 4.4.38-tegra #1 SMP PREEMPT Fri Jul 28 09:55:22 PDT 2020 aarch64 aarch64 aarch64 GNU/Linux
+```
+
+**MIPS架构**
+
+```shell
+$ uname -a
+Linux DrogooBox 3.3.8 #33 Tue Mar 22 15:02:01 CST 2020 mips GNU/Linux
+```
+
+根据不同的系统架构及位数在下载地址中下载对应的版本文件。
+
 ## 2. 解压
 
 使用`tar`命令解压Frp压缩包，具体步骤如下所示。
