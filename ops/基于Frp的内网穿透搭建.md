@@ -238,4 +238,56 @@ $ sudo vim  /etc/docker/daemon.json
 当资源请求端返回数据为`<a href="/v2/">Moved Permanently</a>.`，则说明请求成功，后续可以正常拉取镜像资源。
 
 
+## web服务配置例子
 
+> 远程公网下服务端配置
+```
+[common]
+# 设置连接端口
+bind_port = 7000
+
+# 设置dashboard服务登陆信息
+dashboard_port = 7500
+dashboard_usr = jen
+dashboard_pwd = jen2744
+
+# 设置日志显示级别 [debug, info, warn, error]
+log_level = debug
+log_max_days = 5
+
+# 设置特权模式是否开启 开通后web,ssh等都可以在客户端设置
+privilege_mode = true
+privilege_token = jen2744
+
+# 设置转发端口, 公网端口转发
+vhost_http_port = 81
+
+# 授权过时
+authentication_timeout = 0
+```
+
+>内网客户端应用服务器
+```
+# cat frpc.ini
+[common]
+server_addr = 106.53.93.81
+server_port = 7000
+auto_token = jen2744
+
+[ssh]
+type = tcp
+local_ip = 127.0.0.1
+local_port = 22
+remote_port = 7022
+
+[web]
+type = http
+local_port = 80
+custom_domains = ea.zbsoft.top
+```
+
+> 测试
+```shell
+$ ssh -p 7022 root@106.53.93.81
+$ curl http://ea.zbsoft.top:81
+```
