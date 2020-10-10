@@ -2,9 +2,10 @@
 
 #### 转发TCP端口
 ```
+# cat nginx.conf
 stream {
     upstream mysql_port {
-        server 172.17.0.1:3306;
+        server mysql:3306;
     }
 
     server {
@@ -12,6 +13,16 @@ stream {
         proxy_pass mysql_port;
     }
 }
+http {}
+
+## or
+stream {
+    server {
+        listen 23306;
+        proxy_pass mysql:3306;
+    }
+}
+
 ```
 
 #### 不替换路径 (仅替换域名)
