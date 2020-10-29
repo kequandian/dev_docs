@@ -19,3 +19,6 @@ $ cat /c/Windows/System32/drivers/etc/hosts  ## cat /etc/hosts for MAC
 151.101.108.133 avatars7.githubusercontent.com
 151.101.108.133 avatars8.githubusercontent.com
 ```
+
+## 典型前端组件化开发参考
+[openbase.io](https://openbase.io)
