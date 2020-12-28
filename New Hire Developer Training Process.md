@@ -47,6 +47,12 @@ $ npm -v
 6.4.1
 ```
 
+#### 由于国内网络环境原因，执行`npm install`前, 建议设置淘宝镜像
+```shell
+$ npm config set registry https://registry.npm.taobao.org
+$ npm install
+```
+
 ### Java 11 JKD (LTS) 安装配置
 - http://jdk.java.net/java-se-ri/11
 
