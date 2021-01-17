@@ -181,7 +181,6 @@ $ mvn dependency:tree | cat -n | grep “org.json”
 | zb       | jdbc:mysql://120.78.88.79/test?characterEncoding=utf8&autoReconnect=true&useUnicode=true&useSSL=false|root|zb2014|
 | Power    | jdbc:mysql://120.79.49.72/test?characterEncoding=utf8&autoReconnect=true&useUnicode=true&useSSL=false|root|root|
 
-
 进一步安装 **navicat** 数据库远程连接工具, 常用远程连接数据库，数据库备份操作等
 
 ### SQL 查询技巧
@@ -413,6 +412,9 @@ private void doSomeUpdate(){
 ```java
     @Transactional
 ``` 
+
+### 学习容器Docker技术
+[Docker-从入门到精通](https://yeasy.gitbook.io/docker_practice/)
 
    
 ## 学习 vert.x 开发
