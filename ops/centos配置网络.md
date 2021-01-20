@@ -1,4 +1,4 @@
-### 配置态态网络
+### 动态IP配置
 > ens33 通过 `ip addr` 获取
 ```shell
 /etc/sysconfig/network-scripts
@@ -21,4 +21,19 @@ ONBOOT=yes
 AUTOCONNECT_PRIORITY=-999
 DNS1=114.114.114.114
 DNS2=8.8.8.8
+```
+
+### 静态IP配置
+> 增加以下配置
+> `BOOTPROTO`使用静态IP地址，默认为`dhcp`
+```shell
+BOOTPROTO="static"
+IPADDR="192.168.3.66"
+NETMASK="255.255.255.0"
+GATEWAY="192.168.3.1"
+```
+
+> 重启网络
+```shell
+service network restart
 ```
