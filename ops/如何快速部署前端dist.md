@@ -16,8 +16,14 @@ curl -sL https://raw.githubusercontent.com/kequandian/dev_docs/master/ops/docker
 ```
 
 #### 替换方案
-执行 curl -sL 无响应，可以直接clone `web`部署模板, 链接
-[sandbox-web](https://github.com/smallsaas/sandbox-web)
+执行 curl -sL 无响应
+1. 在服务器中设置域名 IP
+> Windows路径 `/c/Windows/System32/drivers/etc/hosts`
+```
+cat /etc/hosts
+151.101.64.133 raw.githubusercontent.com
+```
+2. 可以直接clone `web`部署模板, 链接[sandbox-web](https://github.com/smallsaas/sandbox-web)
 
 
 #### 访问
