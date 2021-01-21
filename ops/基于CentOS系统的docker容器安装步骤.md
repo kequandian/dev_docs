@@ -1,8 +1,14 @@
 ## 基于CentOS系统的容器安装
-> [详细可参考docker官网](https://docs.docker.com/engine/install/centos/)
+>  详细可参考 [docker安装](https://docs.docker.com/engine/install/centos/) 官网说明
 
 - `docker`
 - `docker-compose`
+
+#### 可通过脚本一步安装
+```
+curl -sL https://raw.githubusercontent.com/kequandian/dev_docs/master/ops/scripts/centos-script -o centos-script
+sh centos-script --install-docker
+```
 
 ####  先卸载旧版本的docker
 ```shell
