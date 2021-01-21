@@ -62,9 +62,10 @@ CONTAINER ID        IMAGE               COMMAND             CREATED             
 ```
 
 #### 安装 docker-compose
+> 可通过访问`https://github.com/docker/compose/releases`用最新版本号替换以下版本号`1.27.4`
 ```shell
 $ sudo curl -L "https://github.com/docker/compose/releases/download/1.27.4/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-$ sudo chmod +x /usr/local/bin/docker-compose   # 同时设置执行权限
+$ sudo chmod +x /usr/local/bin/docker-compose
 ```
 
 ####  查看版本号说明`docker-compose`安装成功
