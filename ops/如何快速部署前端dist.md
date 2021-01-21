@@ -21,7 +21,7 @@ curl -sL https://raw.githubusercontent.com/kequandian/dev_docs/master/ops/docker
 
 
 #### 修改部署端口
-在部署目录会下载默认的 docker-compose.yml,修改里面的端口，然后执行
+在部署目录会下载默认的 docker-compose.yml, 替换里面的`8000`端口，然后再次启动
 ```
-docker-compose up
+docker-compose up -d
 ```
