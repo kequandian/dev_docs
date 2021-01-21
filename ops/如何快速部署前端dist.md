@@ -10,9 +10,15 @@ dist/
 
 #### 运行
 > 通过curl逐个文件下载
+>
 ```
 curl -sL https://raw.githubusercontent.com/kequandian/dev_docs/master/ops/docker/tag/web/docker-run.sh | bash -
 ```
+
+#### 替换方案
+执行 curl -sL 无响应，可以直接clone `web`部署模板, 链接
+[web-sandbox](https://github.com/smallsaas/web-sandbox)
+
 
 #### 访问
 > 端口默认设置为 `8000`
