@@ -17,7 +17,7 @@ curl -sL https://raw.githubusercontent.com/kequandian/dev_docs/master/ops/docker
 
 #### 替换方案
 执行 curl -sL 无响应，可以直接clone `web`部署模板, 链接
-[web-sandbox](https://github.com/smallsaas/web-sandbox)
+[sandbox-web](https://github.com/smallsaas/sandbox-web)
 
 
 #### 访问
