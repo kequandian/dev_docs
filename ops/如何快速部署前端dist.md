@@ -18,3 +18,10 @@ curl -sL https://raw.githubusercontent.com/kequandian/dev_docs/master/ops/docker
 > 端口默认设置为 `8000`
 >
 获取容器服务器的IP，如本机执行，在浏览器中输入地址 `http://127.0.0.1:8000`
+
+
+#### 修改部署端口
+在部署目录会下载默认的 docker-compose.yml,修改里面的端口，然后执行
+```
+docker-compose up
+```
