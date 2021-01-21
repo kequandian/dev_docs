@@ -62,7 +62,9 @@ CONTAINER ID        IMAGE               COMMAND             CREATED             
 ```
 
 #### 安装 docker-compose
-> 可通过访问`https://github.com/docker/compose/releases`用最新版本号替换以下版本号`1.27.4`
+> OS版本为 CentOS8.x, 可通过访问`https://github.com/docker/compose/releases`用最新版本号替换以下版本号`1.27.4`
+> 
+> CentOS7.x 版本沿用 1.27.4 版本
 ```shell
 $ sudo curl -L "https://github.com/docker/compose/releases/download/1.27.4/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 $ sudo chmod +x /usr/local/bin/docker-compose
