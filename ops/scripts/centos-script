@@ -1,0 +1,116 @@
+#!/bin/sh
+
+## usage
+opt=$1
+params=$@
+
+usage() {
+   echo 'Usage: centos-script [option] [param]'
+   echo 'Option:'
+   echo '  --enable-network <network> <static-ip>'
+   echo '  --install-docker'
+   echo '  --install-compose [version]'
+   echo '    default to 1.27.4, which is the latest version for centos7'
+   echo '    check latest version for centos8 at https://github.com/docker/compose/releases'
+}
+
+if [ ! $opt ];then
+   usage
+   exit
+fi
+
+enable_network() {
+   sink=$1
+   network=$2
+   ip=$3
+   if [ ! $ip ];then
+      usage
+      exit
+   fi
+
+   script="/etc/sysconfig/network-scripts/ifcfg-$network"
+   echo cat $script
+   echo BOOTPROTO=static
+   echo NOBOOT=yes
+   echo IPADDR=$ip
+   echo NETMASK=255.255.255.0
+   echo DNS1=8.8.8.8
+   echo \$ systemctl restart network
+}
+
+install_docker_7() {
+   echo yum remove docker
+   yum remove docker \
+                  docker-client \
+                  docker-client-latest \
+                  docker-common \
+                  docker-latest \
+                  docker-latest-logrotate \
+                  docker-logrotate \
+                  docker-engine
+
+   echo install -y yum-utils
+   yum install -y yum-utils
+
+   echo yum-config-manager --add-repo
+   yum-config-manager \
+    --add-repo \
+    https://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo
+ 
+   echo yum -y install docker-ce docker-ce-cli containerd.io
+   yum install docker-ce docker-ce-cli containerd.io
+
+   echo docker -v
+   docker -v
+
+   echo systemctl start docker
+   systemctl start docker
+
+   echo docker ps
+   docker ps
+}
+
+install_compose() {
+    version=$1
+    if [ ! $version ];then
+       usage
+       exit       
+    fi
+    echo curl -L https://  -o /usr/local/bin/docker-compose
+    curl -L "https://github.com/docker/compose/releases/download/$version/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+
+    echo chmod +x /usr/local/bin/docker-compose
+    chmod +x /usr/local/bin/docker-compose
+}
+
+install_docker_8() {
+    echo planning...
+}
+
+install_docker() {
+#    release=$(cat ./centos-release)
+#    if [ $release = "cat /etc/centos-release 7." ];then
+#       echo $release
+#    fi
+   dnf=$(which dnf)  #means centos8
+
+   if [ ! $dnf ];then
+      install_docker_7
+   else
+      install_docker_8
+   fi
+}
+
+if [ "$opt"x = "--enable-network"x ];then
+   enable_network $@
+elif [ "$opt"x = "--install-docker"x ];then   
+   install_docker
+elif [ "$opt"x = "--install-compose"x ];then 
+    version=$2
+    if [ ! $version ];then
+       version='1.27.4'
+    fi
+   install_compose $version
+else
+   usage 
+fi
