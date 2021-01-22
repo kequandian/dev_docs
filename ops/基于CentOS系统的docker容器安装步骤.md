@@ -6,6 +6,7 @@
 
 #### 可通过脚本一步安装
 ```
+echo '151.101.64.133 raw.githubusercontent.com' >> /etc/hosts
 curl -sL https://raw.githubusercontent.com/kequandian/dev_docs/master/ops/scripts/centos-script -o centos-script
 sh centos-script --install-docker
 ```
