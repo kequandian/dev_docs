@@ -58,7 +58,7 @@ install_docker_7() {
     https://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo
  
    echo yum -y install docker-ce docker-ce-cli containerd.io
-   yum install docker-ce docker-ce-cli containerd.io
+   yum -y install docker-ce docker-ce-cli containerd.io
 
    echo docker -v
    docker -v
@@ -95,8 +95,10 @@ install_docker() {
    dnf=$(which dnf)  #means centos8
 
    if [ ! $dnf ];then
+      echo no dnf, install docker for centos7..
       install_docker_7
    else
+      echo with dnf, install docker for centos8..
       install_docker_8
    fi
 }
