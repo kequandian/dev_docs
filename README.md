@@ -1,8 +1,14 @@
-## 如何解决 github.com 无法显示图片问题
+## 一健安装Docker
+> 仅适合`centos`
+```
+curl -sL https://raw.githubusercontent.com/kequandian/dev_docs/master/ops/scripts/centos-script -o centos-script && \ 
+sh centos-script --install-docker
+```
 
+## 如何解决 github.com 无法显示图片问题
 ```sh
 ## github.com
-$ cat /c/Windows/System32/drivers/etc/hosts  ## cat /etc/hosts for MAC
+$ cat /etc/hosts  # cat /c/Windows/System32/drivers/etc/hosts for windows
 140.82.114.4 gist.github.com
 185.199.108.153 assets-cdn.github.com
 151.101.64.133 raw.githubusercontent.com
