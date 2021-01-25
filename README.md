@@ -4,6 +4,11 @@
 curl -sL https://raw.githubusercontent.com/kequandian/dev_docs/master/ops/scripts/centos-script -o centos-script && \ 
 sh centos-script --install-docker
 ```
+#### 开机启动docker
+```
+systemctl enable docker
+```
+
 
 ## 如何解决 github.com 无法显示图片问题
 ```sh
