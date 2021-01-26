@@ -8,6 +8,7 @@ BOOTPROTO="dhcp"
 $ cat /etc/sysconfig/network-scripts/ifcfg-enp0s3
 BOOTPROTO=static
 ONBOOT=yes
+PREFIX=24
 IPADDR=192.168.3.230
 GATEWAY=192.168.3.1
 NETMASK=255.255.225.0
@@ -19,3 +20,11 @@ DNS1=8.8.8.8
 $ service network restart
 Restarting network (via systemctl):                        [  OK  ]
 ```
+
+#### 查出错原理
+```
+systemctl stop NetworkManager
+systemctl disable NetworkManager
+cat /var/log/messages|grep network
+```
+
