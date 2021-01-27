@@ -32,7 +32,6 @@ LOG**
 ### 文本对比工具 安装
 [Beyond_Compare_2.5.2.252](http://120.79.49.72:8000/devops/Beyond_Compare_2.5.2.252_SC_EV.exe.zip) 常用此工具用作文本对比(如 正常 pom.xml 与 问题 pom.xml 进行对比), 是发现与解决问题的好帮手。
 
-
 ### WinSCP 下载安装
 [WinSCP](https://winscp.net/eng/download.php)
 
@@ -47,7 +46,7 @@ $ npm -v
 6.4.1
 ```
 
-#### 由于国内网络环境原因，执行`npm install`前, 建议设置淘宝镜像
+#### 由于国内网络环境原因，执行`npm install`前, 设置淘宝镜像
 ```shell
 $ npm config set registry https://registry.npm.taobao.org
 $ npm install
@@ -104,7 +103,7 @@ logging:
 - 掌握在命令下运行standalone.jar, 并能指定参数运行
 ```shell
 $ ## 运行时指定端口，以及配置方案名称 dev
-$ java -jar target/app-standalone.jar --server.port=8081  --spring.profiles.active=dev
+$ java -jar target/app-standalone.jar --server.port=8080  --spring.profiles.active=dev
 ```
 
 ### Apache Maven 安装配置
@@ -175,12 +174,7 @@ $ mvn dependency:tree | cat -n | grep “org.json”
 
 ### 数据库 MySQL 5.7 安装 (可选)
 可在本地PC安装 **MySQL 5.7** 以上版本, 也可以直接连接专属测试 **MySQL Server** 远程连接：
-
-| **序号** | **连接字段**                                                 |**用户名**|**密码**|
-| -------- | ------------------------------------------------------------ |-----|-----|
-| zb       | jdbc:mysql://120.78.88.79/test?characterEncoding=utf8&autoReconnect=true&useUnicode=true&useSSL=false|root|zb2014|
-| Power    | jdbc:mysql://120.79.49.72/test?characterEncoding=utf8&autoReconnect=true&useUnicode=true&useSSL=false|root|root|
-
+>
 进一步安装 **navicat** 数据库远程连接工具, 常用远程连接数据库，数据库备份操作等
 
 ### SQL 查询技巧
