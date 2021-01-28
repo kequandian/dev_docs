@@ -1,10 +1,24 @@
-## 基于CentOS系统的容器安装
->  详细可参考 [docker安装](https://docs.docker.com/engine/install/centos/) 官网说明
-
+## `CentOS`操作系统的容器环境安装包括
 - `docker`
 - `docker-compose`
 
-#### 可通过脚本一步安装
+### 使用`daocloud.io`安装`docker`
+> 适用于Ubuntu，Debian,Centos等大部分Linux，会3小时同步一次Docker官方资源
+```
+curl -sSL https://get.daocloud.io/docker | sh
+```
+
+### 使用`daocloud.io`安装`docker-compose`
+```
+curl -L https://get.daocloud.io/docker/compose/releases/download/1.28.2/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
+chmod +x /usr/local/bin/docker-compose
+```
+
+## `Docker`官方安装说明
+>  详细可参考 [docker安装](https://docs.docker.com/engine/install/centos/) 官网说明
+
+
+#### [Docker官方] 安装`docker`可通过脚本一步安装
 ```
 echo '151.101.64.133 raw.githubusercontent.com' >> /etc/hosts
 curl -sL https://raw.githubusercontent.com/kequandian/dev_docs/master/ops/scripts/centos-script -o centos-script
