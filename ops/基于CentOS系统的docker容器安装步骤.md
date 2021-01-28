@@ -18,7 +18,7 @@ chmod +x /usr/local/bin/docker-compose
 >  详细可参考 [docker安装](https://docs.docker.com/engine/install/centos/) 官网说明
 
 
-#### [Docker官方] 安装`docker`可通过脚本一步安装
+#### 脚本一步安装`Docker`
 ```
 echo '151.101.64.133 raw.githubusercontent.com' >> /etc/hosts
 curl -sL https://raw.githubusercontent.com/kequandian/dev_docs/master/ops/scripts/centos-script -o centos-script
