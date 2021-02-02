@@ -33,3 +33,6 @@ $ cat /etc/hosts  # cat /c/Windows/System32/drivers/etc/hosts for windows
 
 ## 典型前端组件化开发参考
 [openbase.io](https://openbase.io)
+
+## 文档标准
+[tailwind-react-ui/#radio](https://emortlock.github.io/tailwind-react-ui/)
