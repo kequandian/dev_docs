@@ -1,18 +1,38 @@
 ## nginx 配置技巧
 
 #### 解决跨域问题
+> 需要配置 OPTIONS,否则不生效
+```
+if ($request_method = 'OPTIONS') {
+    return 204;
+}
+```
+
 ```
 server {
     listen 80;
     server_name localhost;
 
-    location /wap {
-       add_header 'Access-Control-Allow-Origin' '*';
-       add_header 'Access-Control-Allow_Credentials' 'true';
-       add_header 'Access-Control-Allow-Headers' 'Authorization,Accept,Origin,DNT,X-CustomHeader,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Content-Range,Range';
-       add_header 'Access-Control-Allow-Methods' 'GET,POST,PUT,DELETE,PATCH';
-
+    location /api {
+        proxy_hide_header access-control-allow-origin;
+        add_header Access-Control-Allow-Origin *;
+        add_header Access-Control-Allow-Methods 'GET, POST, PUT, DELETE, OPTIONS';
+        add_header Access-Control-Allow-Headers 'Authorization,Content-Type,Accept,Origin,DNT,X-Mx-ReqToken,Keep-Alive,User-Agent,X-CustomHeader,X-Requested-With,If-Modified-Since,Cache-Control,Content-Range,Range';
+        if ($request_method = 'OPTIONS') {
+            return 204;
+        }
+        
        proxy_pass http://api:8080;
+       proxy_set_header Host $http_host;
+       proxy_set_header X-Real-IP $remote_addr;
+       proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+       proxy_set_header X-Forwarded-Proto  $scheme;
+       proxy_buffering off;
+       proxy_max_temp_file_size 0;
+       proxy_connect_timeout 30;
+       proxy_cache_valid 200 302 10m;
+       proxy_cache_valid 301 1h;
+       proxy_cache_valid any 1m;
     }
 ```
 
