@@ -1,5 +1,21 @@
 ## nginx 配置技巧
 
+#### 解决跨域问题
+```
+server {
+    listen 80;
+    server_name localhost;
+
+    location /wap {
+       add_header 'Access-Control-Allow-Origin' '*';
+       add_header 'Access-Control-Allow_Credentials' 'true';
+       add_header 'Access-Control-Allow-Headers' 'Authorization,Accept,Origin,DNT,X-CustomHeader,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Content-Range,Range';
+       add_header 'Access-Control-Allow-Methods' 'GET,POST,PUT,DELETE,PATCH';
+
+       proxy_pass http://api:8080;
+    }
+```
+
 #### 转发TCP端口
 ```
 # cat nginx.conf
