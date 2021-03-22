@@ -113,7 +113,7 @@ $ java -jar target/app-standalone.jar --server.port=8080  --spring.profiles.acti
 Failed to execute goal org.apache.maven.plugins:maven-surefire-plugin:2.18.1:test (default-test) on project
 ```
 2. 下载以下地址 maven setting 文件（用于配置 apache archive 私服授权）,并保存于~/.m2目录下。
-    [settings.xml](http://zele.pro:8000/devops/settings.xml)
+    [settings.xml](http://git.smallsaas.cn:8000/devops/settings.xml)
 3. 掌握mvn命令行的使用 [mvn clean install package deploy]
 
 ```java
@@ -305,7 +305,7 @@ ssh-keygen -t rsa -C "youremail@example.com"
 
 - 在bash命令提示符下git clone 如下代码
 ```shell
-$ git clone devops@zele.pro:/home/devops/repo/env/env-test-saas.git
+$ git clone devops@git.smallsaas.cn:/home/devops/repo/env/env-test-saas.git
 ```
 打开 intellij idea 用 **maven** 导入工程
 
