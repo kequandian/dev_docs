@@ -281,6 +281,12 @@ newline: 445
 3)   掌握 ssh-keygen 的 以及 id_rsa.pub  key 的使用
 
 ### ssh无密码登陆
+> 向目标主机分发本机密匙
+```
+ssh-copy-id root@192.168.3.239
+# or -> ssh-copy-id -i ~/.ssh/id_rsa.pub root@192.168.3.239
+```
+
 - 通过ssh协议登陆服务器的前提是服务器已开通ssh服务，大部分linux平台默认配备ssh服务
 - SSH协议允许终端通过密匙对免输密码直接登录服务器 
 - 密匙对基于终端，分别为 public key 和 private key，终端public key 置入服务器授权终端列表后，可携带private key合法登录服务器
