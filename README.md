@@ -11,6 +11,8 @@ systemctl enable docker
 
 
 ## 如何解决 github.com 无法显示图片问题
+[dns](http://tool.chinaz.com/dns?type=1&host=github.com) 查询有效IP，然后设置至`hosts`
+>
 ```sh
 ## github.com
 $ cat /etc/hosts  # cat /c/Windows/System32/drivers/etc/hosts for windows
