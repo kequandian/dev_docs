@@ -7,3 +7,15 @@ jdbc:mysql://HOST/dbname?autoReconnect=true&useUnicode=true&zeroDateTimeBehavior
 
 ```
 
+#### 时间格式定义
+
+```java
+@TableName("t_test_saas_entity")
+public class TestSaasEntity extends Model<TestSaasEntity> {
+  
+   @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
+	@TableField("created_time")
+	private Date createdTime;
+}
+```
+
