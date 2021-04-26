@@ -2,7 +2,7 @@
 
 | Item                                      | Yes/No | Training Plan | Test Plan  |
 | ----------------------------------------- | ------ | ------------- | ---------- |
-| 是否可以实现键盘盲打                      | 是     | 1周时间       | 一周一     |
+| 是否可以实现键盘盲打                      | 是     | 1周时间       | 下周一     |
 | 是否掌握 JAVA 调试方式 （基于  intellij IDEA) | 否     | 1天时间       | 明天下班前 |
 | 是否掌握数据库联表查询 LEFT JOIN          | 否     | 1周时间       |            |
 | 是否熟练使用 `git`提交代码                | 否     | 1周时间       |            |
@@ -49,10 +49,9 @@ $ npm install
 
 ### Java 11 JKD (LTS) 安装配置
 - [java11 jdk](http://jdk.java.net/java-se-ri/11)
+- 配置环境变量 `JAVA_HOME`
 
-1. 配置环境变量 `JAVA_HOME`
-2. 在`bash`下可成功输出如下版本信息
-
+在`bash`下可成功输出如下版本信息
 ```shell
 $ java –version
 java version "11.0.2" 2019-01-15 LTS
@@ -63,38 +62,39 @@ C:\Program Files\Java\jdk-11.0.2
 ```
 
 
-
 ### 数据库 MySQL 5.7 安装 (可选)
-
-可在本地PC安装 **MySQL 5.7** 以上版本, 也可以直接连接专属测试 **MySQL Server** 远程连接
-
-进一步安装 **navicat** 数据库远程连接工具, 常用远程连接数据库，数据库备份操作等
-
+- 可在本地PC安装 **MySQL 5.7** 以上版本, 也可以直接连接专属测试 **MySQL Server** 远程连接
+- 进一步安装 **navicat** 数据库远程连接工具, 常用远程连接数据库，数据库备份操作等
 
 
 ### JAVA 代码编辑器 Intellij Idea Community 安装配置
-
 - 下载最新版本 [IntelliJ IDEA](https://www.jetbrains.com/idea/)
 
-
+> `Intellij IDEA` 常用快捷方式
+- 掌握 Reflector  ——  快捷键 Shift+F6 
+- 掌握全文搜索引用 —— 快捷键 Alt+F7
+- 掌握智能补全代码 —— 快捷键 Alt+Enter
+- 掌握查看方法定义 —— 快捷键 Ctrl+LeftButton or Ctrl + B
+- 掌握查看方法实现 —— 快捷键 (Ctrl+Atl+LeftButton or Ctrl + Alt + B)
+- 掌握调试方法    —— 快捷键 F7, F8, F9
 
 ### Apache Maven 安装配置
-
-1. 下载 ***maven 3.6.1*** (最新版本3.6.3与java 11 不兼容), 设置环境变量M2_HOME, 增加路径置设 PATH=%M2_HOME%\bin
-
+- 下载 ***maven 3.6.1*** (最新版本3.6.3与java 11 不兼容), 设置环境变量M2_HOME, 增加路径置设 PATH=%M2_HOME%\bin
 > 不兼容的情况下，测过junit单元测试可能会出现以下错误
-
 ```java
 Failed to execute goal org.apache.maven.plugins:maven-surefire-plugin:2.18.1:test (default-test) on project
 ```
 
-2. 下载以下地址 maven setting 文件（用于配置 apache archive 私服授权）,并保存于~/.m2目录下。
-   [settings.xml](http://git.smallsaas.cn:8000/devops/settings.xml)
-3. 掌握`mvn`命令行的使用  `mvn clean install package deploy`
+- 下载以下地址 maven setting 文件（用于配置 apache archive 私服授权）,并保存于~/.m2目录下。
+  [settings.xml](http://git.smallsaas.cn:8000/devops/settings.xml)
+- 掌握`mvn`命令行的使用
+```shell
+mvn clean install package deploy
+```
 
 ```java
 $ echo $M2_HOME
-/Users/vincenthuang/Library/apache-maven-3.6.1
+/Users/xxx/Library/apache-maven-3.6.1
 $ mvn  --version
 Apache Maven 3.6.0 (97c98ec64a1fdfee7767ce5ffb20918da4f719f3; 2018-10-25T02:41:47+08:00)
 Maven home: C:\apache-maven-3.6.0
@@ -103,8 +103,7 @@ Default locale: zh_CN, platform encoding: GBK
 OS name: "windows 10", version: "10.0", arch: "amd64", family: "windows"
 ```
 
-4. 如产生编译错误，尝试增加以下插件
-
+- 如产生编译错误，尝试增加以下插件
 ```sh
 [WARNING] Error injecting: org.codehaus.plexus.archiver.jar.JarArchiver
 java.lang.ExceptionInInitializerError
@@ -122,18 +121,14 @@ java.lang.ExceptionInInitializerError
 ```
 
 ### `http client` 测试工具
-
+- vscode restclient
 - 使用开源工具 [Insomnia](https://www.insomnia.rest/)
 - Postman
 
 
-
 ## 开发与调试
 
-
-
 ### 理解并掌握JAVA配置文件
-
 ```yaml
 ## cat src/main/resources/application.yml
 
@@ -170,26 +165,7 @@ logging:
 $ ## 运行时指定端口，以及配置方案名称 dev
 $ java -jar target/app-standalone.jar --server.port=8080  --spring.profiles.active=dev
 ```
-
-
-
-### `Intellij IDEA`常用快捷方式
-
-- 掌握 Reflector ——  快捷键 Shift+F6 
-
-- 掌握全文搜索引用 —— 快捷键 Alt+F7
-
-- 掌握智能补全代码 —— 快捷键 Alt+Enter
-
-- 掌握查看方法定义 —— 快捷键 Ctrl+LeftButton or Ctrl + B
-
-- 掌握查看方法实现 —— 快捷键 (Ctrl+Atl+LeftButton or Ctrl + Alt + B)
-
-- 掌握调试方法     —— 快捷键 F7, F8, F9
-
-- Find Usage     -- 查找引用  Alt + F7
-
-  
+ 
 
 ### maven理解与使用
 
@@ -209,34 +185,22 @@ $ mvn dependency:tree -Dverbose -Dincludes=com.jfeat:jwt-core
 $ mvn dependency:tree | cat -n | grep “org.json”
 ```
 
-
-
 ### 数据库表插入数据存在外键依赖
-> 在.sql文件中第一行增加以下设置
+在 `.sql` 文件中第一行增加以下设置
 ```sql
 SET FOREIGN_KEY_CHECKS = 0;
 ```
 
-
-
 ### 虚拟机安装与使用
-
 - 选用 VMware 或 VirtualBox 工具安装Linux操作系统
 - 掌握虚拟机的 **端口转发** 原理及其配置
 
-
-
 ### 理解 linux平台命令的参数意义
-
 ```shell
 $ curl --help
 Usage: curl [options...] <url>
-```
-```xml
-<>  内参数代表**必填**参数
-```
-```xml
-[]  内参数代表**选填**参数
+# <>   代表 <必填> 参数
+# []   代表 [选填] 参数
 ```
 
 ### 常用操作符
@@ -249,9 +213,7 @@ Usage: curl [options...] <url>
 | $      | $ export PW=OK123; echo $PW<br />OK123
 
 
-
 ### 掌握Linux操作系统常用命令
-
 ```shell
 Basic:  ls, cd, rm, mkdir, echo, cat
 Advance: vi, ps, grep, find, xargs, chmod, sed
@@ -306,12 +268,8 @@ $ echo "\`wms_storage_out_item\` VALUES (445" | sed "s/\`wms_storage_out_item\`[
 newline: 445
 ```
 
-
-
 ### 如何登录远程服务器
-
 在 **Innovation Oriented** 群文件搜索 **“PuTTY自动登录SSH服务器”** 文档，了解**ssh**概念
-
 1)   学习使用 [putty](http://putty.cs.utah.edu/), 或其他 ssh 登录工具
 2)   学习 scp 或 WinScp (Windows平台可视化scp,可下载安装) 的使用
 3)   掌握 ssh-keygen 的 以及 id_rsa.pub  key 的使用
@@ -341,43 +299,26 @@ ssh-keygen -t rsa -C "youremail@example.com"
 将终端 id_rsa.pub 公钥内容拷贝到服务器 ~/.ssh/authorized_keys 文件中，即可免密登陆。
 
 
-
 ### 熟练使用 `Git`
-
 - 在 Innovation Oriented 群文件搜索 **“git常用命令”** 文档，学习git的使用。
-
 - 提交代码时过滤掉临时文件或其他不应该提交的文件
-
   ```shell
   $ cat .gitignore 
   target/
-  /gen/
   build/
   .idea/
-  .gradle/
   .svn/
-  *.iml
-  *.swp
-  *.log
-  *.db
   logs/
   LOG**
-  .DS_Store
   ```
 
-  
-
 ### CRUD 项目开发与调试
-
 在 **Innovation Oriented** 群文件搜索 **CRUD Introduction.ppt** 文档，理解 CRUD 设计与开发编程概念。
-
 > 在bash命令提示符下git clone 如下代码,  运行 `API Endpoint`, 最新出现 `Test SaaS is success!`  表示运行成功
-
 ```shell
 $ git clone devops@git.smallsaas.cn:/home/devops/repo/env/env-test-saas.git
 ```
 > 在线查看 `swagger` 文档
-
 ```shell
 http://127.0.0.1:8080/swagger-ui.html
 ```
