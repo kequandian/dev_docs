@@ -1,0 +1,11 @@
+target/
+build/
+.idea/
+.gradle/
+.svn/
+*.iml
+*.swp
+*.log
+*.db
+.DS_Store
+logs/
