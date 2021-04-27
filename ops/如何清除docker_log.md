@@ -1,3 +1,28 @@
+
+## 设置Docker容器日志大小
+> 逐个设置或全局设置
+
+#### 设置一个容器服务的日志大小上限
+```yaml
+nginx:
+   image: nginx:1.12.1
+   restart: always
+   logging:
+      driver: "json-file"
+      options:
+        max-size: 100m
+        #max-file: 3
+```
+
+#### 全局设置Docker容器日志大小
+```json
+# cat /etc/docker/daemon.json
+{
+   "log-driver":"json-file",
+   "log-opts": {"max-size":"100m", "max-file":"3"}
+}
+```
+
 #### 解决日志占满问题,  避免写log到 docker，或通过docker 定期清除 log
 
 ```sh
