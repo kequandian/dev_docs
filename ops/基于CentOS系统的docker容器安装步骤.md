@@ -25,9 +25,11 @@ curl -sL https://raw.githubusercontent.com/kequandian/dev_docs/master/ops/script
 sh centos-script --install-docker
 ```
 
+## Step by Step
+
 ####  先卸载旧版本的docker
 ```shell
-$ sudo yum remove docker \
+$ yum remove docker \
                   docker-client \
                   docker-client-latest \
                   docker-common \
@@ -39,25 +41,42 @@ $ sudo yum remove docker \
 
 ####  安装需要的软件包
 ```shell
-$ sudo yum install -y yum-utils
+$ yum install -y yum-utils
 ```
 
-####  设置stable镜像仓库
+####  设置stable镜像数据源
 ```shell
-$ sudo yum-config-manager \
+$ yum-config-manager \
     --add-repo \
     https://download.docker.com/linux/centos/docker-ce.repo
 ```
 > 由于国外仓库较慢，建议换成阿里云仓库 (选择这个选项则可忽略以上命令)
 ```shell
-$ sudo yum-config-manager \
+$ yum-config-manager \
     --add-repo \
     https://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo
+```
+或
+```
+# dnf config-manager --add-repo=http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo
+```
+
+- 检查数据源
+> `# cat /etc/yum.repos.d/docker-ce.repo`
+```
+# dnf list docker-ce
+Last metadata expiration check: 0:00:23 ago on Wed 20 Jan 2021 06:13:22 AM PST.
+Available Packages
+docker-ce.x86_64                3:20.10.2-3.el8                 docker-ce-stable
 ```
 
 ####  安装Docker CE
 ```shell
-$ sudo yum install docker-ce docker-ce-cli containerd.io
+$ yum install docker-ce docker-ce-cli containerd.io
+```
+- 如果遇到padman问题, 增加 --allowerasing自动移除padman
+```
+# dnf install docker-ce --nobest -y --allowerasing 
 ```
 
 #### 查看版本号说明安装成功 
@@ -71,9 +90,10 @@ Docker version 19.03.12, build 48a66213fe
 $ sudo usermod -aG docker ubuntu  # 假设当前用登录户名为 ubuntu
 ```
 
-####  安装完成后启动 docker
+####  设置开机启动 docker
 ```shell
-$ sudo systemctl start docker
+systemctl start docker
+systemctl enable --now docker 
 ```
 
 #### 试执行说明启动成功
@@ -83,6 +103,7 @@ CONTAINER ID        IMAGE               COMMAND             CREATED             
 ```
 
 #### 安装 docker-compose
+[官方](https://github.com/docker/compose)
 > OS版本为 CentOS8.x, 可通过访问`https://github.com/docker/compose/releases`用最新版本号替换以下版本号`1.27.4`
 > 
 > CentOS7.x 版本沿用 1.27.4 版本
@@ -94,7 +115,7 @@ $ sudo chmod +x /usr/local/bin/docker-compose
 ####  查看版本号说明`docker-compose`安装成功
 ```shell
 $ sudo docker-compose -v
-docker-compose version 1.25.0-rc4, build 8f3c9c58
+docker-compose version 1.27.4, build 8f3c9c58
 ```
 
 
@@ -124,8 +145,9 @@ systemctl restart docker
 ## 增加私服命名空间(namespace)
 ```shell
 $ cat /etc/docker/daemon.json
-"add-registry": ["192.168.100.100:5001"],
-# "block-registry": ["docker.io"]
+{
+  "add-registry": ["192.168.100.100:5001"],
+}
 ```
 
 ## 关于国内镜像加速器
