@@ -1,0 +1,14 @@
+### tcptrack
+usage
+```shell
+sudo tcptrack -i eth0 port 3306
+```
+
+### iftop
+usage
+```shell
+sudo iftop -P -n -N -m 10M -f 'port 3306'
+```
+
+### how to block specific port 
+iptables
