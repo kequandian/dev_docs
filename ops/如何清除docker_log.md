@@ -14,6 +14,13 @@ nginx:
         #max-file: 3
 ```
 
+#### 清理没用的资源
+```shell
+docker system df 
+cd /var/lib/docker
+docker system prune -a
+```
+
 #### 全局设置Docker容器日志大小
 ```json
 # cat /etc/docker/daemon.json
