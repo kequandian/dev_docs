@@ -275,6 +275,7 @@ newline: 445
 3)   掌握 ssh-keygen 的 以及 id_rsa.pub  key 的使用
 
 ### ssh无密码登陆
+[Passwordless SSH access](https://www.raspberrypi.org/documentation/remote-access/ssh/passwordless.md)
 > 向目标主机分发本机密匙
 ```
 ssh-copy-id root@192.168.3.239
