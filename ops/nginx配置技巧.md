@@ -1,5 +1,14 @@
 ## nginx 配置技巧
 
+### 配置上传文件大小
+```shell
+server {
+   listen  80;
+   server_name localhost
+   client_max_body_size 10m;
+}
+```
+
 ### 解决跨域问题
 > 需要配置 OPTIONS,否则不生效
 ```
