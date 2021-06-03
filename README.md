@@ -1,14 +1,8 @@
-## 一健安装Docker
-> 仅适合`centos`
+## 解决`SSL_connect`问题
+`LibreSSL SSL_connect: SSL_ERROR_SYSCALL in connection to github.com:443`
+```shell
+git config --global --add remote.origin.proxy "127.0.0.1:1080"
 ```
-curl -sL https://raw.githubusercontent.com/kequandian/dev_docs/master/ops/scripts/centos-script -o centos-script && \ 
-sh centos-script --install-docker
-```
-#### 开机启动docker
-```
-systemctl enable docker
-```
-
 
 ## 如何解决 github.com 无法显示图片问题
 [dns](http://tool.chinaz.com/dns?type=1&host=github.com) 查询有效IP，然后设置至`hosts`
