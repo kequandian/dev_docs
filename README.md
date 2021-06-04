@@ -1,7 +1,8 @@
 ## 解决`SSL_connect`问题
 `LibreSSL SSL_connect: SSL_ERROR_SYSCALL in connection to github.com:443`
 ```shell
-git config --global --add remote.origin.proxy "127.0.0.1:1080"
+# git config --global --add remote.origin.proxy "127.0.0.1:1080"
+export https_proxy=http://127.0.0.1:1087 http_proxy=http://127.0.0.1:1087 all_proxy=socks5://127.0.0.1:1087
 ```
 
 ## 如何解决 github.com 无法显示图片问题
