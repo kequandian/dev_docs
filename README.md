@@ -4,7 +4,9 @@
 
 ```shell
 # git config --global --add remote.origin.proxy "127.0.0.1:1080"
-export https_proxy=http://127.0.0.1:1087 http_proxy=http://127.0.0.1:1087 all_proxy=socks5://127.0.0.1:1087
+export https_proxy=https://127.0.0.1:1080/pac?auth=TzRZDAUZxJ9Y98fKEyM5&t=202006201446199491 \
+       http_proxy=http://127.0.0.1:1080/pac?auth=TzRZDAUZxJ9Y98fKEyM5&t=202006201446199491 \
+       all_proxy=socks5://127.0.0.1:1087
 ```
 
 ## 最佳实践
