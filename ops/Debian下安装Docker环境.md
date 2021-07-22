@@ -51,3 +51,6 @@ curl -L https://get.daocloud.io/docker/compose/releases/download/1.27.4/docker-c
 chmod +x /usr/local/bin/docker-compose
 ```
 
+#### 清华大学开源软件镜像站
+https://mirrors.tuna.tsinghua.edu.cn/help/docker-ce/
+
