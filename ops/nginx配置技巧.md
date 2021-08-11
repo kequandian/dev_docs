@@ -86,6 +86,13 @@ location ^~ /beijing/ {
 }
 ```
 
+### 当前域名的请求转到新域名
+```
+server{
+   rewrite ^/(.*) http://www.smallsaas.cn/$1 permanent;
+}
+```
+
 ### 转发请求
 
 - 首先切换至Nginx安装路径下，编辑`nginx.conf`文件
