@@ -79,6 +79,7 @@ C:\Program Files\Java\jdk-11.0.2
 - 掌握调试方法    —— 快捷键 F7, F8, F9
 
 ### Apache Maven 安装配置
+-[maven-3.8.2](https://dlcdn.apache.org/maven/maven-3/3.8.2/binaries/)
 - 下载 ***maven 3.6.1*** (最新版本3.6.3与java 11 不兼容), 设置环境变量M2_HOME, 增加路径置设 PATH=%M2_HOME%\bin
 > 不兼容的情况下，测过junit单元测试可能会出现以下错误
 ```java
