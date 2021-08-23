@@ -61,7 +61,6 @@ $ echo $JAVA_HOME
 C:\Program Files\Java\jdk-11.0.2
 ```
 
-
 ### 数据库 MySQL 5.7 安装 (可选)
 - 可在本地PC安装 **MySQL 5.7** 以上版本, 也可以直接连接专属测试 **MySQL Server** 远程连接
 - 进一步安装 **navicat** 数据库远程连接工具, 常用远程连接数据库，数据库备份操作等
@@ -85,49 +84,41 @@ C:\Program Files\Java\jdk-11.0.2
 ```java
 Failed to execute goal org.apache.maven.plugins:maven-surefire-plugin:2.18.1:test (default-test) on project
 ```
-
-- 下载以下地址 maven setting 文件（用于配置 apache archive 私服授权）,并保存于~/.m2目录下。
-  [settings.xml](http://git.smallsaas.cn:8000/devops/settings.xml)
 - 掌握`mvn`命令行的使用
 ```shell
+echo $M2_HOME
+mvn  --version
 mvn clean install package deploy
 ```
 
-```java
-$ echo $M2_HOME
-/Users/xxx/Library/apache-maven-3.6.1
-$ mvn  --version
-Apache Maven 3.6.0 (97c98ec64a1fdfee7767ce5ffb20918da4f719f3; 2018-10-25T02:41:47+08:00)
-Maven home: C:\apache-maven-3.6.0
-Java version: 11.0.8, vendor: Oracle Corporation, runtime: C:\Program Files\Java\jdk-11.0.8
-Default locale: zh_CN, platform encoding: GBK
-OS name: "windows 10", version: "10.0", arch: "amd64", family: "windows"
+### 项目测试与调试
+在bash命令提示符下git clone 如下代码,  运行 `API Endpoint`, 最新出现 `Test SaaS is success!`  表示运行成功
+
+- 克隆代码 
+```
+git clone https://github.com/zhaosair/env-test-saas
+```
+> 或
+```shell
+git clone devops@git.smallsaas.cn:/home/devops/repo/env/env-test-saas.git
 ```
 
-- 如产生编译错误，尝试增加以下插件
-```sh
-[WARNING] Error injecting: org.codehaus.plexus.archiver.jar.JarArchiver
-java.lang.ExceptionInInitializerError
+- 下载以下地址 maven setting 文件（用于配置 apache archive 私服授权）,并保存于~/.m2目录下。
+  [settings.xml](https://gitee.com/smallsaas/sandbox/raw/master/tag/m2/settings.xml)
+  
+- 运行成功后可，在浏览器地址栏查看`swagger`文档
+```shell
+http://127.0.0.1:8080/swagger-ui.html
 ```
-
-```xml
-<plugin>
-    <groupId>org.apache.maven.plugins</groupId>
-    <artifactId>maven-jar-plugin</artifactId>
-    <version>2.4</version>
-    <configuration>
-        <encoding>UTF-8</encoding>
-    </configuration>
-</plugin>
-```
-
-### `http client` 测试工具
-- vscode restclient
-- 使用开源工具 [Insomnia](https://www.insomnia.rest/)
-- Postman
 
 
 ## 开发与调试
+
+### `http client` 测试工具
+- vscode restclient 插件【推荐】
+- Postman
+- [Insomnia](https://www.insomnia.rest/)
+
 
 ### 理解并掌握JAVA配置文件
 ```yaml
@@ -147,7 +138,7 @@ spring:
 spring:
   profiles: dev
   datasource:
-      url: jdbc:mysql://127.0.0.1/db_name?useSSL=false&autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull
+      url: jdbc:mysql://127.0.0.1/test?useSSL=false&autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull
       username: root
       password: root
       filters: log4j,wall,mergeStat
@@ -158,7 +149,6 @@ spring:
       # initialize=true 代表应用的所有依赖模块的数据表被重置（重新建表，数据丢失）
 logging:
   level: debug
-  file: logs/trace.log
 ```
 
 - 掌握在命令下运行 `standalone.jar` , 并能指定参数运行
@@ -167,7 +157,6 @@ $ ## 运行时指定端口，以及配置方案名称 dev
 $ java -jar target/app-standalone.jar --server.port=8080  --spring.profiles.active=dev
 ```
  
-
 ### maven理解与使用
 
 - 理解` mvn install` 的作用，与 `mvn deploy` 的区别
@@ -314,18 +303,6 @@ ssh-keygen -t rsa -C "youremail@example.com"
   LOG**
   ```
 
-### CRUD 项目开发与调试
-在 **Innovation Oriented** 群文件搜索 **CRUD Introduction.ppt** 文档，理解 CRUD 设计与开发编程概念。
-> 在bash命令提示符下git clone 如下代码,  运行 `API Endpoint`, 最新出现 `Test SaaS is success!`  表示运行成功
-```shell
-$ git clone devops@git.smallsaas.cn:/home/devops/repo/env/env-test-saas.git
-```
-> 在线查看 `swagger` 文档
-```shell
-http://127.0.0.1:8080/swagger-ui.html
-```
-
-
 ## 开发规范要求
 
 ### 遵循定义的准则
@@ -396,8 +373,6 @@ private void doSomeUpdate(){
 ```java
     @Transactional
 ```
-
-
 
 ### 学习容器Docker技术
 
