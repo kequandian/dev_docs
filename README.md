@@ -1,4 +1,11 @@
 ## 解决`SSL_connect`问题
+github mirror: `ec2-52-74-223-119.ap-southeast-1.compute.amazonaws.com`
+```shell
+git remote -v
+git@ec2-52-74-223-119.ap-southeast-1.compute.amazonaws.com:kequandian/demo.smallsaas.cn.git
+```
+
+
 `LibreSSL SSL_connect: SSL_ERROR_SYSCALL in connection to github.com:443`
 - https://stackoverflow.com/questions/48987512/ssl-connect-ssl-error-syscall-in-connection-to-github-com443
 
