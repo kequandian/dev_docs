@@ -155,3 +155,10 @@ $ sudo nginx -s reload
 > 相关链接:https://stackoverflow.com/questions/47077428/how-to-work-around-the-404-error-on-nginx
 
 - 尝试在`location`中添加`try_files $uri /index.html;`配置，随后重新加载配置
+```
+location / {
+        root /;
+        index index.html index.htm;
+        try_files $uri /index.html
+   }
+```
