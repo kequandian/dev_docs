@@ -7,3 +7,7 @@ fdisk -l
 ```
 lvdisplay  
 ```
+sudo mount /dev/centos/home /mnt
+sudo mkdir /root/recovery
+cd /mnt/root/
+cp -R . /root/recovery
