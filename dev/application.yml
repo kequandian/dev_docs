@@ -1,0 +1,89 @@
+```yaml
+###################  项目启动配置  ###################
+server:
+  port: 8080
+
+###################  jwt配置  ###################
+jwt:
+  encoded-key: L7A/6zARSkK1j7Vd5SDD9pSSqZlqF7mAhiOgRbgv9Smce6tf4cJnvKOjtKPxNNnWQj+2lQEScm3XIUjhW+YVZg==
+  normal-encoded-key: bm9ybWFsLWVuY29kZWQta2V5
+ 
+###################  spring配置  ###################
+spring:
+  profiles:
+    active: dev
+  mvc:
+    static-path-pattern: /static/**
+    view:
+      prefix: /WEB-INF/view/
+      suffix: .html
+  http:
+    encoding:
+      force: true
+      charset: UTF-8
+      enabled: true
+    converters:
+      preferred-json-mapper: fastjson
+#  jackson:
+#    date-format: yyyy-MM-dd HH:mm:ss
+
+###################  mybatis-plus配置  ###################
+mybatis-plus:
+  mapper-locations: classpath*:com/jfeat/**/mapping/*.xml
+  typeAliasesPackage: com.jfeat.**.model
+  global-config:
+    id-type: 0  #0:数据库ID自增   1:用户输入id   2:全局唯一id(IdWorker)   3:全局唯一ID(uuid)  4: 该类型为未设置主键类型(none)
+    db-column-underline: true
+    refresh-mapper: true
+    logic-delete-value: -1
+    logic-not-delete-value: 1
+#    sql-injector: com.baomidou.mybatisplus.mapper.LogicSqlInjector
+  configuration:
+    map-underscore-to-camel-case: true
+    cache-enabled: true #配置的缓存的全局开关
+    lazyLoadingEnabled: true #延时加载的开关
+    multipleResultSetsEnabled: true #开启的话，延时加载一个属性时会加载该对象全部属性，否则按需加载属性
+#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl #打印sql语句,调试用
+
+###################  日志配置  ###################
+logging:
+  level:
+    org.springframework.security: ERROR
+    com.jfeat: debug
+---
+
+###################  am配置  ###################
+am:
+  swagger-open: true #是否开启swagger (true/false)
+  kaptcha-open: false #是否开启登录时验证码 (true/false)
+  #file-upload-path: d:/tmp  #文件上传目录(不配置的话为java.io.tmpdir目录)
+  #file-host: http://localhost:8080
+  worker-id: 0 # id gen service machine id 0~1023
+  redis-host: 127.0.0.1
+  redis-port: 6379
+  #fastjson 格式化时间的格式，如不配置，默认用yyyy-MM-dd HH:mm:ss
+  #json-serialize-date-format: MM/dd/yyyy HH:mm:ss
+
+##########################################################
+###################  开发环境的profile  ###################
+##########################################################
+spring:
+  profiles: dev
+  datasource:
+      url: jdbc:mysql://192.168.3.239/alliance?useSSL=false&autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull
+      username: root
+      password: root
+      filters: log4j,wall,mergeStat
+      sql-script-encoding: UTF-8
+      schema: classpath*:sql/**/*-schema.sql
+      data: classpath*:sql/**/*-data.sql
+      initialize: false
+  jackson:
+    date-format: yyyy-MM-dd
+    time-zone: GMT+8
+    
+logging:
+  level: debug
+  file: logs/access.log
+
+```
