@@ -84,6 +84,24 @@ C:\Program Files\Java\jdk-11.0.2
 ```java
 Failed to execute goal org.apache.maven.plugins:maven-surefire-plugin:2.18.1:test (default-test) on project
 ```
+>
+> 在 `pom.xml` 中增加插件
+```
+<plugins>
+  <plugin>
+      <groupId>org.apache.maven.plugins</groupId>
+      <artifactId>maven-surefire-plugin</artifactId>
+      <version>2.19.1</version>
+      <configuration>
+          <skipTests>true</skipTests> 
+          <!-- <skipAfterFailureCount>1</skipAfterFailureCount> -->
+          <!-- <forkCount>1</forkCount> -->
+          <!-- <reuseForks>true</reuseForks> -->
+      </configuration>
+  </plugin>
+</plugins>
+```
+
 - 掌握`mvn`命令行的使用
 ```shell
 echo $M2_HOME
