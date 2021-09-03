@@ -1,13 +1,16 @@
 ###  基本开发技能 `Checklist`
 
-| Item                                      | Yes/No | Training Plan | Test Plan  |
+| Item                                      | Yes/No | Training Plan | Comment  |
 | ----------------------------------------- | ------ | ------------- | ---------- |
-| 是否可以实现键盘盲打                      | 是     | 1周时间       | 下周一     |
-| 是否掌握 JAVA 调试方式 （基于  intellij IDEA) | 否     | 1天时间       | 明天下班前 |
-| 是否掌握数据库联表查询 LEFT JOIN          | 否     | 1周时间       |            |
-| 是否熟练使用 `git`提交代码                | 否     | 1周时间       |            |
-| 是否熟悉 `docker`原理与应用               | 否     | 2周时间       |            |
-| 是否掌握网络基础原型                      | 否     | 2周时间       |            |
+| 是否可以实现键盘盲打                      | 是     | 1周           | 5天     |
+| 是否掌握 JAVA 调试方式 （基于  intellij IDEA) | 否     | 1天       | F7,F8,F9的使用技巧 |
+| 掌握抛出异常 `Bad Request`保证用户输入正确 |  是     | 2天          |                  |
+| 熟练掌握`myBatis`中的 ·Mapper`查询技巧    | 否      | 3天          | `QueryWrapper`与`LamdaQueryWrapper`的区别 |  
+| 理解并掌握一对多的业务逻辑开发              | 否      | 2天          | 掌握通过工具自动生成代码  | 
+| 是否掌握数据库联表查询 LEFT JOIN          | 否     | 1周      |            |
+| 是否熟练使用 `git`提交代码                | 否     | 1周       |  `git status`, `git diff`, `git checkout .` |
+| 是否熟悉 `docker`原理与应用               | 否     | 2周       |            |
+| 是否掌握网络基础原型                      | 否     | 2周       |            |
 
 
 
