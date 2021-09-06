@@ -19,7 +19,7 @@
 └── README
 ```
 
-#### 在`bin`目录下增加环境配置文件`setenv.s
+#### 在`bin`目录下增加环境配置文件`setenv.sh`
 > 与`idea intellij` 的调试端口设置为`5005`
 ```
 $ cat bin/setenv.sh
