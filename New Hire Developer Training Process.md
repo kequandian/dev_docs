@@ -2,16 +2,17 @@
 
 | Item                                      | Yes/No | Training Plan | Comment  |
 | ----------------------------------------- | ------ | ------------- | ---------- |
-| 是否可以实现键盘盲打                      | 是     | 1周           | 5天     |
-| 是否掌握 JAVA 调试方式 （基于  intellij IDEA) | 否     | 1天       | F7,F8,F9的使用技巧 |
-| 掌握抛出异常 `Bad Request`保证用户输入正确 |  是     | 2天          |                  |
-| 熟练掌握`myBatis`中的 ·Mapper`查询技巧    | 否      | 3天          | `QueryWrapper`与`LamdaQueryWrapper`的区别 |  
+| 是否可以实现键盘盲打                        | 是     | 1周           | 5天     |
+| 是否掌握 JAVA 调试方式（基于  intellij IDEA) | 否     | 1天       | F7,F8,F9的使用技巧 |
+| 是否熟悉`Lambda`的使用                     | 否     | 2周       | `stream().filter(u->u.toUpper()).sorted().collect(Collections.toList())` |
+| 是否掌握`JUNIT`单元测试                    | 否     | 2周       |            |
+| 是否掌握 junit Assert的使用               |  是     | 2天      | Assert.isTrue("Submitted".equals(status), "参数不正确") |
+| 是否理解抛出异常`BusinessException`的意义  |  是     | 2天      | `Bad Request`保证用户输入正确 |
+| 熟练掌握`myBatis`中的 ·Mapper`查询技巧     | 否      | 3天          | `QueryWrapper`与`LamdaQueryWrapper`的区别 |  
 | 理解并掌握一对多的业务逻辑开发              | 否      | 2天          | 掌握通过工具自动生成代码  | 
-| 是否掌握数据库联表查询 LEFT JOIN          | 否     | 1周      |            |
-| 是否熟练使用 `git`提交代码                | 否     | 1周       |  `git status`, `git diff`, `git checkout .` |
-| 是否熟悉 `docker`原理与应用               | 否     | 2周       |            |
-| 是否掌握网络基础原型                      | 否     | 2周       |            |
-
+| 是否掌握数据库联表查询 LEFT JOIN           | 否     | 1周      |            |
+| 是否熟练使用`git`提交代码                  | 否     | 1周       |  `git status`, `git diff`, `git checkout .` |
+| 是否熟悉`docker`原理与应用                 | 否     | 2周       |            |
 
 
 ## 开发环境安装及配置
