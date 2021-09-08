@@ -20,7 +20,8 @@
 ```
 
 #### 在`bin`目录下增加环境配置文件`setenv.sh`
-> 与`idea intellij` 的调试端口设置为`5005`
+> 与`idea intellij` 的调试端口设置为`*:5005` (*:<PORT>可远程访问)
+> 
 ```
 $ cat bin/setenv.sh
 #!/bin/sh
@@ -30,7 +31,7 @@ config=$(readlink -f $dir/../config/config.properties)
 
 export JAVA_OPTS="$JAVA_OPTS -Djfeat.config.properties=$config"
 #export CATALINA_OPTS=" -agentlib:jdwp=transport=dt_socket,address=8000,server=y,suspend=n"
-export CATALINA_OPTS="-Xdebug -Xrunjdwp:transport=dt_socket,server=y,address=5005,suspend=n"
+export CATALINA_OPTS="-Xdebug -Xrunjdwp:transport=dt_socket,server=y,address=*:5005,suspend=n"
 ```
 
 #### 把目标调试`.war` 更名为 `webapps/ROOT.war`
