@@ -43,6 +43,26 @@ cd bin
 ./catalina.sh run
 ```
 
-#### 用 `idea` 打开`war`项目源代码
-> 设置调试端口为`5005`
-- [idea 远程调试war包](https://www.jianshu.com/p/8b8bae237315)
+#### 在浏览器中测试`war`服务是否启动成功
+> 在地址栏输入
+```
+http://localhost:8080
+```
+
+
+## 本地调试
+> 通过连接正在运行的`tomcat` WAR包服务
+
+
+#### `idea intellij` 编辑器导入`maven`项目源代码
+在`Edit Configurations...`中的`Templates`选择`Remote`
+>
+设置调试端口为 **`5005`** (与`setenv.sh`中的设置对应)
+
+
+其他设置
+```
+Debugger mode: Attach to remote JVM
+Transport: Socket
+Host: localhost   Port: 5005
+```
