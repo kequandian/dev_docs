@@ -7,10 +7,10 @@
 | 是否掌握`一对多`数据库设计与代码生成         | 否      | 2天          |  | 
 | 是否正确测试`一对多`API并检查数据库的数据更新| 是      | 2天          |  | 
 | 是否掌握数据库联表查询 LEFT JOIN           | 否     | 1周      |            |
-| 熟练掌握`myBatis`中的 ·Mapper`查询技巧     | 否      | 3天          | `QueryWrapper`与`LamdaQueryWrapper`的区别 |  
+| 熟练掌握`myBatis`中的`Mapper`查询技巧     | 否      | 3天          | `QueryWrapper`与`LamdaQueryWrapper`的区别 |  
 | 是否熟悉`Lambda`的使用                     | 否     | 2周       | `stream().filter(u->u.toUpper()).sorted().collect(Collections.toList())` |
 | 是否掌握`JUNIT`单元测试                    | 否     | 2周       |            |
-| 是否掌握 junit Assert的使用               |  是     | 2天      | Assert.isTrue("Submitted".equals(status), "参数不正确") |
+| 是否掌握junit Assert的使用               |  是     | 2天      | Assert.isTrue("Submitted".equals(status), "参数不正确") |
 | 是否理解抛出异常`BusinessException`的意义  |  是     | 2天      | `Bad Request`保证用户输入正确 |
 | 是否熟练使用`git`提交代码                  | 否     | 1周       |  `git status`, `git diff`, `git checkout .` |
 | 是否熟悉`docker`原理与应用                 | 否     | 2周       |            |
