@@ -3,17 +3,20 @@
 | Item                                      | Yes/No | Training Plan | Comment  |
 | ----------------------------------------- | ------ | ------------- | ---------- |
 | 是否可以实现键盘盲打                        | 是     | 1周           | 5天     |
-| 是否掌握 JAVA 调试方式（基于  intellij IDEA) | 否     | 1天       | F7,F8,F9的使用技巧 |
-| 是否掌握`一对多`数据库设计与代码生成         | 否      | 2天          |  | 
-| 是否正确测试`一对多`API并检查数据库的数据更新| 是      | 2天          |  | 
-| 是否掌握数据库联表查询 LEFT JOIN           | 否     | 1周      |            |
-| 熟练掌握`myBatis`中的`Mapper`查询技巧     | 否      | 3天          | `QueryWrapper`与`LamdaQueryWrapper`的区别 |  
-| 是否熟悉`Lambda`的使用                     | 否     | 2周       | `stream().filter(u->u.toUpper()).sorted().collect(Collections.toList())` |
-| 是否掌握`JUNIT`单元测试                    | 否     | 2周       |            |
-| 是否掌握junit Assert的使用               |  是     | 2天      | Assert.isTrue("Submitted".equals(status), "参数不正确") |
-| 是否理解抛出异常`BusinessException`的意义  |  是     | 2天      | `Bad Request`保证用户输入正确 |
-| 是否熟练使用`git`提交代码                  | 否     | 1周       |  `git status`, `git diff`, `git checkout .` |
-| 是否熟悉`docker`原理与应用                 | 否     | 2周       |            |
+| 是否掌握JAVA调试方式（基于 intellij IDEA)   | 否     | 1天           | F7,F8,F9的使用技巧 |
+| 是否理解抛出异常`BusinessException`的意义   | 是     | 2天           | `Bad Request`保证用户输入正确 |
+| 是否掌握`一对多`数据库设计与自动化代码生成   | 否      | 2天          |  | 
+| 是否正确测试`一对多`的API逻辑               | 是     | 2天          |   | 
+| 是否掌握数据库联表查询 LEFT JOIN            | 否     | 1周          |  |
+| 熟练掌握`myBatis`中的`Mapper`查询技巧       | 否     | 2天          | `QueryWrapper`与`LamdaQueryWrapper`的区别 |  
+| 是否熟悉`Stream`以及`Lambda`的使用          | 否    | 1周           | `stream.of("one", "two").filter(u->u.toUpper()).sorted().collect(Collections.toList())` |
+| 是否掌握测试技巧，F12查看浏览器中network信息 | 否     | 1天          |   |
+| 是否掌握测试技巧，检证数据库的更新并理解API逻辑 | 否   | 1天          |   |
+| 是否掌握`JUNIT`单元测试                    | 否     | 1周          |            |
+| 是否掌握junit Assert的使用                 |  是    | 2天           | Assert.isTrue("Submitted".equals(status), "参数不正确") |
+| 是否熟练使用`git`提交代码                   | 否     | 1周          |  `git status`, `git diff`, `git checkout .` |
+| 是否熟悉`ssh`原理与应用场景                 | 否     | 1周          |            |
+| 是否熟悉`docker`原理与应用                  | 否     | 2周          |            |
 
 
 ## 开发环境安装及配置
