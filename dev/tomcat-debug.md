@@ -68,4 +68,8 @@ Transport: Socket
 Host: localhost   Port: 5005
 ```
 ## Install on Raspberrypi
-  1
+  1 Download Tomcat package from official website https://tomcat.apache.org/download-90.cgi
+  2 use tar to unzip file folder
+  3 Create necessary folder and copy necessary files to the unzip folder according to the above foler structure.
+  4 add "@reboot cd ~/apache-tomcat-9.0.53/bin && sudo ./startup.sh" in crontab to make sure the tomcat started when machine power on.
+  
