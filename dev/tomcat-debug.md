@@ -67,3 +67,5 @@ Debugger mode: Attach to remote JVM
 Transport: Socket
 Host: localhost   Port: 5005
 ```
+## Install on Raspberrypi
+  1
