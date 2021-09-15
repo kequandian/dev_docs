@@ -8,15 +8,25 @@
 ├── bin
 │   ├── setenv.sh
 ├── conf
+│   └─ Catalina
+│     └── localhost
+│         └── images.xml
 ├── config
-│   ├── config.properties
+│   └── config.properties
 ├── lib
 ├── logs
 ├── temp
 ├── webapps
+│   ├── images
 │   └── ROOT.war
 ├── work
 └── README
+```
+
+#### 配置图片目录
+```shell
+$ cat conf/Catalina/localhost/images.xml
+<Context path="/images" docBase="images" reloadable="true"/>  
 ```
 
 #### 在`bin`目录下增加环境配置文件`setenv.sh`
@@ -67,6 +77,7 @@ Debugger mode: Attach to remote JVM
 Transport: Socket
 Host: localhost   Port: 5005
 ```
+  
 ## Install on Raspberrypi
   1 Download Tomcat package from official website https://tomcat.apache.org/download-90.cgi
   2 use tar to unzip file folder
