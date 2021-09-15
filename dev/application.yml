@@ -1,13 +1,7 @@
 ###################  项目启动配置  ###################
 server:
   port: 8080
-
-###################  jwt配置  ###################
-jwt:
-  encoded-key: L7A/6zARSkK1j7Vd5SDD9pSSqZlqF7mAhiOgRbgv9Smce6tf4cJnvKOjtKPxNNnWQj+2lQEScm3XIUjhW+YVZg==
-  normal-encoded-key: bm9ybWFsLWVuY29kZWQta2V5
- 
-###################  spring配置  ###################
+  
 spring:
   profiles:
     active: dev
@@ -25,7 +19,7 @@ spring:
       preferred-json-mapper: fastjson
 #  jackson:
 #    date-format: yyyy-MM-dd HH:mm:ss
-
+  
 ###################  mybatis-plus配置  ###################
 mybatis-plus:
   mapper-locations: classpath*:com/jfeat/**/mapping/*.xml
@@ -56,7 +50,6 @@ am:
   swagger-open: true #是否开启swagger (true/false)
   kaptcha-open: false #是否开启登录时验证码 (true/false)
   #file-upload-path: d:/tmp  #文件上传目录(不配置的话为java.io.tmpdir目录)
-  #file-host: http://localhost:8080
   worker-id: 0 # id gen service machine id 0~1023
   redis-host: 127.0.0.1
   redis-port: 6379
