@@ -36,6 +36,22 @@ cls=${cls%[\n\r]*}
 echo $cls
 ```
 
+### `Hash`用法
+```shell
+declare -A map
+map[Sunday]='星期天'
+map[Monday]='星期一'
+
+for key in ${!map[@]};do
+   value=${map[$key]}
+   echo $key, $value
+done
+
+for it in ${map[@]};do
+  echo $it
+done
+```
+
 ### usage 标准用法
 ```
 usage(){
@@ -50,3 +66,4 @@ usage(){
 	exit
 }
 ```
+
