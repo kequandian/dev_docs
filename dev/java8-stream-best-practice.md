@@ -1,9 +1,7 @@
 #### 检查类型
 ```java
  String[] types = new String[]{"SMALLINT", "INT", "BIGINT", "DECIMAL"};
- 
- String typesLine = Stream.of(types).collect(Collectors.joining(","));
- Assert.isTrue(Stream.of(types).anyMatch(u->u.equals(fieldType)), "仅支持有限的数持据类型: " + typesLine);
+ Assert.isTrue(Stream.of(types).anyMatch(u->u.equals(fieldType)), "仅支持有限的数持据类型: " + String.join(",", types));
 ```
 
 #### 依据实体中的某个字段键值进行分组
