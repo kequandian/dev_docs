@@ -15,4 +15,5 @@ services:
       - |
         java $JAVA_OPTS -jar *.jar --sprint.profiles.active=dev --server.port=8080      
 ```
-
+#### 在`idea intellij`中调试
+见 [tomcat-debug](tomcat-debug.md)
