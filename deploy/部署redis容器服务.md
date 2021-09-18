@@ -21,10 +21,16 @@ services:
   redis:
     image: 'daocloud.io/library/redis:3.2.9'
     container_name: redis
+    privileged: true
+    restart: always
     environment:
       TZ: "Asia/Shanghai"
     volumes:
       - ./conf:/usr/local/etc/redis
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "2m"      
     command:
       redis-server /usr/local/etc/redis/redis.conf
     #ports:
