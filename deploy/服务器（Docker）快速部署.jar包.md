@@ -53,9 +53,9 @@ services:
 
 networks: 
   target_network:
-    external: false
+    external: true
   # mysqlserver_default:
-  #   external: false
+  #   external: true
 ```
 
 #### 配置数据库
