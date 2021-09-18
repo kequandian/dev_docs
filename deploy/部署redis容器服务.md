@@ -1,7 +1,7 @@
 ## 部署 redis 容器服务
 在服务器创建部署目录
 ```
-mall-redis
+redis
 ├── conf
 │   └── redis.conf
 └── redis.yml
@@ -13,8 +13,12 @@ $ cat conf/redis.conf
 notify-keyspace-events "Ex"
 ```
 
-- `redis.yml`
+- `redis.yml`配置 (等价`docker-compose.yml`)
+
 > 替换网络`target_network`为目标容器网络
+> 
+> 或 直接使用主机网络`network_mode: host`
+>
 ```YAML
 version: "3.4"
 services:
@@ -34,13 +38,14 @@ services:
     command:
       redis-server /usr/local/etc/redis/redis.conf
     #ports:
-    #  - 6379:6379
+    #  - 127.0.0.1:6379:6379
+    # network_mode: host
     networks:
       - target_network
       
 networks: 
   target_network:
-    external: false      
+    external: true      
 ```
 
 #### 启动服务
