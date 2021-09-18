@@ -36,7 +36,8 @@ services:
       options:
         max-size: "2m"      
     command:
-      redis-server /usr/local/etc/redis/redis.conf
+      - redis-server
+      - /usr/local/etc/redis/redis.conf
     #ports:
     #  - 127.0.0.1:6379:6379
     # network_mode: host
