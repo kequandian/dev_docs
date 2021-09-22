@@ -1,4 +1,37 @@
-## 如何快速部署数据依赖的`-standalone.jar`包
+## 快速部署`lib.jar`
+独立部署`.jar`库, 
+
+> 基于`portainer`的`stack`上传 `docker-compose.yml`以及库`.jar`文件完成部署
+
+```YAML
+version: "3.4"
+services:
+  api:
+    image: zelejs/api:dummy
+    #image: 192.168.3.239:5000/api:dummy
+    privileged: true
+    restart: always
+    working_dir: /webapps
+    environment: 
+      #GREENFIELD: dummy
+      #JAVA_OPTS: "$JAVA_OPTS -agentlib:jdwp=transport=dt_socket,address=5005,server=y,suspend=n"
+      URL_SHORT: 127.0.0.1:3306/dummy
+      USERNAME: root
+      PASSWORD: root
+      ROLLBACK_KEEP_NUM: 2
+    volumes: 
+      - /etc/localtime:/etc/localtime:ro
+      - ./lib:/webapps/lib
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "5m"
+    ports: 
+      - 8080:8080
+```
+
+
+## 快速部署数据依赖的`-standalone.jar`包
 
 #### 构建`.jar`
 在本地通过`mvn clean package` 构建 `.jar`包
