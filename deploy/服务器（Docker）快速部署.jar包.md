@@ -21,6 +21,7 @@ services:
       ROLLBACK_KEEP_NUM: 2
     volumes: 
       - /etc/localtime:/etc/localtime:ro
+      - ./:/webapps
       - ./lib:/webapps/lib
     logging:
       driver: "json-file"
