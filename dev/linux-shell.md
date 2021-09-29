@@ -30,10 +30,12 @@ echo $name
 ```
 
 ### 获取文件后缀
+```
 fileName=junit-4.12.jar
 name=${fileName##*.}
 echo $name
 #.jar
+```
 
 ### 移除文件后缀
 ```
