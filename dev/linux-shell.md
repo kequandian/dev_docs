@@ -29,6 +29,20 @@ echo $name
 #.jar
 ```
 
+### 获取文件后缀
+fileName=junit-4.12.jar
+name=${fileName##*.}
+echo $name
+#.jar
+
+### 移除文件后缀
+```
+fileName=junit-4.12.jar
+name=${fileName%%.jar}
+echo $name
+#junit-4.12
+```
+
 ### 移除字符换行符
 ```
 cls=$(echo com/jfeat/product/service/PostageService.class)
