@@ -45,6 +45,14 @@ echo $name
 #junit-4.12
 ```
 
+### 替换字符
+```
+var="12345678abc"
+replace="test"
+echo ${var//12345678/$replace}
+# testabc
+```
+
 ### 移除字符换行符
 ```
 cls=$(echo com/jfeat/product/service/PostageService.class)
