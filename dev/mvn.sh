@@ -13,4 +13,4 @@ if [ ! $SRC ];then
 fi
 
 # docker-compose -f mvn.yml run --rm maven bash
-docker run --rm -it -v  ~/.m2:/root/.m2 -v $SRC:/usr/src -w /usr/src maven:3.6-openjdk-11-slim mvn $@
+docker run --rm -v  ~/.m2:/root/.m2 -v $SRC:/usr/src -w /usr/src maven:3.6-openjdk-11-slim mvn $@
