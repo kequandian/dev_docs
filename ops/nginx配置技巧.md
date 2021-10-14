@@ -82,7 +82,15 @@ location /api/add {
 > 如果请求的url是 http://domain.com/beijing/index-ui.html 转发至 http://app-api:8080/index-ui.html
 ```
 location ^~ /beijing/ {
-   proxy_pass http://app-api:8080/;
+   proxy_pass http://api:8080/;
+}
+```
+
+> 移除多余路径
+```
+location ~* ^/.*/images {
+   rewrite ^/.*/images/(.*) /images/$1 last;
+   proxy_pass http://web:80;
 }
 ```
 
