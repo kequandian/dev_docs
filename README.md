@@ -19,6 +19,8 @@ export https_proxy=https://127.0.0.1:1080/pac?auth=TzRZDAUZxJ9Y98fKEyM5&t=202006
 ## 最佳实践
 - [OpenResty 最佳实践](https://moonbingbing.gitbooks.io/openresty-best-practices)
 
+## 元宇宙
+- [dmarket](https://dmarket.com/)
 
 ## 典型前端组件化开发参考
 - [openbase.io](https://openbase.io)
