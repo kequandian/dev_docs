@@ -101,6 +101,35 @@ server{
 }
 ```
 
+### `try_files` 静态部署刷新出现404问题
+
+> 相关链接:https://stackoverflow.com/questions/47077428/how-to-work-around-the-404-error-on-nginx
+
+- 尝试在`location`中添加`try_files $uri /index.html;`配置，随后重新加载配置
+```
+location / {
+        root /;
+        index index.html index.htm;
+        try_files $uri /index.html
+   }
+```
+
+## Nginx 跨域 add_header 403状态下无效
+```
+add_header 'Access-Control-Allow-Origin' '*';
+add_header 'Access-Control-Max-Age' '1000';
+add_header 'Access-Control-Allow-Methods' "POST, GET, OPTIONS, DELETE, PUT";
+add_header 'Access-Control-Allow-Headers' "x-requested-with, Content-Type, origin, authorization, accept, client-security-token";   
+```
+> Solution
+```
+add_header 'Access-Control-Allow-Origin' '*' always;
+add_header 'Access-Control-Max-Age' '1000' always;
+add_header 'Access-Control-Allow-Methods' "POST, GET, OPTIONS, DELETE, PUT" always;
+add_header 'Access-Control-Allow-Headers' "x-requested-with, Content-Type, origin, authorization, accept, client-security-token" always;  
+```
+
+
 ### 转发请求
 
 - 首先切换至Nginx安装路径下，编辑`nginx.conf`文件
@@ -158,15 +187,3 @@ $ sudo nginx -s reload
 
 - 至此，请求转发配置完成
 
-### 静态部署刷新出现404问题
-
-> 相关链接:https://stackoverflow.com/questions/47077428/how-to-work-around-the-404-error-on-nginx
-
-- 尝试在`location`中添加`try_files $uri /index.html;`配置，随后重新加载配置
-```
-location / {
-        root /;
-        index index.html index.htm;
-        try_files $uri /index.html
-   }
-```
