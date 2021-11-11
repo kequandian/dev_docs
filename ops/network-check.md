@@ -11,5 +11,6 @@ firewall-cmd --zone= public --remove-port=80/tcp --permanent  ## remove port
 
 ### check ip route
 ```
+apt install iproute2  ## install ip
 docker run -ti --rm --net=host qnib/httpcheck ip -o -4 route
 ```
