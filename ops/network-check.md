@@ -1,4 +1,9 @@
-### 防火墙
+### origin ip
+```
+curl http://httpbin.org/ip
+```
+
+### firewall
 ```
 systemctl stop firewalld  # disable firewall
 firewall-cmd --state
@@ -27,9 +32,45 @@ ip addr show lo
 ip addr show docker0
 docker run -ti --rm --net=host qnib/httpcheck ip -o -4 route
 ```
+>
+> show route
+```
+ip route show
+netstat -rn
+ip route del default  #delete route
+ip route add 10.0.4.0/24 via 10.0.2.1 dev eth1  ## add route
+```
+
+### netstat
+```
+$ netstat -rn
+Kernel IP routing table
+Destination     Gateway         Genmask         Flags   MSS Window  irtt Iface
+default         gateway         0.0.0.0         UG        0 0          0 enp0s3
+172.17.0.0      0.0.0.0         255.255.0.0     U         0 0          0 docker0
+172.18.0.0      0.0.0.0         255.255.0.0     U         0 0          0 br-6ffc24a181e5
+172.19.0.0      0.0.0.0         255.255.0.0     U         0 0          0 br-d8df20365546
+172.20.0.0      0.0.0.0         255.255.0.0     U         0 0          0 br-e11dce13f4e3
+
+$ route -n
+Kernel IP routing table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+0.0.0.0         192.168.3.1     0.0.0.0         UG    100    0        0 enp0s3
+172.17.0.0      0.0.0.0         255.255.0.0     U     0      0        0 docker0
+172.18.0.0      0.0.0.0         255.255.0.0     U     0      0        0 br-6ffc24a181e5
+172.19.0.0      0.0.0.0         255.255.0.0     U     0      0        0 br-d8df20365546
+```
 
 ### traceroute
 ```
 apt-get install traceroute
 traceroute www.baidu.com
+```
+
+### 测试`docker -p`端口转发
+https://mileslin.github.io/2019/05/%E7%9E%AD%E8%A7%A3-Docker-%E7%9A%84%E9%A0%90%E8%A8%AD%E7%B6%B2%E8%B7%AF%E8%A8%AD%E7%BD%AE/
+```
+docker run -d --name alpine -p 8088:80 alpine tail -f /dev/null
+docker exec alpine ip addr show eth0
+sudo iptables -t nat -L -n
 ```
