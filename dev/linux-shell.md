@@ -71,6 +71,10 @@ if [[ $firstletter = '/' ]];then
    echo first letter: $firstletter
 fi
 
+### match
+```
+[[ $date =~ ^[0-9]{8}$ ]] && echo "yes"
+```
 
 ### `Hash`用法
 ```shell
