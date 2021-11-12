@@ -7,6 +7,13 @@ docker run -d -v /var/run/docker.sock:/var/run/docker.sock --name socat -p 2375:
 ````
 
 
+Inspect host processes via docker with --pid
+------------------------------------------------------
+```
+docker run -it --pid=host debian bash
+```
+
+
 Enable TCP port 2375 for external connection to Docker
 ------------------------------------------------------
 
