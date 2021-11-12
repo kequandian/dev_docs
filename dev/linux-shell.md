@@ -51,6 +51,11 @@ var="12345678abc"
 replace="test"
 echo ${var//12345678/$replace}
 # testabc
+
+args=$@
+var=/path/to/jdk.jar
+basevar=$(basename $var)
+echo ${args//$var/$basevar}
 ```
 
 ### 移除字符换行符
