@@ -60,6 +60,13 @@ cls=${cls%[\n\r]*}
 echo $cls
 ```
 
+### 首字母
+firstletter=${jar::1}  ##first letter
+if [[ $firstletter = '/' ]];then 
+   echo first letter: $firstletter
+fi
+
+
 ### `Hash`用法
 ```shell
 declare -A map
