@@ -1,3 +1,12 @@
+Single Command Line to start tcp service
+------------------------------------------------------
+1. Docker 
+
+```
+docker run -d -v /var/run/docker.sock:/var/run/docker.sock --name socat -p 2375:2375 bobrik/socat TCP-LISTEN:2375,fork UNIX-CONNECT:/var/run/docker.sock
+````
+
+
 Enable TCP port 2375 for external connection to Docker
 ------------------------------------------------------
 
