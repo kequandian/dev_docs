@@ -92,6 +92,13 @@ for it in ${map[@]};do
 done
 ```
 
+
+### 文件内空替换
+```shell
+sed -i "s/window.ZEle.endpoint[[:space:]]*=[[:space:]]*'http:\/\/[a-z0-9\.]*:[0-9]*/window.ZEle.endpoint = $endpoint/" $dist_root/config.js
+```
+
+
 ### usage 标准用法
 ```
 usage(){
