@@ -1,3 +1,9 @@
+### get container log file
+```
+docker inspect --format='{{.LogPath}}' api
+```
+
+
 ### get network containers
 ```
 get_network_containers() {
