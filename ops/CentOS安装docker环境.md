@@ -2,6 +2,10 @@
 - `docker`
 - `docker-compose`
 
+> 手动安装
+- [Install Docker Manually](https://download.docker.com/linux/centos/)
+- [how-to-install-docker-on-centos-8](https://phoenixnap.com/kb/how-to-install-docker-on-centos-8)
+
 ### 使用`daocloud.io`安装`docker`
 > 适用于Ubuntu，Debian,Centos等大部分Linux，会3小时同步一次Docker官方资源
 ```
