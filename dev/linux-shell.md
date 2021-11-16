@@ -76,6 +76,21 @@ fi
 [[ $date =~ ^[0-9]{8}$ ]] && echo "yes"
 ```
 
+### 列表
+```
+my_array=(foo bar "cat" "dog" "mouse" "frog)
+echo ${my_array[@]}
+echo ${my_array[*]}
+
+for str in ${myArray[@]}; do
+  echo $str
+done
+
+for i in "${my_array[*]}"; do 
+  echo "$i"
+done
+```
+
 ### `Hash`用法
 ```shell
 declare -A map
