@@ -81,6 +81,8 @@ fi
 my_array=(foo "cat" "dog" "mouse" "frog)
 echo ${my_array[@]}
 echo ${my_array[*]}
+echo num=${#arr[@]} # 5
+
 
 for str in ${myArray[@]}; do
   echo $str
