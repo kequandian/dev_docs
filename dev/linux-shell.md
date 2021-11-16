@@ -78,7 +78,7 @@ fi
 
 ### 列表
 ```
-my_array=(foo bar "cat" "dog" "mouse" "frog)
+my_array=(foo "cat" "dog" "mouse" "frog)
 echo ${my_array[@]}
 echo ${my_array[*]}
 
@@ -89,6 +89,11 @@ done
 for i in "${my_array[*]}"; do 
   echo "$i"
 done
+
+## append new item
+my_array+=(bar)
+my_array=(${my_array[@]} "Fruit")
+my_array[${#my_array[@]}]="Python"
 ```
 
 ### `Hash`用法
