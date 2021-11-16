@@ -96,6 +96,13 @@ done
 my_array+=(bar)
 my_array=(${my_array[@]} "Fruit")
 my_array[${#my_array[@]}]="Python"
+
+## last arg
+last_arg=${@: -1}
+
+## remove last arg
+args=($@)
+unset "args[${#args[@]}-1]"
 ```
 
 ### `Hash`用法
