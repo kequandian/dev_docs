@@ -73,6 +73,11 @@ C:\Program Files\Java\jdk-11.0.2
 - 可在本地PC安装 **MySQL 5.7** 以上版本, 也可以直接连接专属测试 **MySQL Server** 远程连接
 - 进一步安装 **navicat** 数据库远程连接工具, 常用远程连接数据库，数据库备份操作等
 
+###### h2数据库不支持的语法
+- 不支持数据表`COMMENT`
+- 不支持字段`UNIQUE`属性，独立一行修饰可解决
+- 不支持`DATETIME ON UPDATE CURRENT_TIMESTAMP`
+
 
 ### JAVA 代码编辑器 Intellij Idea Community 安装配置
 - 下载最新版本 [IntelliJ IDEA](https://www.jetbrains.com/idea/)
