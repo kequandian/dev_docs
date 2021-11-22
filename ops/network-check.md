@@ -5,6 +5,9 @@ curl http://httpbin.org/ip
 
 ### firewall
 ```
+systemctl enable firewalld
+systemctl start firewalld
+systemctl status firewalld
 systemctl stop firewalld  # disable firewall
 firewall-cmd --state
 firewall-cmd --help
@@ -12,6 +15,9 @@ firewall-cmd --zone=public --list-ports ## view all ports
 firewall-cmd --zone=public --add-port=80/tcp --permanent   ## add port
 firewall-cmd --zone= public --query-port=80/tcp  ## view port
 firewall-cmd --zone= public --remove-port=80/tcp --permanent  ## remove port
+
+## reject port
+firewall-cmd --permanent --add-rich-rule='rule family=ipv4 port port="443" protocol="tcp" reject'
 ```
 
 ## iptables
