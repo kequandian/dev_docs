@@ -11,6 +11,9 @@ spring:
       prefix: /WEB-INF/view/
       suffix: .html
   http:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 100MB  
     encoding:
       force: true
       charset: UTF-8
@@ -55,6 +58,7 @@ am:
   redis-port: 6379
   #fastjson 格式化时间的格式，如不配置，默认用yyyy-MM-dd HH:mm:ss
   #json-serialize-date-format: MM/dd/yyyy HH:mm:ss
+  # environment: dev  ## [dev, development, production] default: dev
 
 ##########################################################
 ###################  开发环境的profile  ###################
