@@ -76,6 +76,16 @@ fi
 [[ $date =~ ^[0-9]{8}$ ]] && echo "yes"
 ```
 
+### read space line into array
+```
+arr=($line)
+arr=(`echo ${line}`);
+# read
+read -a arr <<< $line
+IFS=' ' read -a arr <<< "$line"
+eval "arr=($line)"
+```
+
 ### 列表
 ```
 my_array=(foo "cat" "dog" "mouse" "frog)
