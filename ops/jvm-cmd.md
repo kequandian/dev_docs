@@ -8,3 +8,8 @@ jcmd pid VM.flags
 ```
 jps -lvm
 ```
+
+### jinfo
+```
+jinfo -J-d64 -sysprops pid
+```
