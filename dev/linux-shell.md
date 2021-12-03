@@ -58,11 +58,15 @@ basevar=$(basename $var)
 echo ${args//$var/$basevar}
 ```
 
-### 移除字符换行符
+### 移除字符换行符 (newline)
 ```
 cls=$(echo com/jfeat/product/service/PostageService.class)
-cls=${cls%[\n\r]*}
+cls=${cls%$'\n'}
 echo $cls
+
+VAR=$'helloworld\n'
+CLEANED=${VAR%$'\n'}
+echo ${CLEANED}
 ```
 
 ### 首字母
