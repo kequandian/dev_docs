@@ -263,6 +263,22 @@ $ find . –name “*.json” | sed -i “s/oldstring/newstring/g”
 > * 不支持 \s, 用 [[:space:]] 代替
 > * ( 直接匹配 ( 符号；\\( 以及 \\) 才是转义字符，用于匹配提取
 
+#### POSIX Character Classes. [:class:]
+```
+This is an alternate method of specifying a range of characters to match.
+[:alnum:] matches alphabetic or numeric characters. This is equivalent to A-Za-z0-9.
+[:alpha:] matches alphabetic characters. This is equivalent to A-Za-z.
+[:blank:] matches a space or a tab.
+[:cntrl:] matches control characters.
+[:digit:] matches (decimal) digits. This is equivalent to 0-9.
+[:graph:] (graphic printable characters). Matches characters in the range of ASCII 33 - 126. This is the same as [:print:], below, but excluding the space character.
+[:lower:] matches lowercase alphabetic characters. This is equivalent to a-z.
+[:print:] (printable characters). Matches characters in the range of ASCII 32 - 126. This is the same as [:graph:], above, but adding the space character.
+[:space:] matches whitespace characters (space and horizontal tab).
+[:upper:] matches uppercase alphabetic characters. This is equivalent to A-Z.
+[:xdigit:] matches hexadecimal digits. This is equivalent to 0-9A-Fa-f.
+```
+
 - 匹配空格多个空格
 ```shell
 $ echo "This is new    line" | sed "s/new[[:space:]]*line/newline/"
