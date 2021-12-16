@@ -17,5 +17,5 @@ services:
       - /bin/sh
       - -c
       - |
-        java $JAVA_OPTS -jar *.jar --server.port=8080
+        java -jar *.jar --server.port=8080
 #       java $JAVA_OPTS -jar *.jar --spring.profiles.active=test --server.port=8080        
