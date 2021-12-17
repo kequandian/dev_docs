@@ -1,0 +1,69 @@
+```yaml
+version: "3.4"
+# change the network name {net_name} to the app network
+
+services:
+  web:
+    image: nginx:stable
+    privileged: true
+    restart: always
+    volumes: 
+      - ./dist:/usr/share/nginx/html
+      - ./gateway.conf:/etc/nginx/conf.d/default.conf
+    ports:
+      - 8000:80
+    network_mode: net_name 
+```
+
+### gateway.conf
+```
+server {
+    listen       80;
+    listen  [::]:80;
+    server_name  localhost;
+
+    #charset koi8-r;
+    #access_log  /var/log/nginx/host.access.log  main;
+
+    ## 
+    client_max_body_size 20m;
+
+    location / {
+        root   /usr/share/nginx/html;
+        index  index.html index.htm;
+        try_files $uri /index.html; 
+    }
+
+    # location /attachments {
+    #     root /usr/share/nginx/html;
+    #     try_files $uri /index.html;
+    # }    
+
+    #error_page  404              /404.html;
+
+    # redirect server error pages to the static page /50x.html
+    #
+    error_page   500 502 503 504  /50x.html;
+    location = /50x.html {
+        root   /usr/share/nginx/html;
+    }
+
+    # deny access to .htaccess files, if Apache's document root
+    # concurs with nginx's one
+    #
+    #location ~ /\.ht {
+    #    deny  all;
+    #}
+
+    # location /api {
+    #     proxy_pass http://api:8080;
+    #     add_header Cache-Control no-cache;
+     
+    #     proxy_set_header Host $http_host;
+    #     proxy_set_header X-Real-IP $remote_addr;
+    #     proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    #     proxy_set_header X-Forwarded-Proto $scheme;
+    # }
+}
+```
+    
