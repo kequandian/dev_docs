@@ -1,0 +1,21 @@
+version: "3.4"
+# docker run $detach  -v /var/run/docker.sock:/var/run/docker.sock --name socat -p 2375:2375 bobrik/socat TCP-LISTEN:2375,fork UNIX-CONNECT:/var/run/docker.sock
+
+services:
+  web:
+    image: bobrik/socat
+    container_name: socat
+    privileged: true
+    restart: always
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "1k"
+    volumes: 
+      - /var/run/docker.sock:/var/run/docker.sock
+    ports:
+      - 2375:2375
+    command:
+      - TCP-LISTEN:2375,fork 
+      - UNIX-CONNECT:/var/run/docker.sock
+   
