@@ -1,7 +1,8 @@
 version: "3.4"
 services:
   api:
-    image: adoptopenjdk:11-jre-hotspot
+    # image: adoptopenjdk:11-jre-hotspot
+    image: zelejs/allin-web:jdk11
     working_dir: /webapps
     volumes: 
       - ./:/webapps
@@ -19,3 +20,4 @@ services:
       - |
         java -jar *.jar --server.port=8080
 #       java $JAVA_OPTS -jar *.jar --spring.profiles.active=test --server.port=8080        
+#       java -agentlib:jdwp=transport=dt_socket,address=5005,server=y,suspend=n -jar *.jar --server.port=8080        
