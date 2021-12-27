@@ -5,8 +5,7 @@
 Docker官方有提供一个私有仓库的镜像为“**Registry**”，只需要将镜像下载下来，并运行在**5000端口**即可使用。具体指令如下所示：
 
 ```shell
-docker pull registry:2
-docker run -d -v /opt/registry:/var/lib/registry -p 5000:5000 --name myregistry registry:2
+docker run -d -v /opt/registry:/var/lib/registry -p 5000:5000 --name docker_registry registry:2
 ```
 
 上述指令表示，将registry镜像以后台方式运行在5000端口并将容器内部路径的/var/lib/registry挂载至/opt/registry外部路径下。
