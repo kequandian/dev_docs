@@ -90,6 +90,11 @@ IFS=' ' read -a arr <<< "$line"
 eval "arr=($line)"
 ```
 
+### convert multi lines to array
+```
+local array=(${lines})
+```
+
 ### 列表
 ```
 my_array=(foo "cat" "dog" "mouse" "frog)
