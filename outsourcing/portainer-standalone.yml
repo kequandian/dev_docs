@@ -1,4 +1,5 @@
 version: "3.4"
+# echo 'Asia/Shanghai' > /etc/timezone
 services:
   api:
     # image: adoptopenjdk:11-jre-hotspot
@@ -6,6 +7,7 @@ services:
     working_dir: /webapps
     volumes: 
       - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone
       - ./:/webapps
     ports:
       - 8080:8080
@@ -13,8 +15,8 @@ services:
       driver: "json-file"
       options:
         max-size: "5m"
-    environment: 
-      TZ: Asia/Shanghai
+    # environment: 
+    #   TZ: Asia/Shanghai
     #    JAVA_OPTS: "$JAVA_OPTS -agentlib:jdwp=transport=dt_socket,address=*:5005,server=y,suspend=n"
     command:
       - /bin/sh
