@@ -1,3 +1,11 @@
+### network fail
+```
+systemctl stop NetworkManager
+systemctl disable NetworkManager
+systemctl restart network
+systemctl status network
+```
+
 ### origin ip
 ```
 curl http://httpbin.org/ip
