@@ -82,3 +82,26 @@ spring:
 logging:
   level: debug
   file: logs/access.log
+
+##########################################################
+###################  生产环境的profile  ###################
+##########################################################
+spring:
+  profiles: prod
+  datasource:
+      url: jdbc:mysql://192.168.3.239/test?useSSL=false&autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
+      username: root
+      password: root
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      filters: log4j,wall,mergeStat
+      sql-script-encoding: UTF-8
+      schema: classpath*:sql/**/*-schema.sql
+      data: classpath*:sql/**/*-data.sql
+      initialize: false
+  jackson:
+    date-format: yyyy-MM-dd
+    time-zone: GMT+8
+
+logging:
+  level: warn
+  config: config/logback-spring.xml
