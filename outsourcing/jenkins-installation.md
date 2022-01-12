@@ -23,5 +23,5 @@ sudo apt install openjdk-11-jdk
 ```
 docker network create jenkins
 docker volume create jenkins_home
-docker run -d --name jenkins --privileged --network jenkins -p 8081:8080 -v jenkins_home:/var/jenkins_home jenkins/jenkins:lts
+docker run -d --name jenkins --privileged --network jenkins -p 8081:8080 -v /etc/localtime:/etc/localtime:ro -v /etc/timezone:/etc/timezone:ro -v jenkins_home:/var/jenkins_home jenkins/jenkins:lts
 ```
