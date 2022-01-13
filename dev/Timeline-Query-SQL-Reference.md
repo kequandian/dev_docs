@@ -1,0 +1,23 @@
+Timeline Query SQL Reference
+
+|  **Item** | **Details** | **Feature** |
+|  :---:  | ----  | ----  |
+| ***99:T***  <br> // till now 全部 | No WHERE CONDITION  |  MySQL Only     |
+| ***00:D***  <br/> // current day | **[Selected] **<br/>WHERE date([column-name])=curdate()<br/><br/>**[Optional] **<br/>WHERE [column-name] >= curdate() and [column-name] < DATE_ADD(curdate(),INTERVAL 1 DAY) |  |
+| ***10:LD***  <br/>// last day 昨天 | **\[Selected\]** <br>WHERE date([column-name])= DATE( DATE_SUB(CURRENT_DATE, INTERVAL 1 DAY) ) <br><br/>**~~[Optional]~~**<br>~~WHERE [column-name] >= curdate() and [column-name] < DATE_ADD(curdate(),INTERVAL 1 DAY)~~ |  |
+| ***21:W*** <br> // current  week 本周 | **\[Selected\]**<br>WHERE week([column-name]) = week(curdate()) and year([column-name]) = year(curdate())<br><br/>~~int days = calendar.get(Calendar.DAY_OF_WEEK) WHERE [column-name] <= now() AND [column-name] > DATE_SUB(date(now()),INTERVAL **[days]** DAY)~~ |  |
+| ***20:LW***<br>// last week 上周 | **\[Selected\]**<br/>TODO |  |
+| ***41:M***<br>// current month 本月 | **\[Selected\]**<br/>WHERE month([column-name]) = month(curdate()) and year([column-name]) = year(curdate())<br><br/>~~int days = calendar.get(Calendar.***DAY_OF_MONTH\***) WHERE [column-name] <= now() AND [column-name] > DATE_SUB(date(now()),INTERVAL **[days]** DAY)~~ | |
+| ***40:LM***<br>//last month 上个月 | **\[Selected\]**<br/>WHERE month([column-name]) = month(DATE_SUB(CURDATE(), INTERVAL 1 MONTH)) month(curdate()) and year([column-name]) = year(curdate()) | |
+| ***61:Q*** <br>// current quarter  本季度 | **\[Selected\]**<br/>WHERE quarter([column-name]) = quarter (curdate()) and year([column-name]) = year(curdate())<br/><br/>TODO:<br>check FROM_UNIXTIME | |
+| ***60:LQ***<br>// Last Quarter上个季度 | WHERE QUARTER([column-name])=QUARTER(DATE_SUB(CURDATE (),interval 1 QUARTER)); | |
+| ***81:Y***<br> // current year 今年 | **\[Selected\]**<br>WHERE year(FROM_UNIXTIME([column-name])) = year(curdate())<br><br>~~int days = calendar.get(Calendar.***DAY_OF_YEAR\***) HERE [column-name] <= now() AND [column-name] > DATE_SUB(date(now()),INTERVAL **[days]** DAY)~~ | |
+| **80:LY**<br>//last year 去年 | **\[Selected\]** <br>WHERE year(FROM_UNIXTIME([column-name])) = year(DATE_SUB(curdate(), INTERVAL 1 YEAR)) | |
+| ***11:LD3***<br>//latest 3 days (3 days ago)前三天 | WHERE [column-name] <= now() AND [column-name] > DATE_SUB(date(now()),INTERVAL 3 DAY)<br><br>注：N天内记录<br>WHERE TO_DAYS(NOW()) - TO_DAYS(时间字段) <= N | |
+| ***12:LW1***<br>//latest week (about 7 days ago) 前七天 | **\[Selected\]** <br>WHERE DATE_SUB(CURDATE(), INTERVAL 7 DAY) <= date([column-name]);<br><br>**[Optional]**<br>WHERE [column-name] <= now() AND [column-name] > DATE_SUB(CURDATE()),INTERVAL 7 DAY) | |
+| ***13:LM1***<br>// latest month (about 30 days ago)前30天 | **\[Selected\]** <br>WHERE DATE_SUB(CURDATE(), INTERVAL 1 MONTH) <= date([column-name]);<br/><br/>**[Optional]**<br/>WHERE [column-name] <= now() AND [column-name] > DATE_SUB(date(now()),INTERVAL 1 MONTH) | |
+| ***14:LM3***<br>// latest 3 months (about 90 days ago) 前90天 | WHERE [column-name] <= now() AND [column-name] > DATE_SUB(date(now()),INTERVAL 3 MONTH) | |
+| ***62:Q1***<br>*//第一季度*<br/>  ***63:Q2***<br/>//第二季度<br/>***64:Q3*** <br/>//第三季度<br/> ***65:Q4***<br/>//第四季度<br/>***70:Q12***<br/>//上半年<br/>***72:Q34*** <br/>//下半年<br/> | **\[Selected\]** <br>WHERE year([column-name]) = year(curdate()) and quarter([column-name])=[1,2,3,4];<br/><br>[Q12]<br>WHERE year([column-name]) = year(curdate()) and quarter([column-name]) in (1,2);<br><br/>[Q34]<br>WHERE year([column-name]) = year(curdate()) and quarter([column-name]) in (3,4);<br/><br/>~~int year = Calendar.getInstance().get(Calendar.YEAR);~~<br><br>***~~Q1~~***   <br/>~~String start = "'[year]-01-01'"<br>String end = "'[year]-04-01'"~~<br>***~~Q2~~***   <br/>~~String start = "'[year]-04-01'"<br>String end = "'[year]-07-01'"~~<br>***~~Q3~~***   <br/>~~String start = "'[year]-07-01'"<br>String end = "'[year]-10-01'"~~<br>***~~Q4~~***   <br/>~~String start = "'[year]-10-01'"<br>String end = "'[year+1]-01-01'"~~<br>***~~Q12~~***   <br/>~~String start = "'[year]-01-01'"<br>String end = "'[year]-07-01'"~~<br>***~~Q34~~***   <br/>~~String start = "'[year]-01-01'"<br>String end = "'[year+1]-01-01'"~~<br><br>~~WHERE [column-name] > date(**[start]**) AND [column-name] <= date(**[end]**)~~ | |
+| ***Timeframe***<br>// 时间段 | String start = “2018-01-01 00:00:00”;<br>String end = “2018-06-20 00:00:00”;<br><br>[日期]<br>WHERE [column-name] >= date([start]) AND  [column-name] < DATE_ADD(date([column-name]),INTERVAL 1 DAY)<br><br>[精确时间]<br>WHERE [column-name] BETWEEN [start] AND [end] | |
+
+
