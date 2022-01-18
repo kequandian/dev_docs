@@ -1,0 +1,25 @@
+version: '3.4'
+services:
+  mysqlbackup:
+    image: zelejs/mysqlbackup:latest
+    container_name: mysqlbackup
+    privileged: true
+    restart: always
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+      - ./mysqlbackup/data:/var/mysqlbackup/data
+      - ./mysqlbackup/log:/var/mysqlbackup/log
+    environment:
+      MYSQL_DB: nft
+      MYSQL_HOST: mysqlserver
+      MYSQL_PORT: 3306
+      MYSQL_USER: root 
+      MYSQL_USER_PASSWORD: 'root'
+      CRONTAB_DAILY_HOUR: 3
+      CRONTAB_DAILY_MIN: 25
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "1m"
+        
