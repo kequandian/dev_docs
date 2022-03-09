@@ -22,3 +22,10 @@ cat /etc/hosts
 151.101.108.133 avatars8.githubusercontent.com
 
 ```
+
+git 
+```
+RUN ssh-keyscan -p 7207 git.f.smallsaas.cn >> ~/.ssh/known_hosts
+WORKDIR /usr
+RUN git clone ssh://pi@git.f.smallsaas.cn:7207/repo/git/gmic/gmic-cad-artifact.git --single-branch -b master src
+```
