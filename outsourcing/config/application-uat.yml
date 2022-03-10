@@ -1,0 +1,17 @@
+--
+spring:
+  profiles: uat
+  datasource:
+    url: jdbc:mysql://sh-cdb-q5vnc0iy.sql.tencentcdb.com:59449/uat?autoReconnect=true&useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai&zeroDateTimeBehavior=convertToNull
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    filters: log4j,wall,mergeStat
+    sql-script-encoding: UTF-8
+    schema: classpath*:sql/**/*-schema.sql
+    data: classpath*:sql/**/*-data.sql
+    initialize: false
+
+logging:
+  level: warn
+  config: config/logback-spring.xml
