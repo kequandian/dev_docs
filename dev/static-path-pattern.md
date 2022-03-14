@@ -12,7 +12,7 @@ spring:
   mvc:
     static-path-pattern: /**
   resources:
-    static-locations: classpath:/static,classpath:/public,classpath:/resources,classpath:/META-INF,classpath:/META-INF/resources/dist
+    static-locations: classpath:/META-INF/resources,classpath:/resources,classpath:/static,classpath:/public
 ```
 
 #### Application.java
