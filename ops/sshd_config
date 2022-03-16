@@ -1,0 +1,4 @@
+# PermitRootLogin without-password
+PermitRootLogin yes
+PasswordAuthentication yes
+
