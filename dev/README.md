@@ -1,3 +1,8 @@
+```
+npm config set registry https://registry.npm.taobao.org
+npm install --force
+```
+
 cat /etc/hosts
 ```
 140.82.113.4 github.com
