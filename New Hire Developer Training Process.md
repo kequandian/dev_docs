@@ -76,8 +76,6 @@ C:\Program Files\Java\jdk-11.0.2
 ###### h2数据库不支持的语法
 - 不支持数据表`COMMENT`
 - 不支持字段`UNIQUE`属性，独立一行修饰可解决
-- 不支持`DATETIME ON UPDATE CURRENT_TIMESTAMP`
-
 
 ### JAVA 代码编辑器 Intellij Idea Community 安装配置
 - 下载最新版本 [IntelliJ IDEA](https://www.jetbrains.com/idea/)
@@ -91,8 +89,8 @@ C:\Program Files\Java\jdk-11.0.2
 - 掌握调试方法    —— 快捷键 F7, F8, F9
 
 ### Apache Maven 安装配置
--[maven-3.8.2](https://dlcdn.apache.org/maven/maven-3/3.8.2/binaries/)
-- 下载 ***maven 3.6.1*** (最新版本3.6.3与java 11 不兼容), 设置环境变量M2_HOME, 增加路径置设 PATH=%M2_HOME%\bin
+- [apache-maven-3.6.3](https://dlcdn.apache.org/maven/maven-3/3.6.3/binaries/apache-maven-3.6.3-bin.zip)
+- 下载 ***maven 3.6.3*** (最新版本3.6.3与java 11 不兼容), 设置环境变量M2_HOME, 增加路径置设 PATH=%M2_HOME%\bin
 > 不兼容的情况下，测过junit单元测试可能会出现以下错误
 ```java
 Failed to execute goal org.apache.maven.plugins:maven-surefire-plugin:2.18.1:test (default-test) on project
@@ -148,8 +146,15 @@ http://127.0.0.1:8080/swagger-ui.html
 ### `http client` 测试工具
 - vscode restclient 插件【推荐】
 - Postman
-- [Insomnia](https://www.insomnia.rest/)
 
+### 安装常用开发工具
+> 首先掌握 `standalone` 的使用
+```shell
+$ git clone --depth=1 https://gitee.com/smallsaas/dev-cli.git
+$ cd dev-cli
+$ npm i
+$ npm link
+```
 
 ### 理解并掌握JAVA配置文件
 ```yaml
