@@ -1,3 +1,4 @@
+$ code /c/Windows/System32/drivers/etc/hosts
 ```
 140.82.112.3 github.com
 140.82.114.4 gist.github.com
