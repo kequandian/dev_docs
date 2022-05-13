@@ -30,5 +30,9 @@ docker run -d --name jenkins --privileged --restart always --network jenkins -p 
 
 ### docker installation (arm)
 ```
+cat /etc/timezone
+Asia/Shanghai
+docker network create jenkins
+docker volume create jenkins_home
 docker run -d --name jenkins --privileged --restart always --network jenkins -p 8081:8080 -v /etc/localtime:/etc/localtime:ro -v /etc/timezone:/etc/timezone:ro -v jenkins_home:/var/jenkins_home jenkins4eval/jenkins:slim-arm
 ```
