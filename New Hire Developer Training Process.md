@@ -354,6 +354,10 @@ ssh-keygen -t rsa -C "youremail@example.com"
   logs/
   LOG**
   ```
+ 
+#### 使用 PR (Pull Request) 提交代码
+[pull-request](https://gitbook.tw/chapters/github/pull-request)
+ 
 
 ## 开发规范要求
 
