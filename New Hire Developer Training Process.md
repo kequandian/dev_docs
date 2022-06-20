@@ -1,5 +1,4 @@
 ###  基本开发技能 `Checklist`
-
 | Item                                      | Yes/No | Training Plan | Comment  |
 | ----------------------------------------- | ------ | ------------- | ---------- |
 | 是否可以实现键盘盲打                        | 是     | 1周           | 5天     |
@@ -17,7 +16,6 @@
 | 是否熟练使用`git`提交代码                   | 否     | 1周          |  `git status`, `git diff`, `git checkout .` |
 | 是否熟悉`ssh`原理与应用场景                 | 否     | 1周          |            |
 | 是否熟悉`docker`原理与应用                  | 否     | 2周          |            |
-
 
 ## 开发环境安装及配置
 
@@ -68,6 +66,10 @@ Java HotSpot(TM) 64-Bit Server VM 18.9 (build 11.0.2+9-LTS, mixed mode)
 $ echo $JAVA_HOME
 C:\Program Files\Java\jdk-11.0.2
 ```
+
+### 学习提交`Github`代码 `PR`
+[pull-request](https://gitbook.tw/chapters/github/pull-request)
+
 
 ### 数据库 MySQL 5.7 安装 (可选)
 - 可在本地PC安装 **MySQL 5.7** 以上版本, 也可以直接连接专属测试 **MySQL Server** 远程连接
