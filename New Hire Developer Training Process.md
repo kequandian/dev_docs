@@ -356,7 +356,10 @@ ssh-keygen -t rsa -C "youremail@example.com"
   logs/
   LOG**
   ```
- 
+
+#### GIT使用笔记
+[朱翰韬`git`使用笔记](https://note.youdao.com/s/9i8X0zPF)
+
 #### 使用 PR (Pull Request) 提交代码
 [pull-request](https://gitbook.tw/chapters/github/pull-request)
  
