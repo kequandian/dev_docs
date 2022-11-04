@@ -16,7 +16,7 @@ docker buildx create --use
 ## start buildx
 docker buildx build \
 --push \
---platform linux/arm/v7,linux/amd64 \
+--platform linux/arm/v7,linux/arm64/v8,linux/amd64 \
 --tag zelejs/allin-web:git .
 
 ## use back default driver
