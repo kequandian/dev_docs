@@ -109,6 +109,16 @@ else
     echo "Let's go shopping!"
 fi
 
+### read list from a function
+foo_list(){
+    declare -a _list=(foo bar cat)
+    echo ${_list[@]}
+}
+declare -a LIST=$(foo_list)
+for line in ${LIST[@]};do
+   echo $line
+done
+
 ## append new item
 LIST+=(bar)
 # LIST=(${LIST[@]} "Fruit")
