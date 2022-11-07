@@ -97,24 +97,31 @@ local array=(${lines})
 
 ### 列表
 ```
-my_array=(foo "cat" "dog" "mouse" "frog)
-echo ${my_array[@]}
-echo ${my_array[*]}
-echo num=${#arr[@]} # 5
-
-
-for str in ${myArray[@]}; do
-  echo $str
+### declear -a list 
+declare -a LIST=(bread milk eggs)
+for ITEM in "${LIST[@]}" ; do
+    echo $ITEM
 done
 
-for i in "${my_array[*]}"; do 
-  echo "$i"
-done
+if [ ${#LIST[@]} != 4 ]; then
+    echo "What about the bacon?"
+else
+    echo "Let's go shopping!"
+fi
 
 ## append new item
-my_array+=(bar)
-my_array=(${my_array[@]} "Fruit")
-my_array[${#my_array[@]}]="Python"
+LIST+=(bar)
+# LIST=(${LIST[@]} "Fruit")
+# LIST[${#LIST[@]}]="Python"
+
+## LIST as function arg
+ITER_LIST(){
+   local _LIST=("$@")
+   for ITEM in ${_LIST[@]};do
+     echo $ITEM
+   done
+}
+ITER_LIST ${LIST[@]}
 
 ## last arg
 last_arg=${@: -1}
