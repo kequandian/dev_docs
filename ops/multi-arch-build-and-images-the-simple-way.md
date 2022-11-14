@@ -7,11 +7,12 @@ docker buildx build \
 --platform linux/arm/v7,linux/arm64/v8,linux/amd64 \ --tag your-username/multiarch-example:buildx-latest .
 ```
 
+
 ## sample
 > 必须加 `--push` 参数
 ```
 ## create docker driver for buildx
-docker buildx create --use 
+docker buildx create --name allinweb_buildx --use 
 
 ## start buildx
 docker buildx build \
@@ -21,4 +22,5 @@ docker buildx build \
 
 ## use back default driver
 docker buildx use default
+docker buildx rm allinweb_buildx
 ```
