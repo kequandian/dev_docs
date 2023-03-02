@@ -20,38 +20,20 @@
 ## 开发环境安装及配置
 
 ### Git Windows 下载安装
+比较常用，相当于windows小型linux，并提供git工具
+- [Git Windows](https://gitforwindows.org/)Git 
 
-- 安装[Git Windows](https://gitforwindows.org/)后，Git Bash 可用于作为Windows平台下的Linux bash 命令行执行窗口，并提供git 工具。
-### Note++ 文本编辑器 下载安装
-
-- [note++](https://notepad-plus-plus.org)
-
-### 文本对比工具 安装
-
-常用此工具用作文本对比(如 正常 pom.xml 与 问题 pom.xml 进行对比), 是发现与解决问题的好帮手。
-
-- [Beyond_Compare_2.5.2.252](http://120.79.49.72:8000/dl/Beyond_Compare_2.5.2.252_SC_EV.exe.zip) 
+### VSCode 下载安装
+很多插件可以利用, 可用于开发，也可当作文本编辑器
+- [VSCode](https://code.visualstudio.com/)
 
 ### WinSCP 下载安装
+用于远程服务器的上传下载
 - [WinSCP](https://winscp.net/eng/download.php)
 
-### nodejs LTS 下载安装
-至 [nodejs官网](https://nodejs.org/en/) 下载最新 **LTS** 版本
-使node, npm 可执行
-
-```shell
-$ node -v
-v12.15.3
-$ npm -v
-6.4.1
-```
-
-由于国内网络环境原因，执行`npm install`前, 设置淘宝镜像
-
-```shell
-$ npm config set registry https://registry.npm.taobao.org
-$ npm install
-```
+### 文本对比工具 安装
+常用此工具用作文本对比(如 正常 pom.xml 与 问题 pom.xml 进行对比), 是发现与解决问题的好帮手。
+- [Beyond_Compare_2.5.2.252](http://120.79.49.72:8000/dl/Beyond_Compare_2.5.2.252_SC_EV.exe.zip) 
 
 ### Java 11 JKD (LTS) 安装配置
 - [java11 jdk](http://jdk.java.net/java-se-ri/11)
@@ -67,18 +49,6 @@ $ echo $JAVA_HOME
 C:\Program Files\Java\jdk-11.0.2
 ```
 
-### 学习提交`Github`代码 `PR`
-[pull-request](https://gitbook.tw/chapters/github/pull-request)
-
-
-### 数据库 MySQL 5.7 安装 (可选)
-- 可在本地PC安装 **MySQL 5.7** 以上版本, 也可以直接连接专属测试 **MySQL Server** 远程连接
-- 进一步安装 **navicat** 数据库远程连接工具, 常用远程连接数据库，数据库备份操作等
-
-###### h2数据库不支持的语法
-- 不支持数据表`COMMENT`
-- 不支持字段`UNIQUE`属性，独立一行修饰可解决
-
 ### JAVA 代码编辑器 Intellij Idea Community 安装配置
 - 下载最新版本 [IntelliJ IDEA](https://www.jetbrains.com/idea/)
 
@@ -90,10 +60,11 @@ C:\Program Files\Java\jdk-11.0.2
 - 掌握查看方法实现 —— 快捷键 (Ctrl+Atl+LeftButton or Ctrl + Alt + B)
 - 掌握调试方法    —— 快捷键 F7, F8, F9
 
-### Apache Maven 安装配置
+### `maven` 下载安装
 - [apache-maven-3.6.3](https://dlcdn.apache.org/maven/maven-3/3.6.3/binaries/apache-maven-3.6.3-bin.zip)
-- 下载 ***maven 3.6.3*** (最新版本3.6.3与java 11 不兼容), 设置环境变量M2_HOME, 增加路径置设 PATH=%M2_HOME%\bin
-> 不兼容的情况下，测过junit单元测试可能会出现以下错误
+>
+下载 ***maven 3.6.3*** (最新版本3.6.3与java 11 不兼容), 设置环境变量M2_HOME, 增加路径置设 PATH=%M2_HOME%\bin, 
+不兼容的情况下，测过junit单元测试可能会出现以下错误
 ```java
 Failed to execute goal org.apache.maven.plugins:maven-surefire-plugin:2.18.1:test (default-test) on project
 ```
@@ -115,11 +86,28 @@ Failed to execute goal org.apache.maven.plugins:maven-surefire-plugin:2.18.1:tes
 </plugins>
 ```
 
-- 掌握`mvn`命令行的使用
+### `maven`命令行
 ```shell
 echo $M2_HOME
 mvn  --version
 mvn clean install package deploy
+```
+
+### maven理解与使用
+ - 理解` mvn install` 的作用，与 `mvn deploy` 的区别
+- 理解 `mvn package` 生成的 `-standalone.jar` 与非 `standalone.jar` 的区别
+- 掌握 `pom.xml` 里定义变量的使用，掌握在命令行下通过设置变量，不生成 `-standalone.jar` 的方法
+- 掌握避免 `deploy standalone.jar` 的方法
+- 掌握依赖关系的查看方法 `mvn dependency:tree`
+
+要看当前 `package` 的所有依赖，可以通过 `| grep keyword`  过滤
+
+```java 
+$ mvn clean package install deploy
+$ mvn dependency:tree
+# -Dverbose参数查看到所有的传递依赖  -Dincludes或者-Dexcludes 过滤指定的依赖，包含或不包含
+$ mvn dependency:tree -Dverbose -Dincludes=com.jfeat:jwt-core
+$ mvn dependency:tree | cat -n | grep “org.json”
 ```
 
 ### 项目测试与调试
@@ -129,17 +117,25 @@ mvn clean install package deploy
 ```
 git clone https://github.com/zhaosair/env-test-saas
 ```
-> 或
-```shell
-git clone devops@git.smallsaas.cn:/home/devops/repo/env/env-test-saas.git
-```
 
 - 下载以下地址 maven setting 文件（用于配置 apache archive 私服授权）,并保存于~/.m2目录下。
-  [settings.xml](https://gitee.com/smallsaas/sandbox/raw/master/tag/m2/settings.xml)
+  [settings.xml](http://120.79.49.72:8000/devops/settings.xml)
   
 - 运行成功后可，在浏览器地址栏查看`swagger`文档
 ```shell
 http://127.0.0.1:8080/swagger-ui.html
+```
+
+### nodejs LTS 下载安装
+用于前端开发
+-[nodejs官网](https://nodejs.org/en/) 下载最新 **LTS** 版本
+使node, npm 可执行
+
+#### 设置淘宝镜像
+由于国内网络环境原因，执行`npm install`前
+```shell
+$ npm config set registry https://registry.npm.taobao.org
+$ npm i
 ```
 
 
@@ -193,24 +189,6 @@ logging:
 ```shell
 $ ## 运行时指定端口，以及配置方案名称 dev
 $ java -jar target/app-standalone.jar --server.port=8080  --spring.profiles.active=dev
-```
- 
-### maven理解与使用
-
-- 理解` mvn install` 的作用，与 `mvn deploy` 的区别
-- 理解 `mvn package` 生成的 `-standalone.jar` 与非 `standalone.jar` 的区别
-- 掌握 `pom.xml` 里定义变量的使用，掌握在命令行下通过设置变量，不生成 `-standalone.jar` 的方法
-- 掌握避免 `deploy standalone.jar` 的方法
-- 掌握依赖关系的查看方法 `mvn dependency:tree`
-
-要看当前 `package` 的所有依赖，可以通过 `| grep keyword`  过滤
-
-```java 
-$ mvn clean package install deploy
-$ mvn dependency:tree
-# -Dverbose参数查看到所有的传递依赖  -Dincludes或者-Dexcludes 过滤指定的依赖，包含或不包含
-$ mvn dependency:tree -Dverbose -Dincludes=com.jfeat:jwt-core
-$ mvn dependency:tree | cat -n | grep “org.json”
 ```
 
 ### 数据库表插入数据存在外键依赖
@@ -344,7 +322,7 @@ ssh-keygen -t rsa -C "youremail@example.com"
 将终端 id_rsa.pub 公钥内容拷贝到服务器 ~/.ssh/authorized_keys 文件中，即可免密登陆。
 
 
-### 熟练使用 `Git`
+## `Git`的使用
 - 在 Innovation Oriented 群文件搜索 **“git常用命令”** 文档，学习git的使用。
 - 提交代码时过滤掉临时文件或其他不应该提交的文件
   ```shell
@@ -356,11 +334,14 @@ ssh-keygen -t rsa -C "youremail@example.com"
   logs/
   LOG**
   ```
+  
+### 学习提交`Github`代码 `PR`
+[pull-request](https://gitbook.tw/chapters/github/pull-request)
 
-#### GIT使用笔记
+### GIT使用笔记
 [朱翰韬`git`使用笔记](https://note.youdao.com/s/9i8X0zPF)
 
-#### 使用 PR (Pull Request) 提交代码
+### 使用 PR (Pull Request) 提交代码
 [pull-request](https://gitbook.tw/chapters/github/pull-request)
  
 
@@ -416,8 +397,6 @@ private void doSomeUpdate(){
 * 尽量多判断输入参数或返回对象是否为null, 如果输入参数或返回对象不能为空，则抛出异常(throw new RuntimeException())；
 * 禁止使用多点操作，因为多点操作很容易出现空针指；对多点操作应分开多行获取对象，并对获取的对象进行非空判断
 
-
-
 ## 开发常见问题
 
 ### 项目无法启动问题
@@ -436,13 +415,7 @@ private void doSomeUpdate(){
 ```
 
 ### 学习容器Docker技术
-
 - [Docker-从入门到精通](https://yeasy.gitbook.io/docker_practice/)
-
-
-## 学习 vert.x 开发
-- [My first Vert.x 3 Application](https://vertx.io/blog/my-first-vert-x-3-application/)
-
 
 
 ## 实用工具 
