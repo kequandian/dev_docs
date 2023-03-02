@@ -21,7 +21,7 @@
 
 ### Git Windows 下载安装
 比较常用，相当于windows小型linux，并提供git工具
-- [Git Windows](https://gitforwindows.org/)Git 
+- [Git Windows](https://gitforwindows.org/)
 
 ### VSCode 下载安装
 很多插件可以利用, 可用于开发，也可当作文本编辑器
@@ -50,7 +50,7 @@ C:\Program Files\Java\jdk-11.0.2
 ```
 
 ### JAVA 代码编辑器 Intellij Idea Community 安装配置
-- 下载最新版本 [IntelliJ IDEA](https://www.jetbrains.com/idea/)
+- [IntelliJ IDEA](https://www.jetbrains.com/idea/)
 
 > `Intellij IDEA` 常用快捷方式
 - 掌握 Reflector  ——  快捷键 Shift+F6 
@@ -71,8 +71,8 @@ mvn clean install package deploy
 ```
 
 #### `maven`私域仓库`archiva`开发环境配置
-maven setting 文件（用于配置 apache archive 私服授权）, 通常保存在 ~/.m2 目录下, 或系统环境变量定义的$M2_HOME目录下。
-- [settings.xml](http://120.79.49.72:8000/devops/settings.xml) 下载
+配置`maven settings.xml`文件（用于配置 apache archive 私服授权）, 通常保存在 ~/.m2 目录下, 或系统环境变量定义的$M2_HOME目录下。
+- [settings.xml](http://120.79.49.72:8000/devops/settings.xml) 
 
 
 #### `maven` 开发理解
