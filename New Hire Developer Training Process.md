@@ -63,6 +63,37 @@ C:\Program Files\Java\jdk-11.0.2
 ### `maven` 下载安装
 - [apache-maven-3.6.3](https://dlcdn.apache.org/maven/maven-3/3.6.3/binaries/apache-maven-3.6.3-bin.zip)
 >
+> `maven`命令行检查是否安装成功
+```shell
+echo $M2_HOME
+mvn  --version
+mvn clean install package deploy
+```
+
+#### `maven`私域仓库`archiva`开发环境配置
+maven setting 文件（用于配置 apache archive 私服授权）, 通常保存在 ~/.m2 目录下, 或系统环境变量定义的$M2_HOME目录下。
+- [settings.xml](http://120.79.49.72:8000/devops/settings.xml) 下载
+
+
+#### `maven` 开发理解
+- 理解` mvn install` 的作用，与 `mvn deploy` 的区别
+- 理解 `mvn package` 生成的 `-standalone.jar` 与非 `standalone.jar` 的区别
+- 掌握 `pom.xml` 里定义变量的使用，掌握在命令行下通过设置变量，不生成 `-standalone.jar` 的方法
+- 掌握避免 `deploy standalone.jar` 的方法
+- 掌握依赖关系的查看方法 `mvn dependency:tree`
+
+要看当前 `package` 的所有依赖，可以通过 `| grep keyword`  过滤
+
+```java 
+$ mvn clean package install deploy
+$ mvn dependency:tree
+# -Dverbose参数查看到所有的传递依赖  -Dincludes或者-Dexcludes 过滤指定的依赖，包含或不包含
+$ mvn dependency:tree -Dverbose -Dincludes=com.jfeat:jwt-core
+$ mvn dependency:tree | cat -n | grep “org.json”
+```
+
+#### `maven`常见问题
+>
 下载 ***maven 3.6.3*** (最新版本3.6.3与java 11 不兼容), 设置环境变量M2_HOME, 增加路径置设 PATH=%M2_HOME%\bin, 
 不兼容的情况下，测过junit单元测试可能会出现以下错误
 ```java
@@ -85,47 +116,6 @@ Failed to execute goal org.apache.maven.plugins:maven-surefire-plugin:2.18.1:tes
   </plugin>
 </plugins>
 ```
-
-### `maven`命令行
-```shell
-echo $M2_HOME
-mvn  --version
-mvn clean install package deploy
-```
-
-### maven理解与使用
- - 理解` mvn install` 的作用，与 `mvn deploy` 的区别
-- 理解 `mvn package` 生成的 `-standalone.jar` 与非 `standalone.jar` 的区别
-- 掌握 `pom.xml` 里定义变量的使用，掌握在命令行下通过设置变量，不生成 `-standalone.jar` 的方法
-- 掌握避免 `deploy standalone.jar` 的方法
-- 掌握依赖关系的查看方法 `mvn dependency:tree`
-
-要看当前 `package` 的所有依赖，可以通过 `| grep keyword`  过滤
-
-```java 
-$ mvn clean package install deploy
-$ mvn dependency:tree
-# -Dverbose参数查看到所有的传递依赖  -Dincludes或者-Dexcludes 过滤指定的依赖，包含或不包含
-$ mvn dependency:tree -Dverbose -Dincludes=com.jfeat:jwt-core
-$ mvn dependency:tree | cat -n | grep “org.json”
-```
-
-### 项目测试与调试
-在bash命令提示符下git clone 如下代码,  运行 `API Endpoint`, 最新出现 `Test SaaS is success!`  表示运行成功
-
-- 克隆代码 
-```
-git clone https://github.com/zhaosair/env-test-saas
-```
-
-- 下载以下地址 maven setting 文件（用于配置 apache archive 私服授权）,并保存于~/.m2目录下。
-  [settings.xml](http://120.79.49.72:8000/devops/settings.xml)
-  
-- 运行成功后可，在浏览器地址栏查看`swagger`文档
-```shell
-http://127.0.0.1:8080/swagger-ui.html
-```
-
 ### nodejs LTS 下载安装
 用于前端开发
 -[nodejs官网](https://nodejs.org/en/) 下载最新 **LTS** 版本
@@ -138,6 +128,30 @@ $ npm config set registry https://registry.npm.taobao.org
 $ npm i
 ```
 
+## 尝试运行第一个`springboot`项目
+
+- 克隆代码 
+```
+git clone https://github.com/zhaosair/env-test-saas
+```
+
+- 通过`maven`构建
+```shell
+cd env-test-saas
+mvn clean package
+```
+
+- 运行`java`包
+可以通过`intellij idea`直接运行, 也可以通过命令行运行
+```
+## 出现以下提示，表示运行成功
+Test SaaS is success!
+```
+
+- 运行成功后可，在浏览器地址栏查看`swagger`文档
+```shell
+http://127.0.0.1:8080/swagger-ui.html
+```
 
 ## 开发与调试
 
