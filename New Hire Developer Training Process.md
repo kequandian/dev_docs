@@ -70,7 +70,7 @@ mvn  --version
 mvn clean install package deploy
 ```
 
-#### `maven`私域仓库`archiva`开发环境配置
+#### 下载`maven`私服开发环境配置文件`settings.xml`
 配置`maven settings.xml`文件（用于配置 apache archive 私服授权）, 通常保存在 ~/.m2 目录下, 或系统环境变量定义的$M2_HOME目录下。
 - [settings.xml](http://120.79.49.72:8000/devops/settings.xml) 
 
