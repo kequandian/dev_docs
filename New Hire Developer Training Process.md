@@ -116,21 +116,43 @@ Failed to execute goal org.apache.maven.plugins:maven-surefire-plugin:2.18.1:tes
   </plugin>
 </plugins>
 ```
-### nodejs LTS 下载安装
-用于前端开发
--[nodejs官网](https://nodejs.org/en/) 下载最新 **LTS** 版本
-使node, npm 可执行
 
-#### 设置淘宝镜像
-由于国内网络环境原因，执行`npm install`前
-```shell
-$ npm config set registry https://registry.npm.taobao.org
-$ npm i
+### `navcat` 数据连接工具
+- [navcat](\\192.168.3.209\disk2\dev\navicat_11\navicat 11.2 附破解工具)
+```
+server: smb:\\192.168.3.209 
+username: 13660878929
+password: 123456
 ```
 
-## 尝试运行第一个`springboot`项目
+- 测试数据库
+> 尝试使用`navcat`连接以下测试数据库
+>
+```
+host: db.webtools.io:3306
+username: root
+password: Nhy6%tgb
+```
 
-- 克隆代码 
+> application.yml 配置
+```yaml
+spring:
+  profiles: prod
+  datasource:
+    url: jdbc:mysql://db.webtools.io:3306/smallsaas_dev?autoReconnect=true&useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai&zeroDateTimeBehavior=convertToNull
+    username: root
+    password: Nhy6%tgb
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    filters: log4j,wall,mergeStat
+    sql-script-encoding: UTF-8
+    schema: classpath*:sql/**/*-schema.sql
+    data: classpath*:sql/**/*-data.sql
+    initialize: false
+```
+
+### 尝试运行第一个`springboot`项目
+
+- 克隆代码 （打开 Git Bash 窗口进行命令行操作）
 ```
 git clone https://github.com/zhaosair/env-test-saas
 ```
@@ -357,7 +379,21 @@ ssh-keygen -t rsa -C "youremail@example.com"
 
 ### 使用 PR (Pull Request) 提交代码
 [pull-request](https://gitbook.tw/chapters/github/pull-request)
+
+
+## 前端开发配置
  
+### nodejs LTS 下载安装
+用于前端开发
+-[nodejs官网](https://nodejs.org/en/) 下载最新 **LTS** 版本
+使node, npm 可执行
+
+#### 设置淘宝镜像
+由于国内网络环境原因，执行`npm install`前
+```shell
+$ npm config set registry https://registry.npm.taobao.org
+$ npm i
+```
 
 ## 开发规范要求
 
