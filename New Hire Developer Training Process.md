@@ -117,8 +117,9 @@ Failed to execute goal org.apache.maven.plugins:maven-surefire-plugin:2.18.1:tes
 </plugins>
 ```
 
-### `navcat` 数据连接工具
-- [navcat](\\192.168.3.209\disk2\dev\navicat_11\navicat 11.2 附破解工具)
+### `navicat` 数据连接工具
+- [navicat](\\192.168.3.209\disk2\dev\navicat_11\navicat 11.2 附破解工具)
+>
 ```
 server: smb:\\192.168.3.209 
 username: 13660878929
@@ -126,7 +127,7 @@ password: 123456
 ```
 
 - 测试数据库
-> 尝试使用`navcat`连接以下测试数据库
+> 尝试使用`navicat`连接以下测试数据库
 >
 ```
 host: db.webtools.io:3306
@@ -137,7 +138,7 @@ password: Nhy6%tgb
 > application.yml 配置
 ```yaml
 spring:
-  profiles: prod
+  profiles: dev
   datasource:
     url: jdbc:mysql://db.webtools.io:3306/smallsaas_dev?autoReconnect=true&useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai&zeroDateTimeBehavior=convertToNull
     username: root
