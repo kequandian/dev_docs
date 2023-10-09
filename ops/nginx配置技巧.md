@@ -96,11 +96,7 @@ location ~* ^/.*/images {
 
 ### 多条件匹配
 ```
-location ~*  \.(jpg|jpeg|png|gif|ico|css|js|pdf)$ {
-   proxy_pass http://web:80;
-}
-
-location ~* ^.+\.(jpeg|gif|png|jpg) { 
+location ~ /.*\.(jpg|jpeg|png|gif|ico|css|js|pdf)$ {
     add_header Cache-control "public";
     access_log   off;
     expires      90d;
