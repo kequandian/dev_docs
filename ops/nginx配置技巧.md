@@ -99,6 +99,12 @@ location ~* ^/.*/images {
 location ~*  \.(jpg|jpeg|png|gif|ico|css|js|pdf)$ {
    proxy_pass http://web:80;
 }
+
+location ~* ^.+\.(jpeg|gif|png|jpg) { 
+    add_header Cache-control "public";
+    access_log   off;
+    expires      90d;
+}
 ```
 
 
