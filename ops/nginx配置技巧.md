@@ -94,6 +94,14 @@ location ~* ^/.*/images {
 }
 ```
 
+### 多条件匹配
+```
+location ~*  \.(jpg|jpeg|png|gif|ico|css|js|pdf)$ {
+   proxy_pass http://web:80;
+}
+```
+
+
 ### 当前域名的请求转到新域名
 ```
 server{
