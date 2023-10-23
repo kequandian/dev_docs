@@ -143,18 +143,27 @@ unset "args[${#args[@]}-1]"
 
 ### `Hash`用法
 ```shell
-declare -A map
-map[Sunday]='星期天'
-map[Monday]='星期一'
+declare -A test_hash
+test_hash[Sunday]='星期天'
+test_hash[Monday]='星期一'
 
-for key in ${!map[@]};do
-   value=${map[$key]}
+for key in ${!test_hash[@]};do
+   value=${test_hash[$key]}
    echo $key, $value
 done
 
-for it in ${map[@]};do
+for it in ${test_hash[@]};do
   echo $it
 done
+
+## check has key
+if [ -v test_hash[key1] ]; then
+    echo "key1 exists in a dictionary"
+fi
+
+## Remove a Key-Value Pair from a Dictionary in Bash
+unset test_hash[key1]
+
 ```
 
 
