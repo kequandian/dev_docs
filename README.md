@@ -27,6 +27,7 @@ export https_proxy=https://127.0.0.1:1080/pac?auth=TzRZDAUZxJ9Y98fKEyM5&t=202006
 - [dribble: world class design](https://dribbble.com)
 - [tailwind-react-ui](https://emortlock.github.io/tailwind-react-ui/)
 - [报表](https://holo.poi.cat/youtube-channel)
+- [new报表](https://vt.poi.cat/channel/subscribers)
 - [Excel报表](https://www.other-levels.com/)
 
 ## 开源流程与工作流
