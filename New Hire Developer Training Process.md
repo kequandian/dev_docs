@@ -389,6 +389,11 @@ ssh-keygen -t rsa -C "youremail@example.com"
 -[nodejs官网](https://nodejs.org/en/) 下载最新 **LTS** 版本
 使node, npm 可执行
 
+```shell
+curl -sL https://deb.nodesource.com/setup_20.x | sudo -E bash -
+apt install nodejs
+```
+
 #### 设置淘宝镜像
 由于国内网络环境原因，执行`npm install`前
 ```shell
