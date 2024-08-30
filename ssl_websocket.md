@@ -12,14 +12,16 @@ openssl x509 -in ca.pem -text -noout
 
 
 ### ssl 配置
+```
 listen 443 ssl;
 server_name localhost;
 
 ssl_certificate /etc/ssl/certs/ca.pem;
 ssl_certificate_key /etc/certs/ca.key;
-
+```
 
 ### upgrade websocket
+```
 proxy_set_header X-Forwarded-Host $host;
 proxy_set_header X-Forwarded-Server $host;
 proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
@@ -30,3 +32,4 @@ location / {
     proxy_set_header Connection "upgrade";
     proxy_pass http://whiteboard-room;
 }
+```
